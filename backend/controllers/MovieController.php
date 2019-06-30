@@ -81,12 +81,15 @@ class MovieController extends Controller
 
         $params = Yii::$app->request->post();
         if($params){
-            $params['Movie']['master_id'] = implode(',', $params['Movie']['master_id']);
+            $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
+            $params['Movie']['actor_id'] = implode(',', $params['Movie']['actor_id']);
         }
 
         if ($model->load($params) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            print_r($model->getErrors());
             return $this->render('create', [
                 'model' => $model
             ]);
@@ -104,13 +107,16 @@ class MovieController extends Controller
         $model = $this->findModel($id);
 
         $params = Yii::$app->request->post();
-        if($params && $params['Movie']['master_id']){
-            $params['Movie']['master_id'] = implode(',', $params['Movie']['master_id']);
+        if($params){
+            $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
+            $params['Movie']['actor_id'] = implode(',', $params['Movie']['actor_id']);
         }
 
         if ($model->load($params) && $model->save()) {
             return $this->redirect(['index']);
         } else {
+            $model->musician_id = strpos($model->musician_id, ',') ? explode(',', $model->musician_id): $model->musician_id;
             return $this->render('update', [
                 'model' => $model,
             ]);

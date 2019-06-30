@@ -7,6 +7,7 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],

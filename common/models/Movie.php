@@ -6,6 +6,29 @@ use Yii;
 
 /**
  * This is the model class for table "movie".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $foreign_name
+ * @property string $cover
+ * @property string $desc
+ * @property string $music_desc
+ * @property integer $duration
+ * @property integer $year
+ * @property string $release
+ * @property string $musician_id
+ * @property string $director_id
+ * @property string $actor_id
+ * @property integer $douban_id
+ * @property integer $user_id
+ * @property integer $status
+ * @property integer $is_recommend
+ * @property integer $count
+ * @property integer $create_time
+ * @property integer $update_time
+ *
+ * @property Banner[] $banners
+ * @property Resource[] $resources
  */
 class Movie extends \yii\db\ActiveRecord
 {
@@ -23,11 +46,17 @@ class Movie extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'year', 'master_id', 'duration', 'status'], 'required'],
+            [['name', 'year','duration', 'status'], 'required'],
             [['year', 'duration', 'douban_id', 'user_id', 'status', 'is_recommend','count', 'create_time', 'update_time'], 'integer'],
             [['desc'], 'string'],
             [['name', 'foreign_name', 'cover'], 'string', 'max' => 128],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['name', 'cover',  'duration', 'year', 'release', 'musician_id', 'director_id', 'actor_id', 'douban_id'], 'required'],
+            [['desc', 'music_desc'], 'string'],
+            [['duration', 'year', 'douban_id', 'user_id', 'status', 'is_recommend', 'count', 'create_time', 'update_time'], 'integer'],
+            [['release', 'musician_id', 'director_id', 'actor_id'], 'safe'],
+            [['name', 'foreign_name'], 'string', 'max' => 128],
+            [['cover'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,11 +70,15 @@ class Movie extends \yii\db\ActiveRecord
             'name' => '名称',
             'foreign_name' => '原名',
             'cover' => '封面图',
-            'year' => '上映年份',
-            'master_id' => '音乐作者',
+            'year' => '年份',
             'duration' => '时长（分）',
             'douban_id' => '豆瓣ID',
             'desc' => '概要',
+            'music_desc' => '音乐简介',
+            'release' => '上映日期',
+            'musician_id' => '音乐作者',
+            'director_id' => '导演',
+            'actor_id' => '演员',
             'user_id' => '创建者',
             'status' => '状态',
             'count' => '浏览量',
@@ -93,16 +126,16 @@ class Movie extends \yii\db\ActiveRecord
      * 获取音乐作者，根据作者ID
      * @return \yii\db\ActiveQuery
      */
-    public function getMasters(){
+    public function getMusicians(){
         $res = '';
-        if(strpos($this->master_id, ',')){
-            $masters = explode(',', $this->master_id);
+        if(strpos($this->musician_id, ',')){
+            $masters = explode(',', $this->musician_id);
             foreach ($masters as $v){
                 $res .= Master::findOne($v)->name . '/';
             }
             $res = substr($res, 0 ,-1);
         }else{
-            $res = Master::findOne($this->master_id)->name;
+            $res = Master::findOne($this->musician_id)->name;
         }
 
         return $res;
@@ -115,15 +148,6 @@ class Movie extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * 获取音乐人
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMaster()
-    {
-        return $this->hasOne(Master::className(), ['id' => 'master_id']);
     }
 
 

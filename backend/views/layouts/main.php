@@ -31,6 +31,8 @@ AppAsset::register($this);
     <link rel="stylesheet" href="/static/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="/static/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/static/bower_components/select2/dist/css/select2.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->

@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $foreign_name
  * @property string $pic
+ * @property integer $type
  * @property string $birthday
  * @property string $place
  * @property string $intro
@@ -41,7 +42,7 @@ class Master extends \yii\db\ActiveRecord
         return [
             [['name', 'intro'], 'required'],
             [['intro'], 'string'],
-            [['douban_id', 'user_id', 'status', 'create_time', 'update_time'], 'integer'],
+            [['type','douban_id', 'user_id', 'status', 'create_time', 'update_time'], 'integer'],
             [['name', 'foreign_name', 'place'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
             [['birthday'], 'string', 'max' => 11],
@@ -60,6 +61,7 @@ class Master extends \yii\db\ActiveRecord
             'name' => '姓名',
             'foreign_name' => '外文名',
             'pic' => 'Pic',
+            'type' => '类型',
             'birthday' => '生日',
             'place' => '所在地',
             'intro' => '简介',

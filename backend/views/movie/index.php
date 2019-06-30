@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\MovieSearch */
@@ -36,7 +37,7 @@ $this->title = '电影列表';
 <!--                        <h3 class="box-title"></h3>-->
 <!--                    </div>-->
                     <div class="box-body">
-                        <a class="btn btn-app">
+                        <a class="btn btn-app" href="<?= Url::to(['movie/create'])?>">
                             <i class="fa fa-plus"></i> New
                         </a>
                     </div>
@@ -62,9 +63,9 @@ $this->title = '电影列表';
                                 //'foreign_name',
                                 'year',
 //                 'master_id',
-                                ['attribute' => 'master_id',
+                                ['attribute' => 'musician_id',
 //                    'label' => '作者',
-                                    'value' => 'masters'
+                                    'value' => 'musicians'
                                 ],
                                 'duration',
 //                'douban_id',
@@ -77,7 +78,7 @@ $this->title = '电影列表';
                                 ['attribute' => 'status',
                                     'value' => 'statusName',
                                     'contentOptions' => function($model){
-                                        return ($model->status == 0) ? ['class' => 'mws-tooltip-ne mws-button red'] : [];
+                                        return ($model->status == 0) ? ['class' => 'bg-yellow'] : [];
                                     }
                                 ],
                                 ['attribute' =>'create_time',
@@ -86,7 +87,6 @@ $this->title = '电影列表';
                                 ['attribute' =>'update_time',
                                     'format' =>['date', 'php:Y-m-d H:i:s']
                                 ],
-                                // 'update_time:datetime',
 
                                 ['class' => 'yii\grid\ActionColumn',
                                     'template' => '<ul class="icon-list" style="margin-bottom:0px;">{view}{update}{edit}{connect}{delete}</ul>',
