@@ -48,7 +48,7 @@ $this->title = '电影列表';
                             'dataProvider' => $dataProvider,
                             //'filterModel' => $searchModel,
                             'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example1'],
-                            'layout' => '{items}',
+                            //'layout' => '{items}',
                             'columns' => [
                                 //['class' => 'yii\grid\SerialColumn'],
 

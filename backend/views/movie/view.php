@@ -7,43 +7,74 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Movie */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Movies', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-list">Inline Form</span>
-    </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            电影管理
+            <small>新增电影</small>
+        </h1>
+    </section>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'foreign_name',
-            'year',
-            'director_id',
-            'musician_id',
-            'release:date',
-            'douban_id',
-            'desc:ntext',
-            'user_id',
-            'status',
-            'create_time:datetime',
-            'update_time:datetime',
-        ],
-    ]) ?>
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-10">
+                <!-- general form elements -->
+
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#basic" data-toggle="tab">基本信息</a></li>
+                        <li><a href="#episode" data-toggle="tab">音乐片段</a></li>
+                        <li><a href="#resource" data-toggle="tab">资源列表</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="basic">
+
+                            <?= $this->render('_form', [
+                                'model' => $model,
+                            ]) ?>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="episode">
+                            <?= $this->render('_episode', [
+                                'model' => $model,
+                            ]) ?>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="resource">
+                            <?= $this->render('_resource', [
+                                'model' => $model,
+                            ]) ?>
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 </div>
+
+<script>
+    window.onload = function(){
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Datemask yyyy/mm/dd
+            $('#movie-release').inputmask('yyyy/mm/dd', { 'placeholder': 'yyyy/mm/dd' })
+        })
+    }
+
+</script>
+
+
+
 
