@@ -38,7 +38,7 @@ use yii\grid\GridView;
         <td><?= $e->name ?></td>
         <td><?= $e->foreign_name ?></td>
         <td><?= $e->movie->name ?></td>
-        <td><?= $e->singer->name ?></td>
+        <td><?= $e->musician->name ?></td>
         <td>caozuo</td>
 
         </tr>

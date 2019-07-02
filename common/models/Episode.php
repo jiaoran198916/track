@@ -41,9 +41,8 @@ class Episode extends \yii\db\ActiveRecord
         return [
             [['timing', 'summary', 'status', 'movie_id'], 'required'],
             [['summary'], 'string'],
-            [['status', 'movie_id','singer_id', 'seconds', 'create_time', 'update_time', 'movie_id'], 'integer'],
-            [['timing'], 'string', 'max' => 255],
-            [['name', 'foreign_name', 'url1', 'url2', 'url3'], 'string', 'max' => 128],
+            [[ 'movie_id','musician_id', 'valid', 'create_time', 'update_time', 'movie_id'], 'integer'],
+            [['name', 'foreign_name'], 'string', 'max' => 128],
         ];
     }
 
@@ -58,15 +57,11 @@ class Episode extends \yii\db\ActiveRecord
             'name' => '标题',
             'foreign_name' => '外文名',
             'summary' => '简介',
-            'status' => '状态',
-            'url1' => '链接1',
-            'url2' => '链接2',
-            'url3' => '链接3',
             'movie_id' => '所属电影',
-            'singer_id' => '歌手',
-            'seconds' => '秒',
+            'musician_id' => '歌手',
             'create_time' => '创建时间',
             'update_time' => '更新时间',
+            'valid' => '是否有效',
         ];
     }
 
@@ -98,8 +93,16 @@ class Episode extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSinger()
+    public function getMusician()
     {
-        return $this->hasOne(Master::className(), ['id' => 'singer_id']);
+        return $this->hasOne(Master::className(), ['id' => 'musician_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResources()
+    {
+        return $this->hasMany(Resource::className(), ['item_id' => 'id']);
     }
 }

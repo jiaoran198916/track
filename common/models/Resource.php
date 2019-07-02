@@ -23,11 +23,11 @@ class Resource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position', 'movie_id', 'status', 'type', 'create_time', 'update_time'], 'integer'],
-            [['movie_id', 'create_time', 'update_time'], 'required'],
-            [['name', 'url'], 'string', 'max' => 255],
+            [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid'], 'integer'],
+            [['item_id', 'create_time', 'update_time'], 'required'],
+            [['name', 'url'], 'string', 'max' => 128],
             [['desc'], 'string', 'max' => 255],
-            [['movie_id'], 'exist', 'skipOnError' => true, 'targetClass' => Movie::className(), 'targetAttribute' => ['movie_id' => 'id']],
+            [['source'], 'string', 'max' => 10]
         ];
     }
 
@@ -42,20 +42,23 @@ class Resource extends \yii\db\ActiveRecord
             'desc' => '简介',
             'url' => '链接',
             'position' => '排序',
-            'movie_id' => '关联电影',
-            'status' => '状态',
-            'type' => '类型',
+            'item_id' => '关联片段',
+            'type' => '类型，0片段，1电影',
+            'is_download' => '是否可下载，0在线，1下载',
+            'source' => '来源',
             'create_time' => '创建时间',
             'update_time' => '修改时间',
+            'valid' => '是否有效',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMovie()
+    public function getItem()
     {
-        return $this->hasOne(Movie::className(), ['id' => 'movie_id']);
+        if($this->type == 1){
+            return $this->hasOne(Movie::className(), ['id' => 'item_id']);
+        }else{
+            return $this->hasOne(Episode::className(), ['id' => 'item_id']);
+        }
     }
 
     /**
@@ -64,6 +67,16 @@ class Resource extends \yii\db\ActiveRecord
      */
     public function getStatusName(){
         return Yii::$app->params['resourceStatus'][$this->status];
+    }
+
+    public function getDownloadStatus(){
+        $str = '';
+        if($this->is_download == 1){
+            $str = '下载';
+        }else{
+            $str = '在线';
+        }
+        return $str;
     }
 
     /**

@@ -19,15 +19,14 @@ use yii\grid\GridView;
 <table id="teaListTable" class="table table-bordered table-striped">
     <thead>
     <tr>
-        <!--        <th><input id="checkall" type="checkbox" onclick="checkall()"/></th>-->
         <th>ID</th>
         <th>名称</th>
         <th>描述</th>
         <th>链接</th>
         <th>排序</th>
-        <th>电影</th>
-        <th>状态</th>
-        <th>类型</th>
+        <th>关联</th>
+        <th>在线</th>
+        <th>来源</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -40,9 +39,9 @@ use yii\grid\GridView;
                 <td><?= $r->desc ?></td>
                 <td><?= $r->url ?></td>
                 <td><?= $r->position ?></td>
-                <td><?= $r->movie->name ?></td>
-                <td><?= $r->statusName ?></td>
-                <td><?= $r->typeName ?></td>
+                <td><?= $r->item->name ?></td>
+                <td><?= $r->downloadStatus ?></td>
+                <td><?= $r->source ?></td>
                 <td>caozuo</td>
 
             </tr>
@@ -53,12 +52,68 @@ use yii\grid\GridView;
 
 </table>
 
+<?php if(!empty($model->episodes)):?>
+    <?php foreach ($model->episodes as $e): ?>
+        <div>
+            <div class="small-box bg-yellow" style="margin-bottom:0">
+                <div class="inner">
+                    <h3><?= $e->timing ?><small style="margin-left: 50px;"><?= $e->name ?></small></h3>
+                    <h1><span class="label label-primary pull-right"><?= count($e->resources) ?></span></h1>
+                    <p> By <span><?= $e->musician->name ?></span></p>
+                </div>
+            </div>
+            <table id="teaListTable1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>链接</th>
+                    <th>排序</th>
+                    <th>关联</th>
+                    <th>在线</th>
+                    <th>来源</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if(!empty($e->resources)):?>
+                    <?php foreach ($e->resources as $r): ?>
+                        <tr>
+                            <td><?= $r->id ?></td>
+                            <td><?= $r->name ?></td>
+                            <td><?= $r->desc ?></td>
+                            <td><?= $r->url ?></td>
+                            <td><?= $r->position ?></td>
+                            <td><?= $r->item->name ?></td>
+                            <td><?= $r->downloadStatus ?></td>
+                            <td><?= $r->source ?></td>
+                            <td>caozuo</td>
+
+                        </tr>
+
+                    <?php endforeach;?>
+                <?php endif;?>
+                </tbody>
+
+            </table>
+        </div>
+
+    <?php endforeach;?>
+<?php endif;?>
+
+
+
 
 
 <script>
     window.onload = function(){
         $(function () {
-            $('#teaListTable').DataTable({
+            $('table').DataTable({
+                "dom": 'l <"div.toolbar"> tip',
+                'lengthChange': false,
+            });
+            $('teaListTable1').DataTable({
                 "dom": 'l <"div.toolbar"> tip',
                 'lengthChange': false,
             });
