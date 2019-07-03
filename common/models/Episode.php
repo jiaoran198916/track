@@ -39,9 +39,9 @@ class Episode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['timing', 'summary', 'status', 'movie_id'], 'required'],
+            [['min', 'sec', 'summary', 'status', 'movie_id'], 'required'],
             [['summary'], 'string'],
-            [[ 'movie_id','musician_id', 'valid', 'create_time', 'update_time', 'movie_id'], 'integer'],
+            [[ 'min', 'sec','movie_id','musician_id', 'valid', 'create_time', 'update_time', 'movie_id'], 'integer'],
             [['name', 'foreign_name'], 'string', 'max' => 128],
         ];
     }
@@ -53,7 +53,8 @@ class Episode extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'timing' => '位置',
+            'min' => '位置:分',
+            'sec' => '位置:秒',
             'name' => '标题',
             'foreign_name' => '外文名',
             'summary' => '简介',

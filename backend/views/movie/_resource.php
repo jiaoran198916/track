@@ -57,7 +57,7 @@ use yii\grid\GridView;
         <div>
             <div class="small-box bg-yellow" style="margin-bottom:0">
                 <div class="inner">
-                    <h3><?= $e->timing ?><small style="margin-left: 50px;"><?= $e->name ?></small></h3>
+                    <h3><?= $e->min ?><small style="margin-left: 50px;"><?= $e->name ?></small></h3>
                     <h1><span class="label label-primary pull-right"><?= count($e->resources) ?></span></h1>
                     <p> By <span><?= $e->musician->name ?></span></p>
                 </div>

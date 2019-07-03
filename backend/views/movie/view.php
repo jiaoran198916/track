@@ -10,6 +10,7 @@ $this->title = $model->name;
 $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 ?>
 
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -63,6 +64,7 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
 </div>
 
+<!--<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>-->
 <script>
     window.onload = function(){
         $(function () {
@@ -70,6 +72,30 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
             $('.select2').select2()
             //Datemask yyyy/mm/dd
             $('#movie-release').inputmask('yyyy/mm/dd', { 'placeholder': 'yyyy/mm/dd' })
+
+            $('#teaListTable').DataTable({
+                // "dom": 'l <"div.toolbar"> tip',
+                "dom": 'Bfrtip',
+                // 'lengthChange': true,
+                //     "buttons": [
+                //         'copy',
+                //         {
+                //             "text": 'My button',
+                //             action: function ( dt ) {
+                //                 console.log( dt );
+                //             }
+                //         }
+                //     ]
+                // dom: 'Bfrtip',
+                // buttons: [
+                //     'copy', 'excel', 'pdf'
+                // ]
+            });
+
+            // $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+
+
+
         })
     }
 

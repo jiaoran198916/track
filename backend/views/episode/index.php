@@ -53,8 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'movie_id',
                 'value' => 'movie.name'
             ],
-            ['attribute' => 'singer_id',
-                'value' => 'singer.name'
+            ['attribute' => 'musician_id_id',
+                'value' => 'musician_id.name'
             ],
              //'seconds',
 
