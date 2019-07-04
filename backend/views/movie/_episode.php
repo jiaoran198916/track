@@ -14,7 +14,7 @@ use yii\grid\GridView;
 
 ?>
 <p>
-<button type="button" class="btn btn-default" onclick="toAddPage()" data-toggle="modal" data-target="#modal-default">新增</button>
+<button type="button" class="btn btn-default" onclick="toAddPage()">新增</button>
 <button type="button" class="btn btn-danger" onclick="delType()">修改</button>
 </p>
 <table id="teaListTable" class="table table-bordered table-striped">
@@ -22,7 +22,7 @@ use yii\grid\GridView;
     <tr>
 <!--        <th><input id="checkall" type="checkbox" onclick="checkall()"/></th>-->
         <th>ID</th>
-        <th>定位</th>
+        <th>定位(分秒)</th>
         <th>名称</th>
         <th>原名</th>
         <th>电影</th>
@@ -33,17 +33,20 @@ use yii\grid\GridView;
     <tbody>
     <?php if(!empty($model->episodes)):?>
     <?php foreach ($model->episodes as $e): ?>
+        <?php if($e->valid == 1):?>
         <tr>
         <td><?= $e->id ?></td>
-        <td><?= $e->min ?></td>
+        <td><?= $e->min .':'.$e->sec ?></td>
         <td><?= $e->name ?></td>
         <td><?= $e->foreign_name ?></td>
         <td><?= $e->movie->name ?></td>
-        <td><?= $e->musician->name ?></td>
-        <td>caozuo</td>
+        <td><?= $e->musicians ?></td>
+        <td><a href="javascript:delEpi(<?= $e->id ?>)" title="删除" aria-label="删除" data-confirm="您确定要删除此项吗？"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href='javascript:modifyEpi(<?=json_encode(['movie_id' => $e->movie_id, 'id' => $e->id, 'min' => $e->min, 'sec' => $e->sec, 'name' => $e->name, 'foreign_name' => $e->foreign_name, 'musician_id' => $e->musician_id, 'summary' => $e->summary]) ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
+        </td>
 
         </tr>
-
+            <?php endif;?>
     <?php endforeach;?>
     <?php endif;?>
     </tbody>
@@ -58,40 +61,19 @@ use yii\grid\GridView;
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">新增片段</h4>
             </div>
-            <?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
-
-            <input type="hidden" name="movie_id" value="4">
+            <?php $form = ActiveForm::begin(['options' => ['role' => 'form', 'method' => 'post'], 'action' => \yii\helpers\Url::to(['episode/create'])]); ?>
+            
             <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="episode-min">位置</label>
-                        <input type="number" class="" id="episode-min" name="Episode[min]"> :
-                        <input type="number" class="" id="episode-sec" name="Episode[sec]">
-                    </div>
-                    <div class="form-group">
-                        <label for="episode-name">名称</label>
-                        <input type="text" class="form-control" id="episode-name" placeholder="名称" name="Episode[name]">
-                    </div>
-                    <div class="form-group">
-                        <label for="episode-name">外文名</label>
-                        <input type="text" class="form-control" id="episode-foreign_name" placeholder="名称" name="Episode[foreign_name]">
-                    </div>
-                <div class="form-group">
-                    <label for="episode-summary">简介</label>
-                    <input type="text" class="form-control" id="episode-summary" placeholder="简介" name="Episode[summary]">
-                </div>
-                <div class="form-group">
-                    <label for="episode-musician_id">歌手</label>
-                <select class="form-control select2" id="episode-musician_id" name="Episode[musician_id]">
-                    <option value="">请选择歌手</option>
-                    <option value="1">王菲</option>
-                    <option value="2">陈奕迅</option>
-                </select>
-                </div>
+                <input type="hidden" name="Episode[movie_id]" id="episode-movie_id" value="<?= $model->id ?>">
+                <input type="hidden" name="Episode[id]" id="episode-id" value="0">
+                <?= $form->field($episodeModel, 'min')->input('number') ?>
+                <?= $form->field($episodeModel, 'sec')->input('number') ?>
+                <?= $form->field($episodeModel, 'name')->textInput() ?>
+                <?= $form->field($episodeModel, 'foreign_name')->textInput() ?>
+                <?= $form->field($episodeModel, 'summary')->textarea(['rows' => 2]) ?>
 
-                <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择演员"]) ?>
-
-
+                <?= $form->field($episodeModel, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择歌手"]) ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
@@ -104,85 +86,25 @@ use yii\grid\GridView;
     <!-- /.modal-dialog -->
 </div>
 
-
-
-<form id="w0" class="mws-form" action="/index.php?r=episode%2Fcreate&amp;movie_id=43" method="post">
-    <input type="hidden" name="_adminCSRF" value="UU9DdkRmNVhnHzAwFwgBIBwHCEArMUMNYyl7GS8TARo9InQRDhFvCw==">
-    <div class="mws-form-inline">
-        <div class="mws-form-row field-episode-movie_id required">
-            <label class="control-label" for="episode-movie_id">所属电影</label>
-            <div class="mws-form-item small"><select id="episode-movie_id" class="mws-textinput" name="Episode[movie_id]">
-                    <option value="32">考试</option>
-                    <option value="33">碟中谍</option>
-                    <option value="34">神秘国度</option>
-                    <option value="35">捕蛇者说</option>
-                    <option value="36">老友记</option>
-                    <option value="37">神探狄仁杰</option>
-                    <option value="38">我不是妖神</option>
-                    <option value="39">大佛普拉斯</option>
-                    <option value="40">爱情</option>
-                    <option value="41">恋爱大人</option>
-                    <option value="43" selected="">胡小伟ddd</option>
-                    <option value="44">没有其他人了吗</option>
-                    <option value="45">ddd</option>
-                    <option value="47">一出好戏</option>
-                    <option value="48">鎌仓物语</option>
-                    <option value="49">康德的世界</option>
-                    <option value="50">康德的世界</option>
-                    <option value="51">社交网络</option>
-                    <option value="52">等等等</option>
-                </select>
-
-                <div class="help-block"></div></div>
-        </div>
-        <div class="mws-form-row field-episode-timing required">
-            <label class="control-label" for="episode-timing">位置</label>
-            <div class="mws-form-item small"><input type="text" id="episode-timing" class="mws-textinput" name="Episode[timing]">
-
-                <div class="help-block"></div></div>
-        </div>
-        <div class="mws-form-row field-episode-name">
-            <label class="control-label" for="episode-name">标题</label>
-            <div class="mws-form-item small"><input type="text" id="episode-name" class="mws-textinput" name="Episode[name]" maxlength="128">
-
-                <div class="help-block"></div></div>
-        </div>
-        <div class="mws-form-row field-episode-foreign_name">
-            <label class="control-label" for="episode-foreign_name">外文名</label>
-            <div class="mws-form-item small"><input type="text" id="episode-foreign_name" class="mws-textinput" name="Episode[foreign_name]" maxlength="128">
-
-                <div class="help-block"></div></div>
-        </div>
-        <div class="mws-form-row field-episode-summary required">
-            <label class="control-label" for="episode-summary">简介</label>
-            <div class="mws-form-item medium"><textarea id="episode-summary" class="mws-textinput" name="Episode[summary]" rows="6"></textarea>
-
-                <div class="help-block"></div></div>
-        </div>
-
-
-        <div class="mws-form-row field-episode-musician_id">
-            <label class="control-label" for="episode-musician_id">歌手</label>
-            <div class="mws-form-item small"><select id="episode-musician_id" class="mws-textinput" name="Episode[musician_id]">
-                    <option value="">请选择歌手</option>
-                    <option value="1">王菲</option>
-                    <option value="2">陈奕迅</option>
-                </select>
-
-                <div class="help-block"></div></div>
-        </div>
-    </div>
-    <div class="mws-button-row" style="text-align:left">
-        <input type="submit" value="新 增" class="mws-button green">
-        <input type="submit" value="取 消" class="mws-button gray">
-    </div>
-</form>
-
-
-
 <script>
     window.onload = function(){
+
         $(function () {
+            function addEp(){
+                var data = $("#w1").serialize();
+                $.post('index.php?r=/episode/create', data, function (res) {
+                    if(res.code === 200){
+                        $.closeModal("modal-default");
+                        dialog.success('添加成功', location.href + '#episode');
+                    }else{
+                        dialog.error('添加失败');
+                    }
+                }, 'json');
+            }
+
+            var delEpi = function () {
+                alert(334)
+            }
 
 
         })

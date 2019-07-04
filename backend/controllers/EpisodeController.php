@@ -93,11 +93,38 @@ class EpisodeController extends Controller
         $movie_id = Yii::$app->request->get('movie_id');
         //$post['Episode']['movie_id'] = $movie_id;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $post['Episode']['musician_id'] = implode(',', $post['Episode']['musician_id']);
+
+
+        if ($model->load($post) && $model->save()) {
+//            return json_encode(['code' => 200, 'data' => $model->id]);
+            return $this->redirect(['movie/view', 'id' => $model->movie_id]);
         } else {
             $model->movie_id = $movie_id;
-            //print_r($model->getErrors());die;
+            print_r($model->getErrors());die;
+            return $this->render('create', [
+                'model' => $model,
+                //'movie_id' => $movie_id
+            ]);
+        }
+    }
+
+
+    public function actionModify()
+    {
+        $post = Yii::$app->request->post();
+//        $id = Yii::$app->request->post('id', 0);
+//        print_r($post);die;
+        $model = $this->findModel($post['Episode']['id']);
+
+        $post['Episode']['musician_id'] = implode(',', $post['Episode']['musician_id']);
+
+
+        if ($model->load($post) && $model->save()) {
+//            return json_encode(['code' => 200, 'data' => $model->id]);
+            return $this->redirect(['movie/view', 'id' => $model->movie_id]);
+        } else {
+            print_r($model->getErrors());die;
             return $this->render('create', [
                 'model' => $model,
                 //'movie_id' => $movie_id
@@ -135,6 +162,19 @@ class EpisodeController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDel()
+    {
+        $id = Yii::$app->request->post('id');
+
+        $model = Episode::findOne($id);
+        $model->valid = 2;
+        if($model->save()){
+            return json_encode(['code' => 200, 'data' => $model->movie_id]);
+        }
+
+        return json_encode(['code' => 500, 'data' => $model->getErrors()]);
     }
 
     /**

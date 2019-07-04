@@ -45,6 +45,7 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
                         <div class="tab-pane" id="episode">
                             <?= $this->render('_episode', [
                                 'model' => $model,
+                                'episodeModel' => $episodeModel,
                             ]) ?>
                         </div>
                         <!-- /.tab-pane -->
@@ -66,6 +67,45 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
 <!--<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>-->
 <script>
+
+    var delEpi = function (id) {
+        $.post('index.php?r=/episode/del', {id: id}, function (res) {
+            if(res.code === 200){
+                //$.closeModal("modal-default");
+                dialog.success('删除成功','index.php?r=/movie/view&id=' +res.data+ '#episode');
+            }else{
+                dialog.error('删除失败');
+            }
+        }, 'json');
+    }
+
+    var modifyEpi = function (obj) {
+        $("#episode-id").val(obj.id);
+        $("#episode-movie_id").val(obj.movie_id);
+        $("#episode-min").val(obj.min);
+        $("#episode-sec").val(obj.sec);
+        $("#episode-name").val(obj.name);
+        $("#episode-foreign_name").val(obj.foreign_name);
+        $("#episode-summary ").val(obj.summary );
+        var musician_id = obj.musician_id.toString();
+
+        if(musician_id.indexOf(',') > -1){
+            $("#episode-musician_id ").val(musician_id.split(',') ).select2();
+        }else{
+            $("#episode-musician_id ").val(parseInt(musician_id)).select2();
+        }
+
+        $("#w1").attr("action", "/index.php?r=episode%2Fmodify")
+        $("#modal-default").modal();
+    }
+
+    var toAddPage = function(){
+        //$("#w1").reset();
+       document.getElementById("w1").reset();
+        $("#episode-musician_id ").val('').select2();
+
+        $("#modal-default").modal();
+    }
     window.onload = function(){
         $(function () {
             //Initialize Select2 Elements
@@ -97,6 +137,8 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
 
         })
+
+
     }
 
 </script>

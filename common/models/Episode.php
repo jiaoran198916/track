@@ -12,10 +12,6 @@ use Yii;
  * @property string $name
  * @property string $foreign_name
  * @property string $summary
- * @property integer $status
- * @property string $url1
- * @property string $url2
- * @property string $url3
  * @property integer $movie_id
  * @property integer $seconds
  * @property integer $create_time
@@ -39,9 +35,10 @@ class Episode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['min', 'sec', 'summary', 'status', 'movie_id'], 'required'],
+            [['min', 'sec', 'summary', 'movie_id'], 'required'],
             [['summary'], 'string'],
-            [[ 'min', 'sec','movie_id','musician_id', 'valid', 'create_time', 'update_time', 'movie_id'], 'integer'],
+            [['musician_id'], 'safe'],
+            [[ 'min', 'sec','movie_id', 'valid', 'create_time', 'update_time', 'movie_id'], 'integer'],
             [['name', 'foreign_name'], 'string', 'max' => 128],
         ];
     }
@@ -97,6 +94,25 @@ class Episode extends \yii\db\ActiveRecord
     public function getMusician()
     {
         return $this->hasOne(Master::className(), ['id' => 'musician_id']);
+    }
+
+    /**
+     * 获取音乐作者，根据作者ID
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMusicians(){
+        $res = '';
+        if(strpos($this->musician_id, ',')){
+            $masters = explode(',', $this->musician_id);
+            foreach ($masters as $v){
+                $res .= Master::findOne($v)->name . '/';
+            }
+            $res = substr($res, 0 ,-1);
+        }else{
+            $res = Master::findOne($this->musician_id)->name;
+        }
+
+        return $res;
     }
 
     /**

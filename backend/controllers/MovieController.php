@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Episode;
 use Yii;
 use common\models\Movie;
 use common\models\MovieSearch;
@@ -66,6 +67,7 @@ class MovieController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'episodeModel' => new Episode(),
         ]);
     }
 
