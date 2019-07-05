@@ -365,47 +365,49 @@ AppAsset::register($this);
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-film"></i>
                         <span>电影管理</span>
                         <span class="pull-right-container">
               <span class="label label-primary pull-right"><?= Movie::getPengdingMovieCount() ?></span>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?= Url::to(['banner/index'])?>"><i class="fa fa-circle-o"></i> Banner管理</a></li>
-                        <li><a href="<?= Url::to(['movie/create'])?>"><i class="fa fa-circle-o"></i> 添加电影</a></li>
-                        <li><a href="<?= Url::to(['movie/index'])?>"><i class="fa fa-circle-o"></i> 电影列表</a></li>
+                        <li><a href="<?= Url::to(['banner/index'])?>"><i class="fa fa-map-o"></i> Banner管理</a></li>
+                        <li><a href="<?= Url::to(['movie/create'])?>"><i class="fa fa-plus-circle"></i> 添加电影</a></li>
+                        <li><a href="<?= Url::to(['movie/index'])?>"><i class="fa fa-file-movie-o"></i> 电影列表</a></li>
+                        <li><a href="<?= Url::to(['episode/index'])?>"><i class="fa fa-music"></i> 片段管理</a></li>
+                        <li><a href="<?= Url::to(['resource/index'])?>"><i class="fa fa-folder"></i> 资源管理</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-female"></i>
                         <span>音乐人管理</span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= Url::to(['master/index'])?>"><i class="fa fa-circle-o"></i> 音乐人列表</a></li>
-                        <li><a href="<?= Url::to(['master/create'])?>"><i class="fa fa-circle-o"></i> 添加音乐人</a></li>
+                        <li><a href="<?= Url::to(['master/create'])?>"><i class="fa fa-plus-circle"></i> 添加音乐人</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-user"></i>
                         <span>用户管理</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?= Url::to(['user/index'])?>"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-                        <li><a href="<?= Url::to(['user/create'])?>"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+                        <li><a href="<?= Url::to(['user/index'])?>"><i class="fa fa-users"></i> 用户列表</a></li>
+                        <li><a href="<?= Url::to(['user/create'])?>"><i class="fa fa-user-plus"></i> 添加用户</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-user-md"></i>
                         <span>管理员管理</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -413,13 +415,13 @@ AppAsset::register($this);
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= Url::to(['adminuser/index'])?>"><i class="fa fa-circle-o"></i> 管理员列表</a></li>
-                        <li><a href="<?= Url::to(['adminuser/create'])?>"><i class="fa fa-circle-o"></i> 添加管理员</a></li>
+                        <li><a href="<?= Url::to(['adminuser/create'])?>"><i class="fa fa-plus-circle"></i> 添加管理员</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-book"></i>
                         <span>文章管理</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -427,21 +429,21 @@ AppAsset::register($this);
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= Url::to(['post/index'])?>"><i class="fa fa-circle-o"></i> 文章列表</a></li>
-                        <li><a href="<?= Url::to(['post/create'])?>"><i class="fa fa-circle-o"></i> 添加文章</a></li>
+                        <li><a href="<?= Url::to(['post/create'])?>"><i class="fa fa-plus-circle"></i> 添加文章</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fa fa-cog"></i>
                         <span>网站管理</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?= Url::to(['config/index'])?>"><i class="fa fa-circle-o"></i> 网站配置列表</a></li>
-                        <li><a href="<?= Url::to(['config/create'])?>"><i class="fa fa-circle-o"></i> 添加配置</a></li>
+                        <li><a href="<?= Url::to(['config/index'])?>"><i class="fa fa-gears"></i> 网站配置列表</a></li>
+                        <li><a href="<?= Url::to(['config/create'])?>"><i class="fa fa-plus-circle"></i> 添加配置</a></li>
                     </ul>
                 </li>
                 <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>

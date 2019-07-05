@@ -65,7 +65,6 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
 </div>
 
-<!--<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>-->
 <script>
 
     var delEpi = function (id) {

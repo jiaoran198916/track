@@ -108,18 +108,7 @@ use yii\grid\GridView;
 
 <script>
     window.onload = function(){
-        $(function () {
-            $('table').DataTable({
-                "dom": 'l <"div.toolbar"> tip',
-                'lengthChange': false,
-            });
-            $('teaListTable1').DataTable({
-                "dom": 'l <"div.toolbar"> tip',
-                'lengthChange': false,
-            });
 
-
-        })
     }
 
 </script>

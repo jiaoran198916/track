@@ -62,7 +62,7 @@ use yii\grid\GridView;
                 <h4 class="modal-title">新增片段</h4>
             </div>
             <?php $form = ActiveForm::begin(['options' => ['role' => 'form', 'method' => 'post'], 'action' => \yii\helpers\Url::to(['episode/create'])]); ?>
-            
+
             <div class="modal-body">
 
                 <input type="hidden" name="Episode[movie_id]" id="episode-movie_id" value="<?= $model->id ?>">
@@ -101,11 +101,6 @@ use yii\grid\GridView;
                     }
                 }, 'json');
             }
-
-            var delEpi = function () {
-                alert(334)
-            }
-
 
         })
     }
