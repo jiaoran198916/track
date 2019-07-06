@@ -18,7 +18,7 @@ class ResourceSearch extends Resource
     public function rules()
     {
         return [
-            [['id', 'position', 'movie_id', 'status', 'create_time', 'update_time'], 'integer'],
+            [['id', 'position', 'item_id', 'type', 'create_time', 'update_time'], 'integer'],
             [['name', 'desc', 'url'], 'safe'],
         ];
     }
@@ -61,15 +61,15 @@ class ResourceSearch extends Resource
         $query->andFilterWhere([
             'id' => $this->id,
             'position' => $this->position,
-            'movie_id' => $this->movie_id,
-            'status' => $this->status,
+            'item_id' => $this->item_id,
+            'type' => $this->type,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->title])
+        $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'desc', $this->desc])
-            ->andFilterWhere(['like', 'url', $this->link]);
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

@@ -8,29 +8,22 @@ use yii\helpers\Url;
 /* @var $searchModel common\models\EpisodeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Episodes';
+$this->title = '歌曲列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-table-1"><?= $this->title ?></span>
-    </div>
-    <div class="mws-panel-body">
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
 
-        <div class="mws-panel-toolbar top clearfix">
-            <ul>
-                <li><?= Html::a('New', ['create', 'movie_id' => $movie_id], ['class' => 'mws-ic-16 ic-accept']) ?></li>
-                <li><a href="#" class="mws-ic-16 ic-cross">Reject</a></li>
-                <li><a href="#"dataTables_length class="mws-ic-16 ic-printer">Print</a></li>
-                <li><a href="#" class="mws-ic-16 ic-arrow-refresh">Renew</a></li>
-                <li><a href="#" class="mws-ic-16 ic-edit">Update</a></li>
-                <li><a href="<?= Url::to(['movie/index']) ?>" class="mws-ic-16 ic-arrow-undo">Back</a></li>
-            </ul>
-        </div>
+            <div class="box">
+
+                <!-- /.box-header -->
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
-        'tableOptions' => ['class' => 'mws-datatable-fn mws-table'],
+        'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
         'layout' => '{items}',
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
@@ -38,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'id',
                 'contentOptions' => ['width' => '']
             ],
-            'timing',
+            [
+                'label' => '位置',
+                'value' => function($model){
+                    return $model->min .':'.$model->sec;
+                }
+            ],
             'name',
             'foreign_name',
 
@@ -50,52 +48,40 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'url2:url',
             // 'url3:url',
 //             'movie_id',
-            ['attribute' => 'movie_id',
-                'value' => 'movie.name'
+            [
+                'attribute' => 'movie_id',
+                'format' => 'raw',
+                'value' => function($model){
+                         return Html::a($model->movie->name, $model->movie->url.'#tab_episode',['target' => '_blank']);
+                }
             ],
-            ['attribute' => 'musician_id_id',
-                'value' => 'musician_id.name'
+            ['attribute' => 'musician_id',
+                'value' => 'musicians'
             ],
-             //'seconds',
 
             // 'create_time:datetime',
             // 'update_time:datetime',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}{delete}',
-                'buttons' => [
-                    'view' => function($url,$model, $key){
-                        $options = [
-                            'title' => Yii::t('yii', 'View'),
-                            'aria-label' => Yii::t('yii', 'View'),
-                            'data-pjax' => '0',
-                        ];
-                        return Html::a('<li class="mws-ic-16 ic-eye"></li>', $url, $options);
-                    },
-                    'update' => function($url,$model, $key){
-                        $options = [
-                            'title' => Yii::t('yii', 'Update'),
-                            'aria-label' => Yii::t('yii', 'Update'),
-                            'data-pjax' => '0',
-
-                        ];
-                        return Html::a('<li class="mws-ic-16 ic-edit"></li>', $url, $options);
-                    },
-                    'delete' => function($url,$model, $key){
-                        $options = [
-                            'title' => Yii::t('yii', 'Delete'),
-                            'aria-label' => Yii::t('yii', 'Delete'),
-                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                            'data-method' => 'post',
-                            'data-pjax' => '0',
-
-                        ];
-                        return Html::a('<li class="mws-ic-16 ic-trash"></li>', $url, $options);
-                    }
-                ]
-
-            ],
         ],
     ]); ?>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
     </div>
-</div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+<script>
+    window.onload = function(){
+        $(function () {
+            $('#example').DataTable()
+        })
+    }
+
+
+</script>

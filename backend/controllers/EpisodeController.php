@@ -37,30 +37,13 @@ class EpisodeController extends Controller
      */
     public function actionIndex()
     {
-        $params = Yii::$app->request->queryParams;
-
-        if(is_array($params) && array_key_exists('id', $params)){
-            $params['movie_id'] = $params['id'];
-            unset($params['id']);
-            unset($params['r']);
-            Episode::$movie_id =  $params['movie_id'];
-        }
-        //echo Episode::$movie_id;die;
-        $query = Episode::find();
-        $query->where($params);
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-//        print_r($query);die();
+        $searchModel = new EpisodeSearch();
+        $searchModel->valid = 1;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            //'searchModel' => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'movie_id' => $params['movie_id']
         ]);
     }
 

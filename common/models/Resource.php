@@ -23,11 +23,10 @@ class Resource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid'], 'integer'],
+            [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid','source'], 'integer'],
             [['item_id', 'position'], 'required'],
             [['name', 'url'], 'string', 'max' => 128],
-            [['desc'], 'string', 'max' => 255],
-            [['source'], 'string', 'max' => 10]
+            [['desc'], 'string', 'max' => 255]
         ];
     }
 
@@ -105,6 +104,6 @@ class Resource extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getTypeName(){
-        return Yii::$app->params['resourceType'][$this->status];
+        return Yii::$app->params['resourceType'][$this->type];
     }
 }

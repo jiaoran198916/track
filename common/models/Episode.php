@@ -96,6 +96,11 @@ class Episode extends \yii\db\ActiveRecord
         return $this->hasOne(Master::className(), ['id' => 'musician_id']);
     }
 
+    public function getUrl(){
+        return Yii::$app->urlManager->createUrl(
+            ['movie/view','id' => $this->movie_id ]);
+    }
+
     /**
      * 获取音乐作者，根据作者ID
      * @return \yii\db\ActiveQuery

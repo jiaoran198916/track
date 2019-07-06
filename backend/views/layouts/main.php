@@ -375,7 +375,7 @@ AppAsset::register($this);
                         <li><a href="<?= Url::to(['banner/index'])?>"><i class="fa fa-map-o"></i> Banner管理</a></li>
                         <li><a href="<?= Url::to(['movie/create'])?>"><i class="fa fa-plus-circle"></i> 添加电影</a></li>
                         <li><a href="<?= Url::to(['movie/index'])?>"><i class="fa fa-file-movie-o"></i> 电影列表</a></li>
-                        <li><a href="<?= Url::to(['episode/index'])?>"><i class="fa fa-music"></i> 片段管理</a></li>
+                        <li><a href="<?= Url::to(['episode/index'])?>"><i class="fa fa-music"></i> 歌曲管理</a></li>
                         <li><a href="<?= Url::to(['resource/index'])?>"><i class="fa fa-folder"></i> 资源管理</a></li>
                     </ul>
                 </li>

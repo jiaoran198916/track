@@ -18,8 +18,8 @@ class EpisodeSearch extends Episode
     public function rules()
     {
         return [
-            [['id', 'status', 'movie_id', 'seconds', 'create_time', 'update_time'], 'integer'],
-            [['timing', 'name', 'foreign_name', 'summary', 'url1', 'url2', 'url3'], 'safe'],
+            [['id', 'movie_id', 'min', 'sec', 'create_time', 'update_time'], 'integer'],
+            [[ 'name', 'foreign_name', 'summary'], 'safe'],
         ];
     }
 
@@ -49,11 +49,6 @@ class EpisodeSearch extends Episode
             'query' => $query,
         ]);
 
-        if(array_key_exists('id', $params)){
-            $params['movie_id'] = $params['id'];
-            unset($params['id']);
-        }
-
         $this->load($params);
 
         if (!$this->validate()) {
@@ -64,22 +59,17 @@ class EpisodeSearch extends Episode
 
         // grid filtering conditions
         $query->andFilterWhere([
-//            'id' => $this->id,
-//            'status' => $this->status,
+            'id' => $this->id,
+            'min' => $this->min,
+            'sec' => $this->sec,
             'movie_id' => $this->movie_id,
-//            'seconds' => $this->seconds,
-//            'create_time' => $this->create_time,
-//            'update_time' => $this->update_time,
+            'create_time' => $this->create_time,
+            'update_time' => $this->update_time,
         ]);
         //print_r($this);die;
-        $query->andFilterWhere(['like', 'timing', $this->timing])
-            ->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'foreign_name', $this->foreign_name])
-            ->andFilterWhere(['like', 'summary', $this->summary])
-            ->andFilterWhere(['like', 'url1', $this->url1])
-            ->andFilterWhere(['like', 'url2', $this->url2])
-            ->andFilterWhere(['like', 'url3', $this->url3]);
-
+            ->andFilterWhere(['like', 'summary', $this->summary]);
         return $dataProvider;
     }
 }

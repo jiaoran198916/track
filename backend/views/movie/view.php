@@ -22,12 +22,12 @@ $this->params['breadcrumbs'][] = '电影详情';
 
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#basic" data-toggle="tab">基本信息</a></li>
+                        <li class="active"><a href="#base" data-toggle="tab">基本信息</a></li>
                         <li><a href="#episode" data-toggle="tab">音乐片段</a></li>
                         <li><a href="#resource" data-toggle="tab">资源列表</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="basic">
+                        <div class="tab-pane active" id="base">
 
                             <?= $this->render('_form', [
                                 'model' => $model,
@@ -57,6 +57,7 @@ $this->params['breadcrumbs'][] = '电影详情';
 
 
 <script>
+
 
 
 
@@ -91,6 +92,17 @@ $this->params['breadcrumbs'][] = '电影详情';
 
 
     window.onload = function(){
+
+        var hash = document.location.hash;
+        var prefix = "tab_";
+        if (hash) {
+            $('.nav-tabs a[href="'+hash.replace(prefix,"")+'"]').tab('show');
+        }
+
+        // Change hash for page-reload
+        $('.nav-tabs a').on('shown.bs.tab', function (e) {
+            window.location.hash = e.target.hash.replace("#", "#" + prefix);
+        });
 
 
         $(function () {

@@ -38,25 +38,15 @@ class ResourceController extends Controller
     public function actionIndex()
     {
 
-        $params = Yii::$app->request->queryParams;
+        $searchModel = new ResourceSearch();
+        $searchModel->valid = 1;
+        $searchModel->item_id = 98;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if(is_array($params) && array_key_exists('id', $params)){
-            $params['movie_id'] = $params['id'];
-            unset($params['id']);
-            unset($params['r']);
-//            Episode::$movie_id =  $params['movie_id'];
-        }
-        //echo Episode::$movie_id;die;
-        $query = Resource::find();
-        $query->where($params);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
 
         return $this->render('index', [
-//            'searchModel' => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'movie_id' => $params['movie_id']
         ]);
     }
 
