@@ -6,21 +6,13 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Movie */
 
-$this->title = $model->name;
+
+$this->title = '电影详情:'.$model->name;
 $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
+$this->params['breadcrumbs'][] = ['label' => '电影列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = '电影详情';
+
 ?>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            电影管理
-            <small>新增电影</small>
-        </h1>
-    </section>
-
     <!-- Main content -->
     <section class="content">
 
@@ -63,20 +55,10 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
     </section>
 
-</div>
 
 <script>
 
-    var delEpi = function (id) {
-        $.post('index.php?r=/episode/del', {id: id}, function (res) {
-            if(res.code === 200){
-                //$.closeModal("modal-default");
-                dialog.success('删除成功','index.php?r=/movie/view&id=' +res.data+ '#episode');
-            }else{
-                dialog.error('删除失败');
-            }
-        }, 'json');
-    }
+
 
     var modifyEpi = function (obj) {
         $("#episode-id").val(obj.id);
@@ -105,7 +87,12 @@ $this->registerJsFile('/static/bower_components/jquery/dist/jquery.min.js');
 
         $("#modal-default").modal();
     }
+
+
+
     window.onload = function(){
+
+
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()

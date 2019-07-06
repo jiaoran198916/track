@@ -24,7 +24,7 @@ class Resource extends \yii\db\ActiveRecord
     {
         return [
             [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid'], 'integer'],
-            [['item_id', 'create_time', 'update_time'], 'required'],
+            [['item_id', 'position'], 'required'],
             [['name', 'url'], 'string', 'max' => 128],
             [['desc'], 'string', 'max' => 255],
             [['source'], 'string', 'max' => 10]
@@ -61,6 +61,11 @@ class Resource extends \yii\db\ActiveRecord
         }
     }
 
+    public function getSourceName()
+    {
+        return $this->hasOne(Source::className(), ['id' => 'source']);
+    }
+
     /**
      * 获取状态
      * @return \yii\db\ActiveQuery
@@ -77,6 +82,22 @@ class Resource extends \yii\db\ActiveRecord
             $str = '在线';
         }
         return $str;
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if($insert){
+                $this->create_time=time();
+                $this->update_time=time();
+            }else{
+                $this->update_time=time();
+            }
+            return true;
+
+        }else{
+            return false;
+        }
     }
 
     /**

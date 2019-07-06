@@ -120,6 +120,6 @@ class Episode extends \yii\db\ActiveRecord
      */
     public function getResources()
     {
-        return $this->hasMany(Resource::className(), ['item_id' => 'id']);
+        return $this->hasMany(Resource::className(), ['item_id' => 'id'])->orderBy(['position' => SORT_ASC]);
     }
 }

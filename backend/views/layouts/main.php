@@ -23,7 +23,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title>电影原声网后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -455,9 +455,26 @@ AppAsset::register($this);
         </section>
         <!-- /.sidebar -->
     </aside>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                <?= $this->title?>
+                <small></small>
+            </h1>
+            <?= \yii\widgets\Breadcrumbs::widget([
+                'homeLink'=>[
+                    'label' => '<i class="fa fa-home mr5"></i> '.Yii::t('yii', 'Home'),
+                    'url' => '/',
+                    'encode' => false,
+                ],
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'tag'=>'ol',
+                'options' => ['class' => 'breadcrumb breadcrumb-quirk'],
+            ]) ?>
+        </section>
     <?= $content ?>
 
-
+    </div>
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.4.12

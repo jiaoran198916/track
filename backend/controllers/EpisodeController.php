@@ -110,6 +110,58 @@ class EpisodeController extends Controller
     }
 
 
+    public function actionAdd()
+    {
+        $id = Yii::$app->request->get('id');
+        $movie_id = Yii::$app->request->get('movie_id');
+        if($id){
+            $model = $this->findModel($id);
+            $movie_id = $model->movie_id;
+        }else{
+            $model = new Episode();
+        }
+
+        $this->layout = 'main_ajax';
+
+        return $this->render('/movie/epi_form', [
+            'model' => $model,
+            'movie_id' => $movie_id
+        ]);
+    }
+
+    public function actionDoadd()
+    {
+        $params = Yii::$app->request->post();
+//        $id = Yii::$app->request->post('id', 0);
+//        print_r($post);die;
+        if(isset($params['Episode']['id']) && $params['Episode']['id']){
+            $model = Episode::findOne($params['Episode']['id']);
+        }else{
+            $model = $model = new Episode();
+        }
+        $params['Episode']['musician_id'] = implode(',', $params['Episode']['musician_id']);
+
+
+        if ($model->load($params) && $model->save()) {
+            return $this->renderJson('保存成功');
+        } else {
+            return $this->renderJson('保存失败'.json_encode($model->getErrors()), 500);
+
+        }
+    }
+
+
+    public function renderJson($msg = '成功', $code = 200, $data = [])
+    {
+        $rsp = [
+            'msg' => $msg,
+            'code' => $code,
+            'data' => $data,
+        ];
+        return json_encode($rsp);
+    }
+
+
     public function actionModify()
     {
         $post = Yii::$app->request->post();
@@ -171,10 +223,10 @@ class EpisodeController extends Controller
         $model = Episode::findOne($id);
         $model->valid = 2;
         if($model->save()){
-            return json_encode(['code' => 200, 'data' => $model->movie_id]);
+            return $this->renderJson('删除成功');
         }
 
-        return json_encode(['code' => 500, 'data' => $model->getErrors()]);
+        return $this->renderJson('删除失败');
     }
 
     /**

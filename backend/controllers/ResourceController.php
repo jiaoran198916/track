@@ -90,6 +90,72 @@ class ResourceController extends Controller
         }
     }
 
+
+    public function actionAdd()
+    {
+        $id = Yii::$app->request->get('id');
+        $item_id = Yii::$app->request->get('item_id');
+        $type = Yii::$app->request->get('type');
+        if($id){
+            $model = Resource::findOne($id);
+            $item_id = $model->item_id;
+            $type = $model->type;
+        }else{
+            $model = new Resource();
+            $model->is_download = 0;
+        }
+
+        $this->layout = 'main_ajax';
+
+        return $this->render('/movie/res_form', [
+            'model' => $model,
+            'item_id' => $item_id,
+            'type' => $type
+        ]);
+    }
+
+    public function actionDoadd()
+    {
+        $params = Yii::$app->request->post();
+//        $id = Yii::$app->request->post('id', 0);
+//        print_r($post);die;
+        if(isset($params['Resource']['id']) && $params['Resource']['id']){
+            $model = Resource::findOne($params['Resource']['id']);
+        }else{
+            $model = $model = new Resource();
+        }
+        if ($model->load($params) && $model->save()) {
+            return $this->renderJson('保存成功');
+        } else {
+            return $this->renderJson('保存失败'.json_encode($model->getErrors()), 500);
+
+        }
+    }
+
+
+    public function renderJson($msg = '成功', $code = 200, $data = [])
+    {
+        $rsp = [
+            'msg' => $msg,
+            'code' => $code,
+            'data' => $data,
+        ];
+        return json_encode($rsp);
+    }
+
+    public function actionDel()
+    {
+        $id = Yii::$app->request->post('id');
+
+        $model = Resource::findOne($id);
+        $model->valid = 2;
+        if($model->save()){
+            return $this->renderJson('删除成功');
+        }
+
+        return $this->renderJson('删除失败');
+    }
+
     /**
      * Updates an existing Resource model.
      * If update is successful, the browser will be redirected to the 'view' page.

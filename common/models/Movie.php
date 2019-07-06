@@ -111,7 +111,7 @@ class Movie extends \yii\db\ActiveRecord
      */
     public function getUrl(){
         return Yii::$app->urlManager->createUrl(
-            ['movie/detail','id' => $this->id]);
+            ['movie/view','id' => $this->id ]);
     }
 
     /**
@@ -157,7 +157,7 @@ class Movie extends \yii\db\ActiveRecord
      */
     public function getEpisodes()
     {
-        return $this->hasMany(Episode::className(), ['movie_id' => 'id']);
+        return $this->hasMany(Episode::className(), ['movie_id' => 'id'])->where(['valid' => 1])->orderBy(['min' => SORT_ASC, 'sec' => SORT_ASC, 'id' =>SORT_ASC]);
     }
 
     /**
@@ -166,7 +166,7 @@ class Movie extends \yii\db\ActiveRecord
      */
     public function getResources()
     {
-        return $this->hasMany(Resource::className(), ['movie_id' => 'id']);
+        return $this->hasMany(Resource::className(), ['item_id' => 'id']);
     }
     /**
      * 获取 待审核 的电影数目

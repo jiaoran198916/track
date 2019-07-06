@@ -9,23 +9,25 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '电影列表';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
-
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            电影管理
-            <small><?= $this->title?></small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">电影管理</a></li>
-            <li class="active">电影列表</li>
-        </ol>
-    </section>
+<!--    <section class="content-header">-->
+<!--        <h1>-->
+<!--            电影管理-->
+<!--            <small>--><!--</small>-->
+<!--        </h1>-->
+<!--        <ol class="breadcrumb">-->
+<!--            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>-->
+<!--            <li><a href="#">电影管理</a></li>-->
+<!--            <li class="active">电影列表</li>-->
+<!--        </ol>-->
+<!--    </section>-->
+
+
 
     <!-- Main content -->
     <section class="content">
@@ -33,27 +35,29 @@ $this->title = '电影列表';
             <div class="col-xs-12">
 
                 <div class="box">
-<!--                    <div class="box-header">-->
-<!--                        <h3 class="box-title"></h3>-->
-<!--                    </div>-->
-                    <div class="box-body">
-                        <a class="btn btn-app" href="<?= Url::to(['movie/create'])?>">
-                            <i class="fa fa-plus"></i> New
-                        </a>
+                    <div class="box-header">
+                        <?= Html::a('<i class="fa fa-plus"></i> 创建文章', ['create'], ['class' => 'btn btn-success']) ?>
                     </div>
+
                     <!-- /.box-header -->
                     <div class="box-body">
 
                         <?= GridView::widget([
                             'dataProvider' => $dataProvider,
-                            //'filterModel' => $searchModel,
-                            'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example1'],
-                            //'layout' => '{items}',
+//                            'filterModel' => $searchModel,
+                            'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
+                            'layout' => '{items}',
+//                            $layout = "{items}\n{pager}";
                             'columns' => [
                                 //['class' => 'yii\grid\SerialColumn'],
-
                                 'id',
-                                'name',
+                                [
+                                    'format' => 'raw',
+                                    'attribute' => 'name',
+                                    'value' => function($model){
+                                        return Html::a($model->name, $model->url,['target' => '_blank']);
+                                    }
+                                ],
 //                  ['label' => '封面图',
 //            'attribute'=>'cover',
 //            'headerOptions' => ['width' => '50'],
@@ -89,14 +93,14 @@ $this->title = '电影列表';
                                 ],
 
                                 ['class' => 'yii\grid\ActionColumn',
-                                    'template' => '<ul class="icon-list" style="margin-bottom:0px;">{view}{update}{edit}{connect}{delete}</ul>',
+                                    'template' => '<ul class="icon-list" style="margin-bottom:0px;">{view} {update} {delete}</ul>',
                                     'buttons' => [
                                         'view' => function($url,$model, $key){
                                             $options = [
                                                 'title' => Yii::t('yii', 'View'),
                                                 'aria-label' => Yii::t('yii', 'View'),
                                                 'data-pjax' => '0',
-
+                                                'target' => '_blank'
                                             ];
                                             return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
                                         },
@@ -109,24 +113,6 @@ $this->title = '电影列表';
                                             ];
                                             return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
                                         },
-                                        'edit' => function($url,$model, $key){
-                                            $options = [
-                                                'title' => Yii::t('yii', 'Edit'),
-                                                'aria-label' => Yii::t('yii', 'Edit'),
-                                                'data-pjax' => '0',
-                                                'data-method' => 'post',
-                                            ];
-                                            return Html::a('<span class="glyphicon glyphicon-edit"></span>', $url, $options);
-                                        },
-                                        'connect' => function($url,$model, $key){
-                                            $options = [
-                                                'title' => Yii::t('yii', 'Connect'),
-                                                'aria-label' => Yii::t('yii', 'Connect'),
-                                                'data-pjax' => '0',
-                                                'data-method' => 'post',
-                                            ];
-                                            return Html::a('<span class="glyphicon glyphicon-paperclip"></span>', $url, $options);
-                                        },
                                         'delete' => function($url,$model, $key){
                                             $options = [
                                                 'title' => Yii::t('yii', 'Delete'),
@@ -134,7 +120,6 @@ $this->title = '电影列表';
                                                 'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                                 'data-method' => 'post',
                                                 'data-pjax' => '0',
-
                                             ];
                                             return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
                                         }
@@ -155,7 +140,7 @@ $this->title = '电影列表';
         <!-- /.row -->
     </section>
     <!-- /.content -->
-</div>
+
 
 
 
@@ -164,7 +149,7 @@ $this->title = '电影列表';
 <script>
     window.onload = function(){
         $(function () {
-            $('#example1').DataTable()
+            $('#example').DataTable()
         })
     }
 

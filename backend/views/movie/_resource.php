@@ -13,18 +13,17 @@ use yii\grid\GridView;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <p>
-    <button type="button" class="btn btn-normal" onclick="toAddPage()" >新增</button>
-    <button type="button" class="btn btn-danger" onclick="delType()">删除</button>
+    <button type="button" class="btn btn-success" onclick="addResource(0, <?= $model->id?>, 1)"><i class="fa fa-plus"></i> 新增资源</button>
 </p>
 <table id="teaListTable" class="table table-bordered table-striped">
     <thead>
     <tr>
         <th>ID</th>
-        <th>名称</th>
-        <th>描述</th>
+        <th>标题</th>
+        <th>简介</th>
         <th>链接</th>
         <th>排序</th>
-        <th>关联</th>
+        <th>关联电影</th>
         <th>在线</th>
         <th>来源</th>
         <th>操作</th>
@@ -41,8 +40,11 @@ use yii\grid\GridView;
                 <td><?= $r->position ?></td>
                 <td><?= $r->item->name ?></td>
                 <td><?= $r->downloadStatus ?></td>
-                <td><?= $r->source ?></td>
-                <td>caozuo</td>
+                <td><?= $r->sourceName->cname ?></td>
+                <td>
+                    <a href='javascript:addResource(<?=$r->id ?>, <?=$r->item_id ?>, <?=$r->type ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="javascript:delRes(<?= $r->id ?>)" title="删除" aria-label="删除"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
 
             </tr>
 
@@ -57,8 +59,10 @@ use yii\grid\GridView;
         <div>
             <div class="small-box bg-yellow" style="margin-bottom:0">
                 <div class="inner">
-                    <h3><?= $e->min ?><small style="margin-left: 50px;"><?= $e->name ?></small></h3>
-                    <h1><span class="label label-primary pull-right"><?= count($e->resources) ?></span></h1>
+                    <h3><?= $e->min ?>:<?= $e->sec ?><small style="margin-left: 50px;"><?= $e->name ?></small>
+                        <button type="button" class="btn btn-success pull-right" onclick="addResource(0, <?= $e->id?>, 0)"><i class="fa fa-plus"></i></button>
+                    </h3>
+                    <h3><span class="label label-primary pull-right"><?= count($e->resources) ?></span></h3>
                     <p> By <span><?= $e->musician->name ?></span></p>
                 </div>
             </div>
@@ -66,11 +70,11 @@ use yii\grid\GridView;
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>名称</th>
-                    <th>描述</th>
+                    <th>标题</th>
+                    <th>简介</th>
                     <th>链接</th>
                     <th>排序</th>
-                    <th>关联</th>
+                    <th>关联歌曲</th>
                     <th>在线</th>
                     <th>来源</th>
                     <th>操作</th>
@@ -87,8 +91,11 @@ use yii\grid\GridView;
                             <td><?= $r->position ?></td>
                             <td><?= $r->item->name ?></td>
                             <td><?= $r->downloadStatus ?></td>
-                            <td><?= $r->source ?></td>
-                            <td>caozuo</td>
+                            <td><?= $r->sourceName->cname ?></td>
+                            <td>
+                                <a href='javascript:addResource(<?=$r->id ?>, <?=$r->item_id ?>, <?=$r->type ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="javascript:delRes(<?= $r->id ?>)" title="删除" aria-label="删除"><span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
 
                         </tr>
 
@@ -103,12 +110,30 @@ use yii\grid\GridView;
 <?php endif;?>
 
 
-
-
-
 <script>
-    window.onload = function(){
+    function addResource(id, item_id, type){
+        var title = (id > 0)? '修改电影资源' : '新增电影资源';
+        layer.open({
+            title:title,
+            type:2,
+            area: ['600px', '600px'],
+            content: '/resource/add/?item_id='+item_id+'&id='+id+'&type='+type,
+        })
+    }
 
+    function delRes(id) {
+        layer.confirm('确定要删除？', {
+            btn: ['确认','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+            $.post('/resource/del', {id: id}, function(rsp){
+                layer.alert(rsp.msg, function () {
+                    if(rsp.code === 200){
+                        location.reload()
+                    }
+                })
+            }, 'json');
+        }, function(){});
     }
 
 </script>

@@ -14,8 +14,7 @@ use yii\grid\GridView;
 
 ?>
 <p>
-<button type="button" class="btn btn-default" onclick="toAddPage()">新增</button>
-<button type="button" class="btn btn-danger" onclick="delType()">修改</button>
+    <button type="button" class="btn btn-success" onclick="addEpisode(0, <?= $model->id?>)"><i class="fa fa-plus"></i> 新增片段</button>
 </p>
 <table id="teaListTable" class="table table-bordered table-striped">
     <thead>
@@ -41,8 +40,10 @@ use yii\grid\GridView;
         <td><?= $e->foreign_name ?></td>
         <td><?= $e->movie->name ?></td>
         <td><?= $e->musicians ?></td>
-        <td><a href="javascript:delEpi(<?= $e->id ?>)" title="删除" aria-label="删除" data-confirm="您确定要删除此项吗？"><span class="glyphicon glyphicon-trash"></span></a>
-            <a href='javascript:modifyEpi(<?=json_encode(['movie_id' => $e->movie_id, 'id' => $e->id, 'min' => $e->min, 'sec' => $e->sec, 'name' => $e->name, 'foreign_name' => $e->foreign_name, 'musician_id' => $e->musician_id, 'summary' => $e->summary]) ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
+        <td>
+
+            <a href='javascript:addEpisode(<?=$e->id ?>, <?=$e->movie_id ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="javascript:delEpi(<?= $e->id ?>)" title="删除" aria-label="删除"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
 
         </tr>
@@ -87,6 +88,32 @@ use yii\grid\GridView;
 </div>
 
 <script>
+
+    function addEpisode(id, movie_id){
+        var title = (id > 0)? '修改音乐片段' : '新增音乐片段';
+        layer.open({
+            title:title,
+            type:2,
+            area: ['600px', '600px'],
+            content: '/episode/add/?movie_id='+movie_id+'&id='+id,
+        })
+    }
+
+    function delEpi(id) {
+        layer.confirm('确定要删除？', {
+            btn: ['确认','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+            $.post('/episode/del', {id: id}, function(rsp){
+                layer.alert(rsp.msg, function () {
+                    if(rsp.code === 200){
+                        location.reload()
+                    }
+                })
+            }, 'json');
+        }, function(){});
+    }
+
     window.onload = function(){
 
         $(function () {
