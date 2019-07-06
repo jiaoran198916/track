@@ -5,16 +5,21 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = '修改用户资料: ' . $model->username;
-
+$this->title = '修改用户资料';
+$this->params['breadcrumbs'][] = ['label' => '用户列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-pencil"><?= $this->title ?></span>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+
+                <?= $this->render('_form', [
+                    'model' => $model,
+                ]) ?>
+
+            </div>
+        </div>
     </div>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+</section>

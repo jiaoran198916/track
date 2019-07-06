@@ -8,36 +8,38 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Adminuser */
 
 $this->title = '创建管理员';
+$this->params['breadcrumbs'][] = ['label' => '管理员列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-plus"><?= $this->title ?></span>
-    </div>
 
-    <div class="mws-panel-body">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
 
-        <?php $form = ActiveForm::begin(['options' => ['class' => 'mws-form']]); ?>
-        <div class="mws-form-inline">
-        <?= $form->field($model, 'username',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
+                <?php $form = ActiveForm::begin(); ?>
+    <div class="box-body">
 
-        <?= $form->field($model, 'nickname',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'password',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'password_repeat',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'email',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'profile',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'profile')->textarea(['rows' => 6]) ?>
 
         </div>
-        <div class="mws-button-row" style="text-align:left">
-            <input type="submit" value="新 增" class="mws-button green">
-            <?= Html::a(Html::button('取 消',['class' => 'mws-button gray']), ['index'] ) ?>
+        <div class="box-footer">
+            <?= Html::submitButton('新 增', ['class' => 'btn btn-success'] ) ?>
+            <?= Html::a('取 消', ['index'] ,['class' => 'btn btn-default'] ) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
-
+       </div>
     </div>
+</section>
 
-</div>

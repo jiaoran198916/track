@@ -3,35 +3,32 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Adminuser */
 
 $this->title = '重置密码';
-
+$this->params['breadcrumbs'][] = ['label' => '管理员列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-pencil"><?= $this->title ?></span>
-    </div>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
 
-    <div class="mws-panel-body">
+                <?php $form = ActiveForm::begin(); ?>
+                <div class="box-body">
 
-        <?php $form = ActiveForm::begin(['options' => ['class' => 'mws-form']]); ?>
-        <div class="mws-form-inline">
+        <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'password',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->passwordInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'password_repeat',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->passwordInput(['maxlength' => true]) ?>
+                </div>
+                <div class="box-footer">
+                    <?= Html::submitButton('重 置', ['class' => 'btn btn-success'] ) ?>
+                    <?= Html::a('取 消', ['index'] ,['class' => 'btn btn-default'] ) ?>
+                </div>
 
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
-        <div class="mws-button-row" style="text-align:left">
-            <input type="submit" value="重 置" class="mws-button green">
-            <?= Html::a(Html::button('取 消',['class' => 'mws-button gray']), ['index'] ) ?>
-        </div>
-
-        <?php ActiveForm::end(); ?>
-
-    </div>
-
-</div>
+</section>

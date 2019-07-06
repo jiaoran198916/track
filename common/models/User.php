@@ -17,8 +17,8 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer $create_time
+ * @property integer $update_time
  * @property string $password write-only password
  * @property Comment[] $comments
  */
@@ -42,8 +42,23 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if($insert){
+                $this->create_time=time();
+                $this->update_time=time();
+            }else{
+                $this->update_time=time();
+            }
+            return true;
+
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -71,8 +86,8 @@ class User extends ActiveRecord implements IdentityInterface
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => '状态',
-            'created_at' => '创建时间',
-            'updated_at' => '修改时间',
+            'create_time' => '创建时间',
+            'update_time' => '修改时间',
         ];
     }
 
@@ -205,11 +220,6 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-
-    public function getComments()
-    {
-        return $this->hasMany(Comment::className(), ['userid' => 'id']);
     }
 
     public static function allStatus(){

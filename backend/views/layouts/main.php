@@ -383,11 +383,11 @@ AppAsset::register($this);
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-female"></i>
-                        <span>音乐人管理</span>
+                        <span>艺术家管理</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?= Url::to(['master/index'])?>"><i class="fa fa-circle-o"></i> 音乐人列表</a></li>
-                        <li><a href="<?= Url::to(['master/create'])?>"><i class="fa fa-plus-circle"></i> 添加音乐人</a></li>
+                        <li><a href="<?= Url::to(['master/index'])?>"><i class="fa fa-circle-o"></i> 艺术家列表</a></li>
+                        <li><a href="<?= Url::to(['master/create'])?>"><i class="fa fa-plus-circle"></i> 添加艺术家</a></li>
                     </ul>
                 </li>
 

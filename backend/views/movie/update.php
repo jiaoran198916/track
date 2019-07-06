@@ -5,41 +5,22 @@ use yii\helpers\Html;
 /* @var $model common\models\Movie */
 
 $this->title = '修改电影';
-$this->params['breadcrumbs'][] = ['label' => 'Movies', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => '电影列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            电影管理
-            <small>修改电影</small>
-        </h1>
-    </section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-md-8">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">修改电影</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <?= $this->render('_form', [
-                        'model' => $model,
-                    ]) ?>
+                <?= $this->render('_form', [
+                    'model' => $model,
+                ]) ?>
 
-                </div>
             </div>
         </div>
-
-    </section>
-
-</div>
+    </div>
+</section>

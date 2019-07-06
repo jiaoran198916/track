@@ -10,24 +10,19 @@ use yii\grid\GridView;
 $this->title = '管理员列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-table-1"><?= $this->title ?></span>
-    </div>
-    <div class="mws-panel-body">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
 
-        <div class="mws-panel-toolbar top clearfix">
-            <ul>
-                <li><?= Html::a('New', ['create'], ['class' => 'mws-ic-16 ic-accept']) ?></li>
-                <li><a href="#" class="mws-ic-16 ic-cross">Reject</a></li>
-                <li><a href="#"dataTables_length class="mws-ic-16 ic-printer">Print</a></li>
-                <li><a href="#" class="mws-ic-16 ic-arrow-refresh">Renew</a></li>
-                <li><a href="#" class="mws-ic-16 ic-edit">Update</a></li>
-            </ul>
-        </div>
+            <div class="box">
+                <div class="box-header">
+                    <?= Html::a('<i class="fa fa-plus"></i> 新建管理员', ['create'], ['class' => 'btn btn-success']) ?>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'tableOptions' => ['class' => 'mws-datatable-fn mws-table'],
+        'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
         'layout' => '{items}',
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
@@ -43,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'profile:ntext',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}{resetpwd}{privilege}',
+                'template' => '{view} {update} {resetpwd} {privilege}',
                 'buttons' => [
                     'view' => function($url,$model, $key){
                         $options = [
@@ -52,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-pjax' => '0',
 
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-eye"></li>', $url, $options);
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
                     },
                     'update' => function($url,$model, $key){
                         $options = [
@@ -61,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-pjax' => '0',
 
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-edit"></li>', $url, $options);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
                     },
                     'resetpwd' => function($url, $model, $key){
                         $options = [
@@ -69,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'aria-label' => Yii::t('yii','重置密码'),
                                 'data-pjax' => '0',
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-lock"></li>',$url ,$options);
+                        return Html::a('<span class="glyphicon glyphicon-lock"></span>',$url ,$options);
 
                     },
                     'privilege' => function($url, $model, $key){
@@ -78,12 +73,26 @@ $this->params['breadcrumbs'][] = $this->title;
                             'aria-label' => Yii::t('yii','权限'),
                             'data-pjax' => '0',
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-status-online"></li>',$url ,$options);
+                        return Html::a('<span class="glyphicon glyphicon-print"></span>',$url ,$options);
 
                     }
                 ]
             ],
         ],
     ]); ?>
-</div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    window.onload = function(){
+        $(function () {
+            $('#example').DataTable()
+        })
+    }
+
+
+</script>

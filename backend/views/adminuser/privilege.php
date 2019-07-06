@@ -10,42 +10,35 @@ use common\models\Adminuser;
 
 $model = Adminuser::findOne($id);
 
-$this->title = '权限设置: ' . $model->username;
-
+$this->title = '权限设置';
+$this->params['breadcrumbs'][] = ['label' => '管理员列表', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">管理员：<?= $model->username?></h3>
+                </div>
+                <?php $form = ActiveForm::begin(); ?>
+                <div class="box-body">
 
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-pencil"><?= $this->title ?></span>
-    </div>
-
-    <div class="mws-panel-body">
-
-        <?php $form = ActiveForm::begin(['options' => ['class' => 'mws-form']]); ?>
-        <div class="mws-form-inline">
-        <div class="mws-form-row">
             <label>操作：</label>
-        <div class="mws-form-item clearfix">
-
-
-        <ul class="mws-form-list inline">
+        <ul class=" inline">
 
         <?= Html::checkboxList('newPri',$AuthAssignmentArray,$allPrivilegesArray);?>
 
         </ul>
         </div>
-        <div class="mws-button-row" style="text-align:left">
-            <input type="submit" value="设 置" class="mws-button green">
-            <?= Html::a(Html::button('取 消',['class' => 'mws-button gray']), ['index'] ) ?>
+        <div class="box-footer">
+            <?= Html::submitButton('设 置', ['class' => 'btn btn-success'] ) ?>
+            <?= Html::a('取 消', ['index'] ,['class' => 'btn btn-default'] ) ?>
         </div>
-    </div>
-    </div>
-
-        <?php ActiveForm::end(); ?>
-
-    </div>
-
-</div>
+                <?php ActiveForm::end(); ?>
+            </div>
+        </div>
+</section>
 
 
 

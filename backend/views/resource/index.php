@@ -1,14 +1,14 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\GridView;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ResourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '资源列表';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- Main content -->
 <section class="content">

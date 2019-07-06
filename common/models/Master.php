@@ -34,6 +34,20 @@ class Master extends \yii\db\ActiveRecord
         return 'master';
     }
 
+    const MASTER_TYPE_MUSICIAN = 0;
+    const MASTER_TYPE_DIRECTOR = 1;
+    const MASTER_TYPE_ACTOR = 2;
+    const MASTER_TYPE_OTHER = 3;
+
+    public static function masterType(){
+        return [
+            self::MASTER_TYPE_MUSICIAN => '音乐家',
+            self::MASTER_TYPE_DIRECTOR => '导演',
+            self::MASTER_TYPE_ACTOR => '演员',
+            self::MASTER_TYPE_OTHER => '其他',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -60,7 +74,7 @@ class Master extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => '姓名',
             'foreign_name' => '外文名',
-            'pic' => 'Pic',
+            'pic' => '图片',
             'type' => '类型',
             'birthday' => '生日',
             'place' => '所在地',

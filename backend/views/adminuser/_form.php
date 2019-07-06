@@ -9,26 +9,21 @@ use yii\widgets\ActiveForm;
 ?>
 
 
-<div class="mws-panel-body">
+<?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
+<div class="box-body">
 
-    <?php $form = ActiveForm::begin(['options' => ['class' => 'mws-form']]); ?>
-    <div class="mws-form-inline">
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'username',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nickname',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'email',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'profile',['options' => ['class' => 'mws-form-row'],'inputOptions' => ['class' => 'mws-textinput'],'template' => "{label}\n<div class=\"mws-form-item small\">{input}\n{hint}\n{error}</div>"])->textarea(['rows' => 6]) ?>
-
+    <?= $form->field($model, 'profile')->textarea(['rows' => 6]) ?>
 
     </div>
-    <div class="mws-button-row" style="text-align:left">
-        <input type="submit" value="修 改" class="mws-button green">
-        <?= Html::a(Html::button('取 消',['class' => 'mws-button gray']), ['index'] ) ?>
+    <div class="box-footer">
+        <?= Html::submitButton('修 改', ['class' => 'btn btn-success'] ) ?>
+        <?= Html::a('取 消', ['index'] ,['class' => 'btn btn-default'] ) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-</div>
