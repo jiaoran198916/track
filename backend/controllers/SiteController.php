@@ -1,6 +1,10 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Episode;
+use common\models\Master;
+use common\models\Movie;
+use common\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -55,7 +59,16 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $movieNum = Movie::find()->where('valid=1')->count();
+        $masterNum = Master::find()->where('valid=1')->count();
+        $userNum = User::find()->where('valid=1')->count();
+        $episodeNum = Episode::find()->where('valid=1')->count();
+        return $this->render('index',[
+            'movieNum' => $movieNum,
+            'masterNum' => $masterNum,
+            'userNum' => $userNum,
+            'episodeNum' => $episodeNum,
+        ]);
     }
 
     public function actionLogin()
@@ -86,4 +99,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
 }

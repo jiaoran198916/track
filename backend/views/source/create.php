@@ -6,16 +6,20 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Source */
 
-$this->title = 'Create Source';
-$this->params['breadcrumbs'][] = ['label' => 'Sources', 'url' => ['index']];
+$this->title = '创建来源';
+$this->params['breadcrumbs'][] = ['label' => '来源列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="source-create">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                <?= $this->render('_form', [
+                    'model' => $model,
+                ]) ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+            </div>
+        </div>
+    </div>
+</section>

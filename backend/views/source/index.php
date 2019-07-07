@@ -7,20 +7,23 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\SourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sources';
+$this->title = '来源列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="source-index">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Source', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <div class="box">
+                <div class="box-header">
+                    <?= Html::a('<i class="fa fa-plus"></i> 新建来源', ['create'], ['class' => 'btn btn-success']) ?>
+                </div>
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
+        'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
+        'layout' => '{items}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -29,11 +32,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'ename',
             'desc',
             'logo',
-            // 'create_time:datetime',
-            // 'update_time:datetime',
-            // 'valid',
+            ['attribute' =>'create_time',
+                'format' =>['date', 'php:Y-m-d H:i:s']
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.onload = function(){
+        $(function () {
+            $('#example').DataTable()
+        })
+    }
+</script>

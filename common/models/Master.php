@@ -56,7 +56,7 @@ class Master extends \yii\db\ActiveRecord
         return [
             [['name', 'intro'], 'required'],
             [['intro'], 'string'],
-            [['type','douban_id', 'user_id', 'status', 'create_time', 'update_time'], 'integer'],
+            [['type','douban_id', 'user_id', 'status', 'create_time', 'update_time', 'valid'], 'integer'],
             [['name', 'foreign_name', 'place'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
             [['birthday'], 'string', 'max' => 11],
@@ -109,13 +109,5 @@ class Master extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(Adminuser::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStatus0()
-    {
-        return $this->hasOne(Poststatus::className(), ['id' => 'status']);
     }
 }

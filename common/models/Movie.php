@@ -7,26 +7,6 @@ use Yii;
 /**
  * This is the model class for table "movie".
  *
- * @property integer $id
- * @property string $name
- * @property string $foreign_name
- * @property string $cover
- * @property string $desc
- * @property string $music_desc
- * @property integer $duration
- * @property integer $year
- * @property string $release
- * @property string $musician_id
- * @property string $director_id
- * @property string $actor_id
- * @property integer $douban_id
- * @property integer $user_id
- * @property integer $status
- * @property integer $is_recommend
- * @property integer $count
- * @property integer $create_time
- * @property integer $update_time
- *
  * @property Banner[] $banners
  * @property Resource[] $resources
  */
@@ -47,7 +27,7 @@ class Movie extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'year','duration', 'status'], 'required'],
-            [['year', 'duration', 'douban_id', 'user_id', 'status', 'is_recommend','count', 'create_time', 'update_time'], 'integer'],
+            [['year', 'valid', 'duration', 'douban_id', 'user_id', 'status', 'is_recommend','count', 'create_time', 'update_time'], 'integer'],
             [['desc'], 'string'],
             [['name', 'foreign_name', 'cover'], 'string', 'max' => 128],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

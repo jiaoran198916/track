@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-header">
                     <?= Html::a('<i class="fa fa-plus"></i> 新建文章', ['create'], ['class' => 'btn btn-success']) ?>
                 </div>
-                <!-- /.box-header -->
                 <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -95,13 +94,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </section>
 
-
 <script>
     window.onload = function(){
         $(function () {
             $('#example').DataTable()
         })
     }
-
-
 </script>

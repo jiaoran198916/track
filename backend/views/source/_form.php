@@ -8,9 +8,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="source-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
+    <div class="box-body">
 
     <?= $form->field($model, 'cname')->textInput(['maxlength' => true]) ?>
 
@@ -20,16 +20,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'create_time')->textInput() ?>
-
-    <?= $form->field($model, 'update_time')->textInput() ?>
-
-    <?= $form->field($model, 'valid')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="box-footer">
+    <?= Html::submitButton($model->isNewRecord ? '新 增' : '修 改',['class' => 'btn btn-success']) ?>
+    <?= Html::a('取 消',['index'], ['class' => 'btn btn-default']) ?>
+    </div>
 
-</div>
+<?php ActiveForm::end(); ?>
