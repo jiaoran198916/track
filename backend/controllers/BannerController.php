@@ -81,7 +81,6 @@ class BannerController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            //print_r($model->getErrors());die;
             return $this->render('create', [
                 'model' => $model,
             ]);

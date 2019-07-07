@@ -6,18 +6,6 @@ use Yii;
 
 /**
  * This is the model class for table "banner".
- *
- * @property integer $id
- * @property string $title
- * @property string $desc
- * @property string $image
- * @property integer $position
- * @property integer $movie_id
- * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- *
- * @property Movie $movie
  */
 class Banner extends \yii\db\ActiveRecord
 {
@@ -36,10 +24,20 @@ class Banner extends \yii\db\ActiveRecord
     {
         return [
             [['movie_id'], 'required'],
-            [['id', 'position', 'movie_id', 'status', 'create_time', 'update_time'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
-            [['desc'], 'string', 'max' => 128],
+            [['id', 'position', 'movie_id', 'valid', 'type', 'create_time', 'update_time'], 'integer'],
+            [['title'], 'string', 'max' => 255],
+            [['desc', 'img'], 'string', 'max' => 128],
             [['movie_id'], 'exist', 'skipOnError' => true, 'targetClass' => Movie::className(), 'targetAttribute' => ['movie_id' => 'id']],
+        ];
+    }
+
+    const BANNER_TYPE_MOVIE = 0;
+    const BANNER_TYPE_POST = 1;
+
+    public static function bannerType(){
+        return [
+            self::BANNER_TYPE_MOVIE => '电影',
+            self::BANNER_TYPE_POST => '博客'
         ];
     }
 
@@ -52,10 +50,11 @@ class Banner extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => '标题',
             'desc' => '简介',
-            'image' => '图片',
+            'img' => '图片',
+            'type' => '类型',
             'position' => '排序',
             'movie_id' => '关联电影',
-            'status' => '状态',
+            'valid' => '状态',
             'create_time' => '创建时间',
             'update_time' => '修改时间',
         ];
@@ -88,6 +87,6 @@ class Banner extends \yii\db\ActiveRecord
 
 
     public static function getBannerData(){
-        return self::find()->where(['status' => [0,1]])->all();
+        return self::find()->where(['valid' => 1])->all();
     }
 }

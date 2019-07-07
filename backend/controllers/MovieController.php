@@ -91,7 +91,6 @@ class MovieController extends Controller
         if ($model->load($params) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            print_r($model->getErrors());
             return $this->render('create', [
                 'model' => $model
             ]);

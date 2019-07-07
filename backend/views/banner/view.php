@@ -6,24 +6,16 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Banner */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Banners', 'url' => ['index']];
+$this->title = 'Banner详情';
+$this->params['breadcrumbs'][] = ['label' => 'Banner列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="banner-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-body">
 
     <?= DetailView::widget([
         'model' => $model,
@@ -31,13 +23,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'desc',
-            'image',
+            'img',
             'position',
             'movie_id',
-            'status',
+            'type',
             'create_time:datetime',
             'update_time:datetime',
         ],
     ]) ?>
 
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
