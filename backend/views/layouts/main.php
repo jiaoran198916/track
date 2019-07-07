@@ -384,6 +384,9 @@ AppAsset::register($this);
                     <a href="#">
                         <i class="fa fa-female"></i>
                         <span>艺术家管理</span>
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= Url::to(['master/index'])?>"><i class="fa fa-circle-o"></i> 艺术家列表</a></li>
@@ -433,20 +436,7 @@ AppAsset::register($this);
                     </ul>
                 </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-cog"></i>
-                        <span>网站管理</span>
-                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="<?= Url::to(['config/index'])?>"><i class="fa fa-gears"></i> 网站配置列表</a></li>
-                        <li><a href="<?= Url::to(['config/create'])?>"><i class="fa fa-plus-circle"></i> 添加配置</a></li>
-                    </ul>
-                </li>
-                <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+                <li><a href="#"><i class="fa fa-university"></i> <span> 前台网站</span></a></li>
                 <li class="header">LABELS</li>
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

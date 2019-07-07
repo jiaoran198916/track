@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\models\Poststatus;
 use common\models\User;
 use common\models\Master;
 

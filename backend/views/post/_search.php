@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tags') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'type') ?>
 
     <?php // echo $form->field($model, 'create_time') ?>
 

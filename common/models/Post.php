@@ -7,23 +7,20 @@ use yii\helpers\Html;
 
 /**
  * This is the model class for table "post".
- *
- * @property integer $id
- * @property string $title
- * @property string $content
- * @property string $tags
- * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- * @property integer $author_id
- *
- * @property Comment[] $comments
- * @property Adminuser $author
- * @property Poststatus $status0
  */
 class Post extends \yii\db\ActiveRecord
 {
     private $_oldTags;
+
+    const POST_TYPE_NORMAL = 0;
+    const POST_TYPE_SYSTEM = 1;
+
+    public static function postType(){
+        return [
+            self::POST_TYPE_NORMAL => '普通',
+            self::POST_TYPE_SYSTEM => '系统'
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -38,13 +35,11 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'status', 'author_id'], 'required'],
-            [['content', 'tags'], 'string'],
-            [['status', 'create_time', 'update_time', 'author_id'], 'integer'],
+            [['title', 'content', 'type'], 'required'],
+            [['content', 'tags', 'key'], 'string'],
+            [['valid', 'type', 'create_time', 'update_time', 'author_id'], 'integer'],
             [['title'], 'string', 'max' => 128],
-            [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Adminuser::className(), 'targetAttribute' => ['author_id' => 'id']],
-            [['status'], 'exist', 'skipOnError' => true, 'targetClass' => Poststatus::className(), 'targetAttribute' => ['status' => 'id']],
-        ];
+         ];
     }
 
     /**
@@ -56,11 +51,13 @@ class Post extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => '标题',
             'content' => '内容',
+            'key' => '索引值',
+            'type' => '类型',
             'tags' => '标签',
-            'status' => '状态',
             'create_time' => '创建时间',
             'update_time' => '修改时间',
             'author_id' => '作者',
+            'valid' => '状态',
         ];
     }
 
@@ -84,14 +81,6 @@ class Post extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStatus0()
-    {
-        return $this->hasOne(Poststatus::className(), ['id' => 'status']);
     }
 
     public function beforeSave($insert)

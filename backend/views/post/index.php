@@ -10,26 +10,22 @@ use common\models\Poststatus;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '文章列表';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mws-panel grid_8">
-    <div class="mws-panel-header">
-        <span class="mws-i-24 i-table-1"><?= $this->title ?></span>
-    </div>
-    <div class="mws-panel-body">
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
 
-        <div class="mws-panel-toolbar top clearfix">
-            <ul>
-                <li><?= Html::a('New', ['create'], ['class' => 'mws-ic-16 ic-accept']) ?></li>
-                <li><a href="#" class="mws-ic-16 ic-cross">Reject</a></li>
-                <li><a href="#"dataTables_length class="mws-ic-16 ic-printer">Print</a></li>
-                <li><a href="#" class="mws-ic-16 ic-arrow-refresh">Renew</a></li>
-                <li><a href="#" class="mws-ic-16 ic-edit">Update</a></li>
-            </ul>
-        </div>
+            <div class="box">
+                <div class="box-header">
+                    <?= Html::a('<i class="fa fa-plus"></i> 新建文章', ['create'], ['class' => 'btn btn-success']) ?>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
-        'tableOptions' => ['class' => 'mws-datatable-fn mws-table'],
+        'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
         'layout' => '{items}',
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
@@ -45,26 +41,21 @@ $this->title = '文章列表';
              'label' => '作者',
              'value' => 'author.nickname'
             ],
+            'key',
+            ['attribute' =>'type',
+                'value' =>function($model){
+                    return \common\models\Post::postType()[$model->type];
+                }
+            ],
 //            'content:ntext',
             'tags:ntext',
-            //'status',
-            ['attribute' =>'status',
-                'value' => 'status0.name',
-                'filter' => Poststatus::find()
-                    ->select(['name', 'id'])
-                    ->orderBy('position')
-                    ->indexBy('id')
-                    ->column(),
-            ],
-            // 'create_time:datetime',
-             //'update_time:datetime',
-            ['attribute' =>'update_time',
+            ['attribute' =>'create_time',
             'format' =>['date', 'php:Y-m-d H:i:s']
-
             ],
+            //'update_time:datetime',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}{delete}',
+                'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'view' => function($url,$model, $key){
                         $options = [
@@ -73,16 +64,15 @@ $this->title = '文章列表';
                             'data-pjax' => '0',
 
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-eye"></li>', $url, $options);
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
                     },
                     'update' => function($url,$model, $key){
                         $options = [
                             'title' => Yii::t('yii', 'Update'),
                             'aria-label' => Yii::t('yii', 'Update'),
                             'data-pjax' => '0',
-
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-edit"></li>', $url, $options);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
                     },
                     'delete' => function($url,$model, $key){
                         $options = [
@@ -91,13 +81,27 @@ $this->title = '文章列表';
                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                             'data-method' => 'post',
                             'data-pjax' => '0',
-
                         ];
-                        return Html::a('<li class="mws-ic-16 ic-trash"></li>', $url, $options);
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
                     }
                 ]
 
             ],
         ],
     ]); ?>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    window.onload = function(){
+        $(function () {
+            $('#example').DataTable()
+        })
+    }
+
+
+</script>

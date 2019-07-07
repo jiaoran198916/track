@@ -39,12 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]) ?>
 
-                <!-- /.box-body -->
             </div>
             </div>
-            <!-- /.box -->
         </div>
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
 </section>

@@ -33,7 +33,7 @@ class PostController extends Controller
                 'rules' =>
                     [
                         [
-                            'actions' => ['index', 'view'],
+                            'actions' => ['index', 'view', 'create','update','delete'],
                             'allow' => true,
                             'roles' => ['?'],
                         ],
@@ -85,9 +85,9 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
-        if(!Yii::$app->user->can('createPost')){
-            throw new ForbiddenHttpException('您没有此操作的权限');
-        }
+//        if(!Yii::$app->user->can('createPost')){
+//            throw new ForbiddenHttpException('您没有此操作的权限');
+//        }
 
         $model = new Post();
 
@@ -108,9 +108,10 @@ class PostController extends Controller
      */
     public function actionUpdate($id)
     {
-        if(!Yii::$app->user->can('updatePost')){
-            throw new ForbiddenHttpException('您没有此操作的权限');
-        }
+//        if(!Yii::$app->user->can('updatePost')){
+//            throw new ForbiddenHttpException('您没有此操作的权限');
+//        }
+//        print_r(Yii::$app->request->post());die;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -130,9 +131,9 @@ class PostController extends Controller
      */
     public function actionDelete($id)
     {
-        if(!Yii::$app->user->can('deletePost')){
-            throw new ForbiddenHttpException('您没有此操作的权限');
-        }
+//        if(!Yii::$app->user->can('deletePost')){
+//            throw new ForbiddenHttpException('您没有此操作的权限');
+//        }
 
         $this->findModel($id)->delete();
 
