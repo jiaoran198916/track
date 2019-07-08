@@ -61,7 +61,6 @@ class Master extends \yii\db\ActiveRecord
             [['pic'], 'string', 'max' => 255],
             [['birthday'], 'string', 'max' => 11],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Adminuser::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['status'], 'exist', 'skipOnError' => true, 'targetClass' => Poststatus::className(), 'targetAttribute' => ['status' => 'id']],
         ];
     }
 

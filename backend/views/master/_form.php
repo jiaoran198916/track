@@ -33,7 +33,6 @@ use common\models\Master;
 
     <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择作者']) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(Poststatus::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择状态']) ?>
     </div>
 
     <div class="box-footer">
