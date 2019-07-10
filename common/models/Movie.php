@@ -37,6 +37,7 @@ class Movie extends \yii\db\ActiveRecord
             [['release', 'musician_id', 'director_id', 'actor_id'], 'safe'],
             [['name', 'foreign_name'], 'string', 'max' => 128],
             [['cover'], 'string', 'max' => 255],
+            [['douban_id', 'user_id'], 'default', 'value' => 0],
         ];
     }
 

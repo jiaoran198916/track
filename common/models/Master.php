@@ -54,13 +54,13 @@ class Master extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'intro'], 'required'],
+            [['name'], 'required'],
             [['intro'], 'string'],
             [['type','douban_id', 'user_id', 'status', 'create_time', 'update_time', 'valid'], 'integer'],
             [['name', 'foreign_name', 'place'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
             [['birthday'], 'string', 'max' => 11],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Adminuser::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['douban_id', 'user_id'], 'default', 'value' => 0],
         ];
     }
 
