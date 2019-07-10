@@ -144,10 +144,5 @@ class Post extends \yii\db\ActiveRecord
         return $links;
     }
 
-    public function getCommentCount()
-    {
-        return Comment::find()->where(['post_id'=>$this->id,'status'=>2])->count();
-    }
-
 
 }

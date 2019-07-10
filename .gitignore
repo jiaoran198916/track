@@ -8,3 +8,7 @@ backend/web/assets/
 backend/web/uploads/
 backend/config/main-local.php
 common/config/main-local.php
+
+frontend/runtime/
+frontend/web/assets/
+frontend/config/main-local.php

@@ -100,12 +100,6 @@ use frontend\components\RctReplyWidget;
 
             <div class="commentbox">
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 最新回复
-                    </li>
-                    <li class="list-group-item">
-                        <?= RctReplyWidget::widget(['recentComments'=>$recentComments])?>
-                    </li>
                 </ul>
             </div>
 

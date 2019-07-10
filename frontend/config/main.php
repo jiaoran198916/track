@@ -15,8 +15,8 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'assetManager' => [
-            'basePath' => '@webroot/frontend/web/assets',
-            'baseUrl' => '@web/frontend/web/assets'
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -39,10 +39,12 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
 //            'suffix' => '.html',
-//            'rules' => [
+            'rules' => [
 //                '<controller:\w+>/<id:\d+>' => '<controller>/detail',
 //                'posts' => 'post/index'
-//            ],
+            '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+            '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ],
         ],
 
     ],

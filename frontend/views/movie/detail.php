@@ -45,8 +45,8 @@ use yii\helpers\Url;
                                 <?php endif;?>
                                 <p>
                                     <span class="color-black">音乐：</span>
-                                    <a href="#" alt="<?= $model->master->name ?>" title="<?= $model->master->name ?>" target="_blank">
-                                        <?= $model->master->name ?>
+                                    <a href="#" alt="<?= $model->musician_id ?>" title="<?= $model->musician_id ?>" target="_blank">
+                                        <?= $model->musician_id ?>
                                     </a>
 
                                 </p>

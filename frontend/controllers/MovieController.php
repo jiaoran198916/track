@@ -171,32 +171,12 @@ class MovieController extends Controller
         //step1. 准备数据模型
         $model = $this->findModel($id);
         $tags=Tag::findTagWeights();
-        $recentComments=Comment::findRecentComments();
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
-        $commentModel = new Comment();
-        //print_r(Yii::$app->user);die;
-        $model->count += 1;
-        if(!$model->save()){
-            $model->getErrors();
-            return false;
-        }
 
-        //step2. 当评论提交时，处理评论
-        if($commentModel->load(Yii::$app->request->post()) && $userMe = User::findOne(Yii::$app->user->id))
-        {
-            $commentModel->email = $userMe->email;
-            $commentModel->userid = $userMe->id;
 
-            $commentModel->status = 1; //新评论默认状态为 pending
-            $commentModel->post_id = $id;
-            if($commentModel->save())
-            {
-                $this->added=1;
-            }
-        }
 //        print_r($model);die;
 //        echo Movie::find()->count();die;
         $randomData = Movie::getRandomData();
@@ -207,8 +187,6 @@ class MovieController extends Controller
             'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,
-            'recentComments'=>$recentComments,
-            'commentModel'=>$commentModel,
             'added'=>$this->added,
             'randomData'=>$randomData
         ]);
