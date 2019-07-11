@@ -170,6 +170,9 @@ class MovieController extends Controller
     {
         //step1. 准备数据模型
         $model = $this->findModel($id);
+
+
+        if(!$model)
         $tags=Tag::findTagWeights();
 
         $news = Movie::findNewTen();
