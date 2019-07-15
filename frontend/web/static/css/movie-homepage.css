@@ -169,11 +169,12 @@ ul.callbacks_tabs.callbacks1_tabs{
 }
 
 .intro-box .intro-title a{
-	color: #555;;
+	color: #31424e;
 	font-size: 18px;
+	text-decoration: none;
 }
 .intro-box .intro-title a:hover{
-	 text-decoration: yellow underline;
+	color: #FF5E52;
  }
 .intro-box .score{
 	font-size: 16px;
@@ -184,18 +185,16 @@ ul.callbacks_tabs.callbacks1_tabs{
 .intro-detail{
 	position: relative;
 }
+.intro-detail:hover{
+	/*background-color: #f1f1f1;*/
+}
 .img-box{
 	display: inline-block;
 	vertical-align: top;
 }
-.intro-detail .img-box img{
-	width: 140px;
-	height: 200px;
-	margin-right: 0px;
-}
-.intro-detail .img-box .main{
-	width: 140px;
-	height: 200px;
+.intro-detail .img-box img, .intro-detail .img-box .main{
+	width: 135px;
+	height: 191px;
 	margin-right: 0px;
 }
 .text-box{
@@ -203,13 +202,14 @@ ul.callbacks_tabs.callbacks1_tabs{
 	display: inline-block;
 	font-size: 15px;
 	width: calc(100% - 160px);
+	padding: 20px 10px 10px;
 }
 .text-box .intro-text{
 	overflow: hidden;
 }
 .text-box .movie-detail{
 	position: absolute;
-	bottom: 10px;
+	bottom: 20px;
 	height: 14px;
 	line-height: 14px;
 }

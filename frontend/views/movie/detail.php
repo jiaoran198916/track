@@ -33,9 +33,9 @@ use yii\helpers\Url;
                     </div>
                     <div class="intro-detail">
                         <div class="img-box">
-                            <img src="<?= $model->cover ?>" />
+                            <img src="<?= Yii::$app->params['adminhost'].$model->cover ?>" />
                         </div>
-                        <div class="text-box">
+                        <div class="text-box" style="padding-top: 10px;">
                             <div class="music-detail">
                                 <?php if($model->foreign_name): ?>
                                 <p>
@@ -44,9 +44,13 @@ use yii\helpers\Url;
                                 </p>
                                 <?php endif;?>
                                 <p>
+                                    <span class="color-black">导演：</span>
+                                    <?= $model->director_id ?>
+                                </p>
+                                <p>
                                     <span class="color-black">音乐：</span>
                                     <a href="#" alt="<?= $model->musician_id ?>" title="<?= $model->musician_id ?>" target="_blank">
-                                        <?= $model->musician_id ?>
+                                        <?= $model->musicians ?>
                                     </a>
 
                                 </p>
@@ -74,29 +78,8 @@ use yii\helpers\Url;
                                     <span class="color-black">发布时间：</span>
                                         <?= date('Y-m-d',$model->create_time); ?>
                                 </p>
-                                <p>
-                                    <span class="color-black">最后修改：</span>
-                                        <?= date('Y-m-d',$model->update_time); ?>
-
-                                </p>
                             </div>
                             <div class="movie-detail">
-                                <p class="movie-message">
-                                    <span class="color-grey">阅读</span>
-                                    <span class="color-grey"><?= $model->count ?></span>
-                                </p>
-<!--                                <p class="movie-labels">-->
-<!--                                    <a href="#">动作</a>-->
-<!--                                    <a href="#">犯罪</a>-->
-<!--                                </p>-->
-                                <p class="more-info">
-												<span class="color-grey">
-													来源
-<!--                                    <a href="#">-->
-                                        <?= $model->user_id ?>
-                                                    </span>
-<!--                                    </a>-->
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -117,25 +100,23 @@ use yii\helpers\Url;
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>序号</th>
                         <th>位置</th>
                         <th>标题</th>
                         <th>简介</th>
-                        <th>时长</th>
                         <th>歌手</th>
-                        <th>友情链接</th>
+                        <th>链接</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($model->episodes as $k => $v):?>
+                    <?php
+                    if($model->episodes):
+                    foreach ($model->episodes as $k => $v):?>
 
                     <tr>
-                        <td><?= ($k+1) ?></td>
-                        <td><?= $v->timing ?></td>
+                        <td><?= $v->min."'".$v->sec."\"" ?></td>
                         <td><?= $v->name ?></td>
                         <td><?= $v->summary ?></td>
-                        <td><?= $v->seconds ?></td>
-                        <td><?= $v->singer->name ?></td>
+                        <td><?= $v->musician->name ?></td>
                         <td>
                             <a href="#" class="icon-wangyiyun"></a>
                             <a href="#" class="icon-qqmusic"></a>
@@ -143,7 +124,9 @@ use yii\helpers\Url;
                             <a href="#" class="icon-kuwo"></a>
                         </td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php
+                    endforeach;
+                    endif;?>
 
                     </tbody>
                 </table>
@@ -160,11 +143,11 @@ use yii\helpers\Url;
                             <li>
                                 <span class="source color-grey">
                                     <?php
-                                    echo Yii::$app->params['resourceType'][$v->status]; ?>
+                                    echo Yii::$app->params['resourceType'][$v->type]; ?>
                                 </span>
-                                <a href="<?= $v->link ?>" alt="<?= $v->title ?>" title="<?= $v->title ?>" target="_blank">
+                                <a href="<?= $v->url ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank">
 
-                                    <?= $v->title ?>
+                                    <?= $v->name ?>
                                 </a>
                                 <span class="color-grey" style="font-size: 12px;"><?= $v->desc ?></span>
                             </li>
@@ -184,10 +167,10 @@ use yii\helpers\Url;
 
                         <div class="recommend-box">
                             <div class="img-block">
-                                <a href="<?= $v->url ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><img src="<?= $v->cover ?>"/></a>
+                                <a href="<?= $v->detail ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><img src="<?= Yii::$app->params['adminhost'].$v->cover ?>"/></a>
                             </div>
                             <p class="detail color-black">
-                                <a href="<?= $v->url ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><?= $v->name ?></a>
+                                <a href="<?= $v->detail ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><?= $v->name ?></a>
                             </p>
                         </div>
                     <?php endforeach;?>

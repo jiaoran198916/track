@@ -10,9 +10,10 @@ use common\models\Movie;
 /* @var $model common\models\Movie */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
+<?php $form = ActiveForm::begin(['options' => ['role' => 'form'], 'action' => \yii\helpers\Url::to(['create'])]); ?>
 <div class="box-body">
 
+    <input type="hidden" id="movie-id" name="Movie[id]" value="<?= $model->id? $model->id: 0?>">
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'foreign_name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'cover')->widget('common\widgets\file_upload\FileUpload') ?>

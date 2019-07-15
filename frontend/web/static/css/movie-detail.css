@@ -35,8 +35,9 @@
 .table > thead > tr > th{
 	border-bottom: none;
 	font-size: 12px;
-	font-weight: 90;
+	font-weight: 900;
 	border-right: 1px solid #ddd;
+	text-align: center;
 }
 .table > thead > tr > th:last-child{
 	border-right:none;
@@ -48,7 +49,7 @@
 	font-size: 12px;
 	padding: 6px;
 	line-height: 1em;
-
+	text-align: center;
 }
 .table > tbody > tr:nth-child(2n){
 	background: #fafafa;
@@ -118,8 +119,8 @@
 	margin-right: 0;
 }
 .recommend-block .recommend-box img{
-
-	height: 160px;width: 111px
+	height: 150px;
+	width: 111px
 }
 .recommend-box .detail{
 	font-size: 12px;

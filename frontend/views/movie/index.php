@@ -25,7 +25,7 @@ use frontend\components\RctReplyWidget;
                             <div class="col-md-3">
                                 <div class="poster-container">
                                     <div class="img-block">
-                                        <a href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" alt="<?= $v->title ?>" title="<?= $v->title ?>" target="_blank"><img src="<?= $v->img?>" /></a>
+                                        <a href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" alt="<?= $v->title ?>" title="<?= $v->title ?>" target="_blank"><img src="<?= Yii::$app->params['adminhost'].$v->img?>" /></a>
                                     </div>
                                     <div class="text-block">
                                         <h3 class="title">
@@ -48,11 +48,6 @@ use frontend\components\RctReplyWidget;
         </div>
     </div>
 
-
-
-
-
-
     <div class="content">
         <div class="content-left">
 <!--            --><?// Pjax::begin(); ?>
@@ -72,7 +67,6 @@ use frontend\components\RctReplyWidget;
                     ],
 
             ]);
-
 
             ?>
 <!--            --><?// Pjax::end(); ?>

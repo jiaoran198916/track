@@ -5,7 +5,7 @@ use yii\helpers\Html;
 <!--<li class="intro-box">-->
     <div class="title-box">
         <h3 class="intro-title">
-            <a href="<?= $model->url;?>" alt="<?= $model->name ?>" title="<?= $model->name ?>" target="_blank"><?= $model->name.' '.$model->foreign_name.' ' ?>(<?= $model->year ?>)</a>
+            <a href="<?= $model->detail;?>" alt="<?= $model->name ?>" title="<?= $model->name ?>" target="_blank"><?= $model->name.' '.$model->foreign_name.' ' ?>(<?= $model->year ?>)</a>
         </h3>
         <p class="score">
             <span class="color-grey" style="color: #ccc">阅读</span>
@@ -15,7 +15,7 @@ use yii\helpers\Html;
 
     <div class="intro-detail">
         <div class="img-box">
-            <a href="<?= $model->url;?>" alt="<?= $model->name ?>" title="<?= $model->name ?>" target="_blank"><img class="main" src="<?= $model->cover ?>"/></a>
+            <a href="<?= $model->detail;?>" alt="<?= $model->name ?>" title="<?= $model->name ?>" target="_blank"><img class="main" src="<?= Yii::$app->params['adminhost'].$model->cover ?>"/></a>
         </div>
         <div class="text-box">
             <p class="intro-text color-grey">
@@ -32,7 +32,7 @@ use yii\helpers\Html;
 <!--                    <span class="color-grey">1848</span>-->
                 </p>
                 <p class="movie-labels">
-                    <a href="<?= $model->url ?>" target="_blank">阅读全文</a>
+                    <a href="<?= $model->detail ?>" target="_blank">阅读全文</a>
                 </p>
                 <p class="more-info">
                     <span class="color-grey">

@@ -37,7 +37,7 @@ class MovieController extends Controller
             'upload'=>[
                 'class' => 'common\widgets\file_upload\UploadAction',     //这里扩展地址别写错
                 'config' => [
-                    //'imagePathFormat' => "/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}",
+                    'imagePathFormat' => "/uploads/image/{yyyy}{mm}{dd}/{time}{rand:6}",
                 ]
             ]
         ];
@@ -78,10 +78,14 @@ class MovieController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Movie();
-        //print_r(Yii::$app->request->post());die;
-
         $params = Yii::$app->request->post();
+
+        if(isset($params['Movie']['id']) && $params['Movie']['id'] > 0){
+            $model = $this->findModel($params['Movie']['id']);
+            unset($params['Movie']['id']);
+        }else{
+            $model = new Movie();
+        }
         if($params){
             $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
             $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
@@ -89,7 +93,7 @@ class MovieController extends Controller
         }
 
         if ($model->load($params) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model
@@ -105,9 +109,12 @@ class MovieController extends Controller
      */
     public function actionUpdate($id)
     {
+        $params = Yii::$app->request->post();
+        if(!isset($id)){
+            $id = $params['Movie']['id'];
+        }
         $model = $this->findModel($id);
 
-        $params = Yii::$app->request->post();
         if($params){
             $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
             $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
