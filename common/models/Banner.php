@@ -49,7 +49,7 @@ class Banner extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => '标题',
-            'desc' => '简介',
+            'desc' => '简介1',
             'img' => '图片',
             'type' => '类型',
             'position' => '排序',
