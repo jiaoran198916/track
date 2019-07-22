@@ -13,11 +13,14 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'static/css/bootstrap.css',
-        'static/css/style.css',
-//        'static/css/style1.css',
-        'static/css/global.css',
-        'static/css/movie-detail.css',
-        'static/css/movie-homepage.css',
+//        'static/css/style.css',
+        'static/css/ihd.css',
+        'static/css/tf-frontend-style.gz.css',
+//        'static/css/style.css',
+        'static/css/common.css',
+//        'static/css/global.css',
+//        'static/css/movie-detail.css',
+//        'static/css/movie-homepage.css',
         'static/fonts/NotoSans-Regular.ttf',
         'static/fonts/glyphicons-halflings-regular.woff2',
     ];
@@ -27,6 +30,7 @@ class AppAsset extends AssetBundle
         'static/js/jquery.dotdotdot.js',
         'static/js/movie-homepage.js',
         'static/js/responsiveslides.min.js',
+        'static/js/ihd.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

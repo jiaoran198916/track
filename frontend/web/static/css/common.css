@@ -23,3 +23,6 @@
 	display: inline-block;
 	margin: 18px;
 }
+a:focus, a:hover {
+	text-decoration: none;
+}

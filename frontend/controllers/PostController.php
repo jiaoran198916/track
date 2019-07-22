@@ -152,4 +152,24 @@ class PostController extends Controller
         ]);
 
     }
+
+    public function actionAbout()
+    {
+
+        //print_r(Yii::$app->user);die;
+
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
+
+        //step3.传数据给视图渲染
+
+        return $this->render('about',[
+//            'model'=>$model,
+            'news'=>$news,
+            'hots'=>$hots,
+        ]);
+
+    }
+
+
 }

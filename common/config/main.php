@@ -8,5 +8,12 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=track',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8'
+        ],
     ],
 ];

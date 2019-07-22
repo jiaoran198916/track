@@ -37,8 +37,9 @@ class RankingWidget extends Widget
 		
 		foreach ($this->items as $key => $item)
 		{
+
 			//$url = Yii::$app->urlManager->createUrl(['post/index','PostSearch[tags]'=>$tag]);
-            $itemString.= '<li><a href="'.$item->url.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank">'.$item->name.'</a><span class="'.$className.'" >'.(($className == 'score') ? $item->count : date('Y-m-d',$item->update_time)).'</span></li>';
+            $itemString.= '<a href="'.$item->detail.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item">'.$item->name.'<span class="badge '.$className.'" >'.(($className == 'score') ? $item->count : date('Y-m-d',$item->update_time)).'</span></a>';
 //            $itemString.='<a href="'.$url.'">'.
 //					' <h'.$weight.' style="display:inline-block;"><span class="label label-'
 //					.$fontStyle[$weight].'">'.$tag.'</span></h'.$weight.'></a>';

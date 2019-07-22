@@ -70,18 +70,19 @@ class MovieController extends Controller
         $hots = Movie::findHotTen();
 //        print_r(Yii::$app->request->queryParams);die;
         $dataProvider->pagination = [
-            'pageSize' => 10,
+            'pageSize' => 16,
         ];
         $keyword = '';
-        $view = 'index';
+        $view = 'index1';
         if(!empty(Yii::$app->request->queryParams) && isset(Yii::$app->request->queryParams['MovieSearch']['name'])){
             $keyword = Yii::$app->request->queryParams['MovieSearch']['name'];
-            $view = 'list';
+//            $view = 'list';
         }
         return $this->render( $view, [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'bannerData' => $bannerModel,
+            'movieData' => Movie::findAll(['valid' => 1]),
             'news' => $news,
             'hots' => $hots,
             'keyword' => $keyword
@@ -186,7 +187,7 @@ class MovieController extends Controller
 
         //step3.传数据给视图渲染
 
-        return $this->render('detail',[
+        return $this->render('detail1',[
             'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,

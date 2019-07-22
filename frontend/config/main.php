@@ -1,7 +1,6 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    //require(__DIR__ . '/../../common/config/params-local.php'),
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
@@ -10,7 +9,8 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'post/index',
+    'defaultRoute' => 'movie/index',
+    'layout' => 'main2',
     'language' => 'zh-CN',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
@@ -42,6 +42,7 @@ return [
             'rules' => [
 //                '<controller:\w+>/<id:\d+>' => '<controller>/detail',
 //                'posts' => 'post/index'
+                'about' => 'post/about',
             '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
