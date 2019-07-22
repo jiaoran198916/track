@@ -16,22 +16,8 @@ use yii\filters\VerbFilter;
 /**
  * AdminuserController implements the CRUD actions for Adminuser model.
  */
-class AdminuserController extends Controller
+class AdminuserController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Adminuser models.

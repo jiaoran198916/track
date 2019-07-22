@@ -13,23 +13,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'static/css/bootstrap.css',
-//        'static/css/style.css',
         'static/css/ihd.css',
         'static/css/tf-frontend-style.gz.css',
-//        'static/css/style.css',
         'static/css/common.css',
-//        'static/css/global.css',
-//        'static/css/movie-detail.css',
-//        'static/css/movie-homepage.css',
         'static/fonts/NotoSans-Regular.ttf',
         'static/fonts/glyphicons-halflings-regular.woff2',
     ];
     public $js = [
         'static/js/jquery-1.11.3.js',
         'static/js/bootstrap.js',
-        'static/js/jquery.dotdotdot.js',
-        'static/js/movie-homepage.js',
-        'static/js/responsiveslides.min.js',
         'static/js/ihd.js',
     ];
     public $depends = [

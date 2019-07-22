@@ -63,12 +63,12 @@ use frontend\components\RankingWidget;
 
     <div class="col-md-3 bounceInLeft animated" style="padding-right:5px">
         <div class="list-group">
-            <a href="http://ihd.me/#" class="list-group-item loading active">随机推荐</a>
-            <?= RankingWidget::widget(['items'=>$hots])?>
+            <a href="#" class="list-group-item loading active">最新发布</a>
+            <?= RankingWidget::widget(['items'=>$news, 'type' => 'time'])?>
         </div>
         <div class="list-group">
-            <a href="http://ihd.me/#" class="list-group-item active">本周排行</a>
-            <?= RankingWidget::widget(['items'=>$news])?>
+            <a href="#" class="list-group-item active">点击排行</a>
+            <?= RankingWidget::widget(['items'=>$hots])?>
         </div>
     </div>
 

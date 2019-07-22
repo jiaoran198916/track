@@ -1,8 +1,7 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
 );
 
 return [
@@ -10,13 +9,17 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'movie/index',
-    'layout' => 'main2',
+    'layout' => 'main',
     'language' => 'zh-CN',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'assetManager' => [
             'basePath' => '@webroot/assets',
             'baseUrl' => '@web/assets'
+        ],
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'jNA23qte0_-8LAYACI3Lc8V0-UY6QEiw',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -41,9 +44,8 @@ return [
 //            'suffix' => '.html',
             'rules' => [
 //                '<controller:\w+>/<id:\d+>' => '<controller>/detail',
-//                'posts' => 'post/index'
                 'about' => 'post/about',
-            '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+            '<controller:\w+>/<id:\d+>/'=>'<controller>/detail',
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
         ],

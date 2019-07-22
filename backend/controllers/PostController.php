@@ -14,38 +14,8 @@ use yii\filters\AccessControl;
 /**
  * PostController implements the CRUD actions for Post model.
  */
-class PostController extends Controller
+class PostController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' =>[
-                'class' => AccessControl::className(),
-                'rules' =>
-                    [
-                        [
-                            'actions' => ['index', 'view', 'create','update','delete'],
-                            'allow' => true,
-                            'roles' => ['?'],
-                        ],
-                        [
-                            'actions' => ['view', 'index', 'create','update','delete'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ],
-                    ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Post models.

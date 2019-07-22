@@ -65,6 +65,11 @@ class Resource extends \yii\db\ActiveRecord
         return $this->hasOne(Source::className(), ['id' => 'source']);
     }
 
+    public function getSource()
+    {
+        return $this->hasOne(Source::className(), ['id' => 'source']);
+    }
+
     /**
      * 获取状态
      * @return \yii\db\ActiveQuery

@@ -12,24 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * BannerController implements the CRUD actions for Banner model.
  */
-class BannerController extends Controller
+class BannerController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-
     public function actions()
     {
         return [

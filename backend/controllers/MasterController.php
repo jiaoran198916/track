@@ -12,23 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * MasterController implements the CRUD actions for Master model.
  */
-class MasterController extends Controller
+class MasterController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Master models.
      * @return mixed

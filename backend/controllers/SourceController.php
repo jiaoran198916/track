@@ -12,23 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * SourceController implements the CRUD actions for Source model.
  */
-class SourceController extends Controller
+class SourceController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Source models.
      * @return mixed

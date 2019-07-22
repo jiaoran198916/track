@@ -25,113 +25,66 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<div class="top-header">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="logo">
-                        <a href="<?= Url::to(['movie/index'])?>"><img src="/uploads/images/logo2.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="<?= Url::to(['movie/index'])?>" target="_blank">首页<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li>
-                            <a href="<?= Url::to(['movie/index'])?>" target="_blank">电影</a>
-                        </li>
-                        <li>
-                            <a href="<?= Url::to(['post/detail'])?>" target="_blank">关于</a>
-                        </li>
-                    </ul>
-                    <div class="search">
-                        <form>
-                            <input type="search" value="" name="MovieSearch[name]" placeholder="搜索电影、音乐人">
-                            <button type="submit" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            </button>
-                        </form>
-                        <ul class="search-list">
-                            <li>
-                                <a href="#">
-                                    <div class="img-block">
-                                        <img src="/uploads/images/poster/p2263582212.jpg"/>
-                                    </div>
-                                    <div class="movie-detail">
-                                        <h3 class="title">
-                                            复仇者联盟
-                                            <span class="time color-grey">
-														2017
-													</span>
-                                        </h3>
-                                        <p class="detail color-grey">
-                                            哈哈
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="img-block">
-                                        <img src="/uploads/images/poster/p2263582212.jpg"/>
-                                    </div>
-                                    <div class="movie-detail">
-                                        <h3 class="title">
-                                            复仇者联盟
-                                            <span class="time color-grey">
-														2017
-													</span>
-                                        </h3>
-                                        <p class="detail color-grey">
-                                            哈哈
-                                        </p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/uploads/images/h1.png" alt=""><span>游客</span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#">Sign in</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="" href="/" > <img alt="Brand" style="height: 55px;" src="/static/images/logo.png"> </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" data-target="#searchModal">搜索</a></li>
+                <li><a href="/about">关于</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+</nav>
 <?= $content ?>
 
-<div class="footer" id="footer">
-    <a href="javascript:void(0);" id="toTop" style="display: block;"></a>
-    <div class="container">
-        <span class="footer-logo"></span>
-        <p class="law-info">
-            Copyright © 2016.Company name All rights reserved.More
-        </p>
+<!--<div class="footer" id="footer">-->
+<!--    <a href="javascript:void(0);" id="toTop" style="display: block;"></a>-->
+<!--    <div class="container">-->
+<!--        <span class="footer-logo"></span>-->
+<!--        <p class="law-info">-->
+<!--            Copyright © 2016.Company name All rights reserved.More-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<footer class="container text-center footer" id="footer">
+    <div>
+    </div>
+
+    <div>本站所有信息均由互联网爬虫自动搜索得来，相关链接已注明来源，版权归原创者所有。</div>
+    <div>如果无意中侵犯了您的权益，请通知我们（<a href="mailto:920495391@qq.com" target="_blank">920495391@qq.com</a>)，我们会及时做相应处理，谢谢合作。</div>
+    <div>音乐网官方QQ群： 131399457</div>
+    <div><a href="/" target="_blank">© 2019 jiaoran.net</a> <a href="https://www.cnzz.com/stat/website.php?web_id=" target="_blank" title="站长统计">站长统计</a></div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <form action="<?= Url::to(['movie/index'])?>" method="get">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">搜索</h4>
+            </div>
+            <div class="modal-body">
+                <input class="form-control input-lg" type="text" placeholder="支持电影中英文名称搜索" name="MovieSearch[name]">
+                <!--<input id="bdcsMain" class="form-control input-lg" type="text" placeholder="支持电影中英文名称搜索">-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <a type="button" class="btn btn-danger disabled" target="_blank" style="width:100px"><i class="glyphicon glyphicon-search" style="margin-right:5px"></i>搜索</a>
+            </div>
+        </div>
+        </form>
     </div>
 </div>
 

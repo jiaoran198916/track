@@ -14,23 +14,8 @@ use yii\data\ActiveDataProvider;
 /**
  * ResourceController implements the CRUD actions for Resource model.
  */
-class ResourceController extends Controller
+class ResourceController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Resource models.
      * @return mixed

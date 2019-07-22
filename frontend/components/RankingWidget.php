@@ -17,34 +17,26 @@ class RankingWidget extends Widget
 	public function run()
 	{
 		$itemString='';
-//		$fontStyle=array("6"=>"danger",
-//				"5"=>"info",
-//				"4"=>"warning",
-//				"3"=>"primary",
-//				"2"=>"success",
-//		);
+
         switch ($this->type){
             case 'time':
-                $className = 'time';
+                $val = 'time';
                 break;
             case 'score':
-                $className = 'score';
+                $val = 'score';
                 break;
             default:
-                $className = 'score';
+                $val = 'score';
                 break;
         }
 		
 		foreach ($this->items as $key => $item)
 		{
 
-			//$url = Yii::$app->urlManager->createUrl(['post/index','PostSearch[tags]'=>$tag]);
-            $itemString.= '<a href="'.$item->detail.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item">'.$item->name.'<span class="badge '.$className.'" >'.(($className == 'score') ? $item->count : date('Y-m-d',$item->update_time)).'</span></a>';
-//            $itemString.='<a href="'.$url.'">'.
-//					' <h'.$weight.' style="display:inline-block;"><span class="label label-'
-//					.$fontStyle[$weight].'">'.$tag.'</span></h'.$weight.'></a>';
+            $itemString.= '<a href="'.$item->detail.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item">'.$item->name.'<span class="badge" >'.(($val == 'score') ? $item->count : date('m-d',$item->create_time)).'</span></a>';
+
 		}
-		//sleep(3);
+
 		return $itemString;
 		
 	}

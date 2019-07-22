@@ -16,317 +16,136 @@ use yii\helpers\Url;
 
 ?>
 
+<div class="container filepage">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->foreign_name?> (<?= $model->year?>)</small></h2></div>
+            <div class="col-xs-12 col-sm-5 col-md-5 poster">
+                <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->cover ?>" style="width: 300px;height: 444px;" alt="<?= $model->name?>电影海报"></div>
+            <div class="col-xs-12 col-sm-7 col-md-7 m-t-15"><table border="0" class="file-intro"><tbody>
+                    <?php if($model->foreign_name): ?>
+                        <tr><td>又名</td><td><?= $model->foreign_name ?></td></tr>
+                    <?php endif;?>
 
-<div class="container" id="container">
-    <div class="content">
-        <div class="content-left">
-            <ul class="movie-intro-list">
-                <li class="intro-box">
-                    <div class="title-box">
-                        <h1 class="intro-title" style="font-size: 30px;font-weight: bolder;margin-bottom: 10px;">
-                            <?= $model->name ?> (<?= $model->year ?>)
-                        </h1>
-<!--                        <p class="score">-->
-<!--                            <span class="color-grey">豆瓣</span>-->
-<!--                            <span class="color-red">6.5</span>-->
-<!--                        </p>-->
-                    </div>
-                    <div class="intro-detail">
-                        <div class="img-box">
-                            <img src="<?= Yii::$app->params['adminhost'].$model->cover ?>" />
-                        </div>
-                        <div class="text-box" style="padding-top: 10px;">
-                            <div class="music-detail">
-                                <?php if($model->foreign_name): ?>
-                                <p>
-                                    <span class="color-black">原名：</span>
-                                        <?= $model->foreign_name ?>
-                                </p>
-                                <?php endif;?>
-                                <p>
-                                    <span class="color-black">导演：</span>
-                                    <?= $model->director_id ?>
-                                </p>
-                                <p>
-                                    <span class="color-black">音乐：</span>
-                                    <a href="#" alt="<?= $model->musician_id ?>" title="<?= $model->musician_id ?>" target="_blank">
-                                        <?= $model->musicians ?>
-                                    </a>
+                    <tr><td>导演</td><td><?= $model->director_id ?></td></tr>
+                    <tr><td>音乐</td><td><?= $model->musicians ?></td></tr>
+                    <tr><td>年份</td><td><?= $model->year?> 年</td></tr>
+                    <tr><td>片长</td><td><?= $model->duration ?>分钟</td></tr>
+                    <tr><td> </td><td> </td></tr>
+                    <tr><td>发布</td><td><?= date('Y-m-d',$model->create_time)?></td></tr>
+                    <tr><td>浏览</td><td><?= $model->count ?> 次</td></tr>
+                    </tbody></table>
 
-                                </p>
-                                <p>
-                                    <span class="color-black">年份：</span>
-                                        <?= $model->year ?>
-                                </p>
-                                <p>
-                                    <span class="color-black">时长：</span>
-                                        <?= $model->duration ?>
-
-                                </p>
-
-
-                                <p>
-                                    <span class="color-black">豆瓣 ID：</span>
-                                    <a href="<?= Yii::$app->params['doubanurl'].$model->douban_id ?>" alt="<?= $model->name ?>" title="<?= $model->name ?>" target="_blank">
-                                        <?= $model->douban_id ?>
-                                    </a>
-                                </p>
-                                <p>
-                                    <br>
-                                </p>
-                                <p>
-                                    <span class="color-black">发布时间：</span>
-                                        <?= date('Y-m-d',$model->create_time); ?>
-                                </p>
-                            </div>
-                            <div class="movie-detail">
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="movie-information">
-                <div>
-                    <h3 class="title block-title">配乐简介</h3>
-                    <p class="detail color-grey">
-                        <?= strip_tags($model->desc) ?>
-                    </p>
-                </div>
-            </div>
-            <div class="music-table-list">
-                <h3 class="block-title">
-                    歌曲列表
-                </h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>位置</th>
-                        <th>标题</th>
-                        <th>简介</th>
-                        <th>歌手</th>
-                        <th>链接</th>
+                <table class="score-intro"><tbody><tr>
+                        <th align="center" scope="col">
+                            <a href="https://movie.douban.com/subject/<?= $model->douban_id ?>/" target="_blank" class="score-block btn-success img-circle animated rotateIn" data-toggle="tooltip" data-placement="top" title="" data-original-title="豆瓣">7<small>.6</small></a>
+                        </th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    if($model->episodes):
-                    foreach ($model->episodes as $k => $v):?>
-
-                    <tr>
-                        <td><?= $v->min."'".$v->sec."\"" ?></td>
-                        <td><?= $v->name ?></td>
-                        <td><?= $v->summary ?></td>
-                        <td><?= $v->musician->name ?></td>
-                        <td>
-                            <a href="#" class="icon-wangyiyun"></a>
-                            <a href="#" class="icon-qqmusic"></a>
-                            <a href="#" class="icon-kugou"></a>
-                            <a href="#" class="icon-kuwo"></a>
-                        </td>
-                    </tr>
-                    <?php
-                    endforeach;
-                    endif;?>
-
                     </tbody>
                 </table>
-            </div>
-            <div class="download-block">
-                <div>
-                    <h3 class="block-title">
-                        资源下载
-                    </h3>
-                    <ul class="source-list">
-
-                        <?php foreach ($model->resources as $k => $v):?>
-
-                            <li>
-                                <span class="source color-grey">
-                                    <?php
-                                    echo Yii::$app->params['resourceType'][$v->type]; ?>
-                                </span>
-                                <a href="<?= $v->url ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank">
-
-                                    <?= $v->name ?>
-                                </a>
-                                <span class="color-grey" style="font-size: 12px;"><?= $v->desc ?></span>
-                            </li>
-                        <?php endforeach;?>
-
-                    </ul>
-                </div>
-
-            </div>
-            <div class="recommend-block">
-                <div>
-                    <h3 class="block-title">
-                        精彩推荐
-                    </h3>
-
-                    <?php foreach ($model->randomData as $k => $v):?>
-
-                        <div class="recommend-box">
-                            <div class="img-block">
-                                <a href="<?= $v->detail ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><img src="<?= Yii::$app->params['adminhost'].$v->cover ?>"/></a>
-                            </div>
-                            <p class="detail color-black">
-                                <a href="<?= $v->detail ?>" alt="<?= $v->name ?>" title="<?= $v->name ?>" target="_blank"><?= $v->name ?></a>
-                            </p>
-                        </div>
-                    <?php endforeach;?>
-
-
-
-                </div>
 
             </div>
         </div>
-        <div class="content-right">
-            <div class="sort-box">
-                <ul class="sort-list">
-
-<!--                    --><?//= TagsCloudWidget::widget(['tags'=>$tags])?>
-
-                    <li class="list-title">
-                        最新电影
-                    </li>
-                    <?= RankingWidget::widget(['items'=>$news, 'type' => 'time'])?>
-                </ul>
+        <div class="row m-t-10">
+            <div class="title"><h3>音乐简介 <small>Description</small></h3></div>
+            <div class="intro">
+                　　<?= strip_tags($model->desc) ?>
             </div>
-            <div class="sort-box">
-                <ul class="sort-list">
-                    <li class="list-title">
-                        热门电影
-                    </li>
-                    <?= RankingWidget::widget(['items'=>$hots])?>
-                </ul>
+
+            <div class="title"><h3>曲目列表 <small>Lists</small></h3></div>
+            <div class="intro">
+                <?php
+                if($model->episodes):
+                    foreach ($model->episodes as $k => $v):?>
+                        <div class="SongRow__container___3eT_L"><span class="Anchor__placeholder___2VPN4"></span>
+                            <div class="SongRow__row___2Bih9">
+                                <div class="SongRow__side___2rJx8">
+                                    <div id="SoundPlayer-sound0" class="SoundPlayer__container___3qMnc SongEventRow__soundPlayer___2ku9n SoundPlayer__inverse___30f0B SoundPlayer__noArt___1HLUm">
+                                        <h4 style="font-size:40px;" class><?= $v->min.":".$v->sec ?></h4>
+
+                                    </div>
+                                </div>
+                                <div class="SongRow__center___1HKjk">
+                                    <h4 class="SongTitle__heading___3kxXK"><a href="javascript:" class="SongTitle__link___2OQHD" title="Heaven"><?= $v->name ?></a></h4>
+                                    <div class="SongEventRow__subtitle___3Qli4"><a href="javascript:" class="Subtitle__subtitle___1rSyh"><?= $v->musician->name ?></a></div>
+                                </div>
+                                <div class="SongRow__side___2rJx8">
+                                    <div class="Vote__container___210Sb"><span><a href="javascript:" target="_self" class="Button__empty_yellow___2QACo Button__common___KEFlQ Button__empty___2bBGW Button__rounded___3h95S Vote__button___2_mZE">OK.</a></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="SongRow__row___2Bih9" style="margin-top:-10px;">
+                                <div class="SongRow__side___2rJx8 SongRow__reorderDesktop___3_UL6"></div>
+                                <div class="SongRow__center___1HKjk"><div class="SongRow__descriptionContainer___2G0am"><div class="SongRow__reorderMobile___1CilR"></div><div class="SceneDescription__isEditable___1sC6E"><div class="SceneDescription__description___3Auqj"><em><?= $v->summary ?></em><span aria-hidden="true" class="fa fa-pencil SceneDescription__action___3jZYV"></span></div></div></div>
+                                    <div class="SongRow__row___2Bih9">
+                                        <div class="SongEventRow__storeLinks___1D_C1">
+                                            <div class="StoreLinks__container___2NqeJ">
+                                                <?php
+                                                if($v->resources):
+                                                foreach ($v->resources as $vi):?>
+                                                    <a href="<?= $vi->url?>" class="StoreLinks__amazon___3afSy" target="_blank"><img
+                                                                src="/static/images/<?= $vi->sourceName->ename?>.png" alt="" style="width: 25px;"></a>
+                                                <?php
+                                                endforeach;
+                                                endif;?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="SongRow__side___2rJx8">
+                                    <ul class="SongEventRow__actions___2UKgA"><li><span class="SongEventRow__bookmark___1w4Od undefined"><span aria-hidden="true" class="fa fa-heart-o"></span></span></li><li><span class="ShareSong__container___ECQZA"><span aria-hidden="true" class="fa fa-share-alt ShareSong__icon___1FfLo"></span></span></li></ul></div>
+                            </div>
+                        </div>
+
+                    <?php
+                    endforeach;
+                endif;?>
+
+            </div>
+
+
+            <div class="title"><h3>资源 <small>Resources</small></h3></div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="dwn">
+                    <div class="btn-group btn-group-justified">
+                        <div class="btn-group"><button type="button" class="btn btn-primary active" id="tab_all">全部</button></div>
+                        <div class="btn-group"><button type="button" class="btn btn-primary" id="tab_online">在线</button></div>
+                        <div class="btn-group"><button type="button" class="btn btn-primary" id="tab_download">下载</button></div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <?php
+                        if($model->resources):
+                        foreach ($model->resources as $k => $v):?>
+
+                            <tr id="<?= ($v->is_download == 0) ?'online':'download' ?>">
+                                <td>
+                                    <div><?= $v->name ?></div>
+<!--                                    <div class="label label-default">7.6 GB</div><div class="label label-success">磁力</div>-->
+                                </td>
+                                <td class="t_dwn"><a href="<?= $v->url ?>" target="_blank" class="btn btn-default pull-right"><?= ($v->is_download == 0) ?'跳转':'下载' ?></a>
+                                </td>
+                            </tr>
+                        <?php
+                        endforeach;
+                        endif;?>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
+    <div class="col-md-3 bounceInLeft animated" style="padding-right:5px">
+        <div class="list-group">
+            <a href="javascript:" class="list-group-item loading active">最新发布</a>
+            <?= RankingWidget::widget(['items'=>$news, 'type' => 'time'])?>
+        </div>
+        <div class="list-group">
+            <a href="javascript:" class="list-group-item active">点击排行</a>
+            <?= RankingWidget::widget(['items'=>$hots])?>
+        </div>
+    </div>
+
 </div>
-
-
-<!--    <div class="container">-->
-<!---->
-<!--	<div class="row">-->
-<!--	-->
-<!--		<div class="col-md-9">-->
-<!--		-->
-<!--			<ol class="breadcrumb">-->
-<!--			<li><a href="--><?//= Yii::$app->homeUrl;?><!--">首页</a></li>-->
-<!--			<li><a href="--><?//= Url::to(['post/index']);?><!--">文章列表</a></li>-->
-<!--			<li class="active">--><?//= $model->title?><!--</li>-->
-<!--			</ol>-->
-<!--			-->
-<!--			<div class="post">-->
-<!--				<div class="title">-->
-<!--					<h2><a href="--><?//= $model->url;?><!--">--><?//= Html::encode($model->title);?><!--</a></h2>				-->
-<!--						<div class="author">-->
-<!--						<span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>--><?//= date('Y-m-d H:i:s',$model->create_time)."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";?><!--</em>-->
-<!--						<span class="glyphicon glyphicon-user" aria-hidden="true"></span><em>--><?//= Html::encode($model->author->nickname);?><!--</em>-->
-<!--						</div>				-->
-<!--				</div>-->
-<!--		-->
-<!--			-->
-<!--			<br>-->
-<!--			-->
-<!--			<div class="content">-->
-<!--			--><?//= HTMLPurifier::process($model->content)?>
-<!--			</div>-->
-<!--			-->
-<!--			<br>-->
-<!--			-->
-<!--			<div class="nav">-->
-<!--				<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>-->
-<!--				--><?//= implode(', ',$model->tagLinks);?>
-<!--				<br>-->
-<!--				--><?//= Html::a("评论({$model->commentCount})",$model->url.'#comments');?>
-<!--				最后修改于--><?//= date('Y-m-d H:i:s',$model->update_time);?>
-<!--			</div>-->
-<!--		</div>-->
-<!--		-->
-<!--		<div id="comments">-->
-<!--		-->
-<!--			--><?php //if($added) {?>
-<!--			<br>-->
-<!--			<div class="alert alert-warning alert-dismissible" role="alert">-->
-<!--			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-<!--			  -->
-<!--			  <h4>谢谢您的回复，我们会尽快审核后发布出来！</h4>-->
-<!--			  -->
-<!--			  <p>--><?//= nl2br($commentModel->content);?><!--</p>-->
-<!--			  	<span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>--><?//= date('Y-m-d H:i:s',$model->create_time)."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";?><!--</em>-->
-<!--				<span class="glyphicon glyphicon-user" aria-hidden="true"></span><em>--><?//= Html::encode($model->author->nickname);?><!--</em>	  -->
-<!--			</div>			-->
-<!--			--><?php //}?>
-<!--			-->
-<!--			--><?php //if($model->commentCount>=1) :?>
-<!--			-->
-<!--			<h5>--><?//= $model->commentCount.'条评论';?><!--</h5>-->
-<!--			--><?//= $this->render('_comment',array(
-//					'post'=>$model,
-//					'comments'=>$model->activeComments,
-//			));?>
-<!--			--><?php //endif;?>
-<!--			-->
-<!--			<h5>发表评论</h5>-->
-<!--			--><?php //
-//			$commentModel =new Comment();
-//			echo $this->render('_guestform',array(
-//					'id'=>$model->id,
-//					'commentModel'=>$commentModel,
-//			));?>
-<!--			-->
-<!--			</div>-->
-<!--					-->
-<!--		</div>-->
-<!---->
-<!--		-->
-<!--		<div class="col-md-3">-->
-<!--			<div class="searchbox">-->
-<!--				<ul class="list-group">-->
-<!--				  <li class="list-group-item">-->
-<!--				  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查找文章-->
-<!--				  </li>-->
-<!--				  <li class="list-group-item">				  -->
-<!--					  <form class="form-inline" action="index.php?r=post/index" id="w0" method="get">-->
-<!--						  <div class="form-group">-->
-<!--						    <input type="text" class="form-control" name="PostSearch[title]" id="w0input" placeholder="按标题">-->
-<!--						  </div>-->
-<!--						  <button type="submit" class="btn btn-default">搜索</button>-->
-<!--					</form>-->
-<!--				  -->
-<!--				  </li>-->
-<!--				</ul>			-->
-<!--			</div>-->
-<!--			-->
-<!--			<div class="tagcloudbox">-->
-<!--				<ul class="list-group">-->
-<!--				  <li class="list-group-item">-->
-<!--				  <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 标签云-->
-<!--				  </li>-->
-<!--				  <li class="list-group-item">-->
-<!--				  --><?//= TagsCloudWidget::widget(['tags'=>$tags])?>
-<!--				   </li>-->
-<!--				</ul>			-->
-<!--			</div>-->
-<!--			-->
-<!--			-->
-<!--			<div class="commentbox">-->
-<!--				<ul class="list-group">-->
-<!--				  <li class="list-group-item">-->
-<!--				  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 最新回复-->
-<!--				  </li>-->
-<!--				  <li class="list-group-item">-->
-<!--				  --><?//= RctReplyWidget::widget(['recentComments'=>$recentComments])?>
-<!--				  </li>-->
-<!--				</ul>			-->
-<!--			</div>-->
-<!--			-->
-<!--		-->
-<!--		</div>-->
-<!--		-->
-<!--		-->
-<!--	</div>-->
-<!---->
-<!--</div>-->

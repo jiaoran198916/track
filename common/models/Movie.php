@@ -179,7 +179,7 @@ class Movie extends \yii\db\ActiveRecord
      * @return object
      */
     public static function findHotTen(){
-        return Movie::find()->where(['status' => 1])->orderBy(['count' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
+        return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['count' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
     }
 
     /**
@@ -187,7 +187,7 @@ class Movie extends \yii\db\ActiveRecord
      * @return object
      */
     public static function findNewTen(){
-        return Movie::find()->where(['status' => 1])->orderBy(['create_time' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
+        return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['create_time' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
     }
 
     /**

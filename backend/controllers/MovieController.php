@@ -13,23 +13,8 @@ use yii\filters\VerbFilter;
 /**
  * MovieController implements the CRUD actions for Movie model.
  */
-class MovieController extends Controller
+class MovieController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
 
     public function actions()
     {

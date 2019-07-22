@@ -6,12 +6,6 @@ use common\models\Banner;
 use Yii;
 use common\models\Movie;
 use common\models\MovieSearch;
-use common\models\Episode;
-use common\models\Post;
-use common\models\User;
-use common\models\Tag;
-use common\models\Comment;
-use common\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,7 +15,6 @@ use yii\filters\VerbFilter;
  */
 class MovieController extends Controller
 {
-    public $added = 0;
     /**
      * @inheritdoc
      */
@@ -41,26 +34,6 @@ class MovieController extends Controller
      * Lists all Movie models.
      * @return mixed
      */
-    public function actionIndex1()
-    {
-        $tags=Tag::findTagWeights();
-        $recentComments=Comment::findRecentComments();
-
-        $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'tags'=>$tags,
-            'recentComments'=>$recentComments,
-        ]);
-    }
-
-    /**
-     * Lists all Movie models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new MovieSearch();
@@ -68,12 +41,11 @@ class MovieController extends Controller
         $bannerModel = Banner::getBannerData();
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
-//        print_r(Yii::$app->request->queryParams);die;
         $dataProvider->pagination = [
-            'pageSize' => 16,
+            'pageSize' => 12,
         ];
         $keyword = '';
-        $view = 'index1';
+        $view = 'index';
         if(!empty(Yii::$app->request->queryParams) && isset(Yii::$app->request->queryParams['MovieSearch']['name'])){
             $keyword = Yii::$app->request->queryParams['MovieSearch']['name'];
 //            $view = 'list';
@@ -82,24 +54,12 @@ class MovieController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'bannerData' => $bannerModel,
-            'movieData' => Movie::findAll(['valid' => 1]),
             'news' => $news,
             'hots' => $hots,
             'keyword' => $keyword
         ]);
     }
 
-    /**
-     * Displays a single Post model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
 
     /**
      * Creates a new Post model.
@@ -108,7 +68,7 @@ class MovieController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Post();
+        $model = new Movie();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -120,7 +80,7 @@ class MovieController extends Controller
     }
 
     /**
-     * Updates an existing Post model.
+     * Updates an existing Movie model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -139,7 +99,7 @@ class MovieController extends Controller
     }
 
     /**
-     * Deletes an existing Post model.
+     * Deletes an existing Movie model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -152,10 +112,10 @@ class MovieController extends Controller
     }
 
     /**
-     * Finds the Post model based on its primary key value.
+     * Finds the Movie model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Post the loaded model
+     * @return Movie the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
@@ -169,30 +129,18 @@ class MovieController extends Controller
 
     public function actionDetail($id)
     {
-        //step1. 准备数据模型
         $model = $this->findModel($id);
-
-
-        if(!$model)
-        $tags=Tag::findTagWeights();
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
+        //访问数+1
+        $model->updateCounters(['count' => 1]);
 
-
-//        print_r($model);die;
-//        echo Movie::find()->count();die;
-        $randomData = Movie::getRandomData();
-
-        //step3.传数据给视图渲染
-
-        return $this->render('detail1',[
+        return $this->render('detail',[
             'model'=>$model,
             'news'=>$news,
-            'hots'=>$hots,
-            'added'=>$this->added,
-            'randomData'=>$randomData
+            'hots'=>$hots
         ]);
 
     }

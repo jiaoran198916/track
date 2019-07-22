@@ -14,22 +14,8 @@ use yii\data\ActiveDataProvider;
 /**
  * EpisodeController implements the CRUD actions for Episode model.
  */
-class EpisodeController extends Controller
+class EpisodeController extends CommonController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Episode models.

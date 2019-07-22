@@ -5,9 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Post;
 use common\models\Movie;
-use common\models\User;
 use common\models\Tag;
-use common\models\Comment;
 use common\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,7 +38,6 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-        $tags=Tag::findTagWeights();
 
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -48,7 +45,6 @@ class PostController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'tags'=>$tags
         ]);
     }
 
@@ -132,20 +128,14 @@ class PostController extends Controller
 
     public function actionDetail()
     {
-        //step1. 准备数据模型
-//        $model = $this->findModel($id);
-        $tags=Tag::findTagWeights();
-
-        //print_r(Yii::$app->user);die;
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
         //step3.传数据给视图渲染
 
-        return $this->render('detail1',[
+        return $this->render('detail',[
 //            'model'=>$model,
-            'tags'=>$tags,
             'news'=>$news,
             'hots'=>$hots,
             'added'=>$this->added,
@@ -156,12 +146,10 @@ class PostController extends Controller
     public function actionAbout()
     {
 
-        //print_r(Yii::$app->user);die;
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
-        //step3.传数据给视图渲染
 
         return $this->render('about',[
 //            'model'=>$model,
