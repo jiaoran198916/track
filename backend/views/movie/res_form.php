@@ -23,7 +23,7 @@ use yii\grid\GridView;
     <?= $form->field($model, 'url')->textInput() ?>
     <?= $form->field($model, 'is_download')->radioList([0 => '在线', 1 => '下载'])->label('类型') ?>
 
-    <?= $form->field($model, 'source')->dropDownList(Source::find()->select(['cname', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'data-placeholder' => "选择来源"]) ?>
+    <?= $form->field($model, 'source_id')->dropDownList(Source::find()->select(['cname', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'data-placeholder' => "选择来源"]) ?>
 </div>
 <div class="box-footer">
     <button type="button" class="btn btn-success" onclick="doAdd()"> 确定</button>
@@ -52,22 +52,6 @@ use yii\grid\GridView;
 
     window.onload = function(){
         $('.select2').select2()
-
-        $(function () {
-            $('.select2').select2()
-            function addEp(){
-                var data = $("#w1").serialize();
-                $.post('index.php?r=/resource/create', data, function (res) {
-                    if(res.code === 200){
-                        $.closeModal("modal-default");
-                        dialog.success('添加成功', location.href + '#Resource');
-                    }else{
-                        dialog.error('添加失败');
-                    }
-                }, 'json');
-            }
-
-        })
     }
 
 </script>

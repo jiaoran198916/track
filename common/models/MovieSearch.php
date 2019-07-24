@@ -19,7 +19,7 @@ class MovieSearch extends Movie
     {
         return [
             [['id', 'year', 'duration', 'douban_id', 'user_id', 'status', 'create_time', 'update_time','valid'], 'integer'],
-            [['name', 'foreign_name', 'musician_id','director_id', 'actor_id', 'desc'], 'safe'],
+            [['name', 'foreign_name', 'musician_id','director_id', 'desc'], 'safe'],
         ];
     }
 

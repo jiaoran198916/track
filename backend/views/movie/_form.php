@@ -19,20 +19,16 @@ use common\models\Movie;
     <?= $form->field($model, 'cover')->widget('common\widgets\file_upload\FileUpload') ?>
 
     <?= $form->field($model, 'year')->dropDownList(Movie::getYearData(),['class' => 'select2', 'style' => 'width: 100%;']) ?>
-    <?= $form->field($model, 'release', ['inputOptions' => ['data-inputmask' => "'alias': 'dd/mm/yyyy'", 'data-mask' => true,'class' => 'form-control'],'template' => "{label}\n<div class=\"input-group\">
-<div class=\"input-group-addon\"><i class=\"fa fa-calendar\"></i></div>{input}</div>\n{hint}\n{error}"])->textInput() ?>
+
     <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
 
-    <?= $form->field($model, 'director_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择导演"]) ?>
-
-    <?= $form->field($model, 'actor_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择演员"]) ?>
+    <?= $form->field($model, 'director_id')->textInput() ?>
 
     <?= $form->field($model, 'desc')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'music_desc')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'duration')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'douban_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择作者']) ?>
+    <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择作者', 'class' => 'select2', 'style' => 'width: 100%;']) ?>
 
     <?= $form->field($model, 'status')->dropDownList(Yii::$app->params['movieStatus'],['prompt' => '请选择状态']) ?>
 </div>

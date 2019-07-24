@@ -67,7 +67,7 @@ use yii\helpers\Url;
                                 </div>
                                 <div class="SongRow__center___1HKjk">
                                     <h4 class="SongTitle__heading___3kxXK"><a href="javascript:" class="SongTitle__link___2OQHD" title="Heaven"><?= $v->name ?></a></h4>
-                                    <div class="SongEventRow__subtitle___3Qli4"><a href="javascript:" class="Subtitle__subtitle___1rSyh"><?= $v->musician->name ?></a></div>
+                                    <div class="SongEventRow__subtitle___3Qli4"><a href="javascript:" class="Subtitle__subtitle___1rSyh"><?= $v->musicians ?></a></div>
                                 </div>
                                 <div class="SongRow__side___2rJx8">
                                     <div class="Vote__container___210Sb"><span><a href="javascript:" target="_self" class="Button__empty_yellow___2QACo Button__common___KEFlQ Button__empty___2bBGW Button__rounded___3h95S Vote__button___2_mZE">OK.</a></span>
@@ -77,7 +77,7 @@ use yii\helpers\Url;
                             </div>
                             <div class="SongRow__row___2Bih9" style="margin-top:-10px;">
                                 <div class="SongRow__side___2rJx8 SongRow__reorderDesktop___3_UL6"></div>
-                                <div class="SongRow__center___1HKjk"><div class="SongRow__descriptionContainer___2G0am"><div class="SongRow__reorderMobile___1CilR"></div><div class="SceneDescription__isEditable___1sC6E"><div class="SceneDescription__description___3Auqj"><em><?= $v->summary ?></em><span aria-hidden="true" class="fa fa-pencil SceneDescription__action___3jZYV"></span></div></div></div>
+                                <div class="SongRow__center___1HKjk"><div class="SongRow__descriptionContainer___2G0am"><div class="SongRow__reorderMobile___1CilR"></div><div class="SceneDescription__isEditable___1sC6E"><div class="SceneDescription__description___3Auqj"><em><?= $v->desc ?></em><span aria-hidden="true" class="fa fa-pencil SceneDescription__action___3jZYV"></span></div></div></div>
                                     <div class="SongRow__row___2Bih9">
                                         <div class="SongEventRow__storeLinks___1D_C1">
                                             <div class="StoreLinks__container___2NqeJ">
@@ -85,7 +85,7 @@ use yii\helpers\Url;
                                                 if($v->resources):
                                                 foreach ($v->resources as $vi):?>
                                                     <a href="<?= $vi->url?>" class="StoreLinks__amazon___3afSy" target="_blank"><img
-                                                                src="/static/images/<?= $vi->sourceName->ename?>.png" alt="" style="width: 25px;"></a>
+                                                                src="/static/images/<?= $vi->source->ename?>.png" alt="" style="width: 25px;"></a>
                                                 <?php
                                                 endforeach;
                                                 endif;?>

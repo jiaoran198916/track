@@ -40,7 +40,7 @@ use yii\grid\GridView;
                 <td><?= $r->position ?></td>
                 <td><?= $r->item->name ?></td>
                 <td><?= $r->downloadStatus ?></td>
-                <td><?= $r->sourceName->cname ?></td>
+                <td><?= $r->source->cname ?></td>
                 <td>
                     <a href='javascript:addResource(<?=$r->id ?>, <?=$r->item_id ?>, <?=$r->type ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
                     <a href="javascript:delRes(<?= $r->id ?>)" title="删除" aria-label="删除"><span class="glyphicon glyphicon-trash"></span></a>
@@ -63,7 +63,7 @@ use yii\grid\GridView;
                         <button type="button" class="btn btn-success pull-right" onclick="addResource(0, <?= $e->id?>, 0)"><i class="fa fa-plus"></i></button>
                     </h3>
                     <h3><span class="label label-primary pull-right"><?= count($e->resources) ?></span></h3>
-                    <p> By <span><?= $e->musician->name ?></span></p>
+                    <p> By <span><?= $e->musicians ?></span></p>
                 </div>
             </div>
             <table id="teaListTable1" class="table table-bordered table-striped">
@@ -91,7 +91,7 @@ use yii\grid\GridView;
                             <td><?= $r->position ?></td>
                             <td><?= $r->item->name ?></td>
                             <td><?= $r->downloadStatus ?></td>
-                            <td><?= $r->sourceName->cname ?></td>
+                            <td><?= $r->source->cname ?></td>
                             <td>
                                 <a href='javascript:addResource(<?=$r->id ?>, <?=$r->item_id ?>, <?=$r->type ?>)' title="修改" aria-label="修改" ><span class="glyphicon glyphicon-edit"></span></a>
                                 <a href="javascript:delRes(<?= $r->id ?>)" title="删除" aria-label="删除"><span class="glyphicon glyphicon-trash"></span></a>

@@ -73,8 +73,6 @@ class MovieController extends CommonController
         }
         if($params){
             $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
-            $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
-            $params['Movie']['actor_id'] = implode(',', $params['Movie']['actor_id']);
         }
 
         if ($model->load($params) && $model->save()) {
@@ -102,8 +100,6 @@ class MovieController extends CommonController
 
         if($params){
             $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
-            $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
-            $params['Movie']['actor_id'] = implode(',', $params['Movie']['actor_id']);
         }
 
         if ($model->load($params) && $model->save()) {
@@ -114,28 +110,6 @@ class MovieController extends CommonController
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Edit an existing Movie model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionEdit($id)
-    {
-        return Yii::$app->runAction('episode/index',['id' => $id]);
-    }
-
-    /**
-     * Edit an existing Movie model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionConnect($id)
-    {
-        return Yii::$app->runAction('resource/index',['id' => $id]);
     }
 
     /**

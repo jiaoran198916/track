@@ -12,23 +12,6 @@ $this->title = '电影列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<!-- Content Wrapper. Contains page content -->
-
-    <!-- Content Header (Page header) -->
-<!--    <section class="content-header">-->
-<!--        <h1>-->
-<!--            电影管理-->
-<!--            <small>--><!--</small>-->
-<!--        </h1>-->
-<!--        <ol class="breadcrumb">-->
-<!--            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>-->
-<!--            <li><a href="#">电影管理</a></li>-->
-<!--            <li class="active">电影列表</li>-->
-<!--        </ol>-->
-<!--    </section>-->
-
-
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -36,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="box">
                     <div class="box-header">
-                        <?= Html::a('<i class="fa fa-plus"></i> 创建文章', ['create'], ['class' => 'btn btn-success']) ?>
+                        <?= Html::a('<i class="fa fa-plus"></i> 创建电影', ['create'], ['class' => 'btn btn-success']) ?>
                     </div>
 
                     <!-- /.box-header -->

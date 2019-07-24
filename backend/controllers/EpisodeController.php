@@ -53,27 +53,22 @@ class EpisodeController extends CommonController
     public function actionCreate()
     {
         $model = new Episode();
-//        print_r($model);die;
-        //echo Episode::$movie_id;die;
         $post = Yii::$app->request->post();
         if(!empty($post)){
             print_r($post);//die;
         }
         $movie_id = Yii::$app->request->get('movie_id');
-        //$post['Episode']['movie_id'] = $movie_id;
 
         $post['Episode']['musician_id'] = implode(',', $post['Episode']['musician_id']);
 
 
         if ($model->load($post) && $model->save()) {
-//            return json_encode(['code' => 200, 'data' => $model->id]);
             return $this->redirect(['movie/view', 'id' => $model->movie_id]);
         } else {
             $model->movie_id = $movie_id;
-            print_r($model->getErrors());die;
+//            print_r($model->getErrors());die;
             return $this->render('create', [
-                'model' => $model,
-                //'movie_id' => $movie_id
+                'model' => $model
             ]);
         }
     }
@@ -108,8 +103,9 @@ class EpisodeController extends CommonController
         }else{
             $model = $model = new Episode();
         }
-        $params['Episode']['musician_id'] = implode(',', $params['Episode']['musician_id']);
-
+        if(isset($params['Episode']['musician_id']) && !empty($params['Episode']['musician_id']) && is_array($params['Episode']['musician_id'])){
+            $params['Episode']['musician_id'] = implode(',', $params['Episode']['musician_id']);
+        }
 
         if ($model->load($params) && $model->save()) {
             return $this->renderJson('保存成功');
@@ -140,33 +136,12 @@ class EpisodeController extends CommonController
 
         $post['Episode']['musician_id'] = implode(',', $post['Episode']['musician_id']);
 
-
         if ($model->load($post) && $model->save()) {
 //            return json_encode(['code' => 200, 'data' => $model->id]);
             return $this->redirect(['movie/view', 'id' => $model->movie_id]);
         } else {
             print_r($model->getErrors());die;
             return $this->render('create', [
-                'model' => $model,
-                //'movie_id' => $movie_id
-            ]);
-        }
-    }
-
-    /**
-     * Updates an existing Episode model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
                 'model' => $model,
             ]);
         }

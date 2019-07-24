@@ -23,10 +23,11 @@ class Resource extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid','source'], 'integer'],
-            [['item_id', 'position'], 'required'],
+            [['position', 'item_id', 'is_download', 'type', 'create_time', 'update_time', 'valid', 'source_id'], 'integer'],
+            [['item_id'], 'required'],
             [['name', 'url'], 'string', 'max' => 128],
-            [['desc'], 'string', 'max' => 255]
+            [['desc'], 'string', 'max' => 255],
+            ['position', 'default', 'value' => 0]
         ];
     }
 
@@ -42,9 +43,9 @@ class Resource extends \yii\db\ActiveRecord
             'url' => '链接',
             'position' => '排序',
             'item_id' => '关联片段',
-            'type' => '类型，0片段，1电影',
+            'type' => '类型，0歌曲，1电影',
             'is_download' => '是否可下载，0在线，1下载',
-            'source' => '来源',
+            'source_id' => '来源ID',
             'create_time' => '创建时间',
             'update_time' => '修改时间',
             'valid' => '是否有效',
@@ -60,26 +61,12 @@ class Resource extends \yii\db\ActiveRecord
         }
     }
 
-    public function getSourceName()
-    {
-        return $this->hasOne(Source::className(), ['id' => 'source']);
-    }
-
     public function getSource()
     {
-        return $this->hasOne(Source::className(), ['id' => 'source']);
-    }
-
-    /**
-     * 获取状态
-     * @return \yii\db\ActiveQuery
-     */
-    public function getStatusName(){
-        return Yii::$app->params['resourceStatus'][$this->status];
+        return $this->hasOne(Source::className(), ['id' => 'source_id']);
     }
 
     public function getDownloadStatus(){
-        $str = '';
         if($this->is_download == 1){
             $str = '下载';
         }else{

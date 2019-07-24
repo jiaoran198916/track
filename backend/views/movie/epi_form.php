@@ -19,8 +19,8 @@ use yii\grid\GridView;
     <?= $form->field($model, 'min')->input('number') ?>
     <?= $form->field($model, 'sec')->input('number') ?>
     <?= $form->field($model, 'name')->textInput() ?>
-    <?= $form->field($model, 'foreign_name')->textInput() ?>
-    <?= $form->field($model, 'summary')->textarea(['rows' => 2]) ?>
+    <?= $form->field($model, 'ename')->textInput() ?>
+    <?= $form->field($model, 'desc')->textarea(['rows' => 2]) ?>
 
     <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择歌手"]) ?>
 </div>
@@ -51,21 +51,6 @@ use yii\grid\GridView;
     window.onload = function(){
         $('.select2').select2()
 
-        $(function () {
-            $('.select2').select2()
-            function addEp(){
-                var data = $("#w1").serialize();
-                $.post('index.php?r=/episode/create', data, function (res) {
-                    if(res.code === 200){
-                        $.closeModal("modal-default");
-                        dialog.success('添加成功', location.href + '#episode');
-                    }else{
-                        dialog.error('添加失败');
-                    }
-                }, 'json');
-            }
-
-        })
     }
 
 </script>

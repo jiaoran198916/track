@@ -32,12 +32,11 @@ use yii\grid\GridView;
     <tbody>
     <?php if(!empty($model->episodes)):?>
     <?php foreach ($model->episodes as $e): ?>
-        <?php if($e->valid == 1):?>
         <tr>
         <td><?= $e->id ?></td>
         <td><?= $e->min .':'.$e->sec ?></td>
         <td><?= $e->name ?></td>
-        <td><?= $e->foreign_name ?></td>
+        <td><?= $e->ename ?></td>
         <td><?= $e->movie->name ?></td>
         <td><?= $e->musicians ?></td>
         <td>
@@ -47,7 +46,6 @@ use yii\grid\GridView;
         </td>
 
         </tr>
-            <?php endif;?>
     <?php endforeach;?>
     <?php endif;?>
     </tbody>
@@ -71,8 +69,8 @@ use yii\grid\GridView;
                 <?= $form->field($episodeModel, 'min')->input('number') ?>
                 <?= $form->field($episodeModel, 'sec')->input('number') ?>
                 <?= $form->field($episodeModel, 'name')->textInput() ?>
-                <?= $form->field($episodeModel, 'foreign_name')->textInput() ?>
-                <?= $form->field($episodeModel, 'summary')->textarea(['rows' => 2]) ?>
+                <?= $form->field($episodeModel, 'ename')->textInput() ?>
+                <?= $form->field($episodeModel, 'desc')->textarea(['rows' => 2]) ?>
 
                 <?= $form->field($episodeModel, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择歌手"]) ?>
             </div>
@@ -116,20 +114,6 @@ use yii\grid\GridView;
 
     window.onload = function(){
 
-        $(function () {
-            function addEp(){
-                var data = $("#w1").serialize();
-                $.post('index.php?r=/episode/create', data, function (res) {
-                    if(res.code === 200){
-                        $.closeModal("modal-default");
-                        dialog.success('添加成功', location.href + '#episode');
-                    }else{
-                        dialog.error('添加失败');
-                    }
-                }, 'json');
-            }
-
-        })
     }
 
 </script>
