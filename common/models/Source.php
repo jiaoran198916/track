@@ -51,8 +51,8 @@ class Source extends \yii\db\ActiveRecord
             'ename' => '英文名',
             'desc' => '描述',
             'logo' => 'Logo',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
+            'create_time' => '创建时间',
+            'update_time' => '更新时间',
             'valid' => 'Valid',
         ];
     }

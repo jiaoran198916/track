@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'profile:ntext',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {resetpwd} {privilege}',
+                'template' => '{view} {update} {resetpwd}',
                 'buttons' => [
                     'view' => function($url,$model, $key){
                         $options = [
