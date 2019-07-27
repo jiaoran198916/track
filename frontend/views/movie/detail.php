@@ -19,15 +19,15 @@ use yii\helpers\Url;
 <div class="container filepage">
     <div class="col-md-9">
         <div class="row">
-            <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->foreign_name?> (<?= $model->year?>)</small></h2></div>
+            <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->ename?> (<?= $model->year?>)</small></h2></div>
             <div class="col-xs-12 col-sm-5 col-md-5 poster">
                 <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->cover ?>" style="width: 300px;height: 444px;" alt="<?= $model->name?>电影海报"></div>
             <div class="col-xs-12 col-sm-7 col-md-7 m-t-15"><table border="0" class="file-intro"><tbody>
-                    <?php if($model->foreign_name): ?>
-                        <tr><td>又名</td><td><?= $model->foreign_name ?></td></tr>
+                    <?php if($model->ename): ?>
+                        <tr><td>又名</td><td><?= $model->ename ?></td></tr>
                     <?php endif;?>
 
-                    <tr><td>导演</td><td><?= $model->director_id ?></td></tr>
+                    <tr><td>导演</td><td><?= $model->director ?></td></tr>
                     <tr><td>音乐</td><td><?= $model->musicians ?></td></tr>
                     <tr><td>年份</td><td><?= $model->year?> 年</td></tr>
                     <tr><td>片长</td><td><?= $model->duration ?>分钟</td></tr>

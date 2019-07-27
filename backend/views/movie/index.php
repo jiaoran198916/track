@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'format' => 'image'
 //            ],
                                 //'cover:image',
-                                //'foreign_name',
+                                'ename',
                                 'year',
 //                 'master_id',
                                 ['attribute' => 'musician_id',
@@ -58,10 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //                'douban_id',
                                 // 'summary:ntext',
 //                 'user_id',
-                                ['attribute' => 'user_id',
-//                    'label' => '作者',
-                                    'value' => 'user.username'
-                                ],
+//                                ['attribute' => 'user_id',
+////                    'label' => '作者',
+//                                    'value' => 'user.username'
+//                                ],
                                 ['attribute' => 'status',
                                     'value' => 'statusName',
                                     'contentOptions' => function($model){

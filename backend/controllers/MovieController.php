@@ -50,8 +50,11 @@ class MovieController extends CommonController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
+        $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'episodeModel' => new Episode(),
         ]);
     }
@@ -70,9 +73,15 @@ class MovieController extends CommonController
             unset($params['Movie']['id']);
         }else{
             $model = new Movie();
+            $model->loadDefaultValues();
         }
         if($params){
-            $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
+                $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            }
+            if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
+                $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
+            }
         }
 
         if ($model->load($params) && $model->save()) {
@@ -99,13 +108,18 @@ class MovieController extends CommonController
         $model = $this->findModel($id);
 
         if($params){
-            $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
-        }
+            if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
+                $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            }
+            if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
+                $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
+            }        }
 
         if ($model->load($params) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            $model->musician_id = strpos($model->musician_id, ',') ? explode(',', $model->musician_id): $model->musician_id;
+            $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
+            $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
             return $this->render('update', [
                 'model' => $model,
             ]);

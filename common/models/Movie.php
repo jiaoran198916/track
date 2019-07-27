@@ -26,9 +26,10 @@ class Movie extends \yii\db\ActiveRecord
         return [
             [['name', 'year', 'cover', 'duration', 'douban_id'], 'required'],
             [['year', 'valid', 'duration', 'douban_id', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
-            [['desc',  'director_id'], 'string'],
-            ['musician_id', 'safe'],
-            [['user_id', 'status'], 'default', 'value' => 0],
+            [['desc', 'ename'], 'string'],
+            [['director_id', 'musician_id'], 'safe'],
+            [['user_id'], 'default', 'value' => 0],
+            [['status'], 'default', 'value' => 1],
         ];
     }
 
@@ -40,7 +41,7 @@ class Movie extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
-            'foreign_name' => '原名',
+            'ename' => '原名',
             'cover' => '封面图',
             'year' => '年份',
             'duration' => '时长（分）',
@@ -94,10 +95,22 @@ class Movie extends \yii\db\ActiveRecord
 
     /**
      * 获取状态
-     * @return \yii\db\ActiveQuery
      */
-    public function getStatusName(){
-        return Yii::$app->params['movieStatus'][$this->status];
+
+    public function getStatusName()
+    {
+        switch ($this->status){
+            case 0:
+                $str = '待审核';
+                break;
+            case 1:
+                $str = '已审核';
+                break;
+            default:
+                $str = '';
+                break;
+        }
+        return $str;
     }
 
     /**
@@ -114,6 +127,25 @@ class Movie extends \yii\db\ActiveRecord
             $res = substr($res, 0 ,-1);
         }else{
             $res = Master::findOne($this->musician_id)->name;
+        }
+
+        return $res;
+    }
+
+    /**
+     * 获取导演，根据导演ID
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDirector(){
+        $res = '';
+        if(strpos($this->director_id, ',')){
+            $masters = explode(',', $this->director_id);
+            foreach ($masters as $v){
+                $res .= Master::findOne($v)->name . '/';
+            }
+            $res = substr($res, 0 ,-1);
+        }else{
+            $res = Master::findOne($this->director_id)->name;
         }
 
         return $res;

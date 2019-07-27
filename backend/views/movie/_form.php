@@ -15,14 +15,15 @@ use common\models\Movie;
 
     <input type="hidden" id="movie-id" name="Movie[id]" value="<?= $model->id? $model->id: 0?>">
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'foreign_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ename')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'cover')->widget('common\widgets\file_upload\FileUpload') ?>
 
     <?= $form->field($model, 'year')->dropDownList(Movie::getYearData(),['class' => 'select2', 'style' => 'width: 100%;']) ?>
 
-    <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
+    <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
 
-    <?= $form->field($model, 'director_id')->textInput() ?>
+    <?= $form->field($model, 'director_id')->dropDownList(Master::find()->select(['name', 'id'])->where('type=1')->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择导演"]) ?>
+
 
     <?= $form->field($model, 'desc')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'duration')->textInput(['maxlength' => true]) ?>
@@ -30,7 +31,7 @@ use common\models\Movie;
 
     <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择作者', 'class' => 'select2', 'style' => 'width: 100%;']) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(Yii::$app->params['movieStatus'],['prompt' => '请选择状态']) ?>
+    <?= $form->field($model, 'status')->radioList(['0' => '待审核', '1' => '已审核']) ?>
 </div>
 <div class="box-footer">
     <button type="submit" class="btn btn-primary"><?= $model->isNewRecord ? '新 增' : '修 改' ?></button>
@@ -43,8 +44,6 @@ use common\models\Movie;
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
-            //Datemask yyyy/mm/dd
-            $('#movie-release').inputmask('yyyy/mm/dd', { 'placeholder': 'yyyy/mm/dd' })
         })
     }
 
