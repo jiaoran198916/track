@@ -18,8 +18,8 @@ class MasterSearch extends Master
     public function rules()
     {
         return [
-            [['id', 'douban_id', 'user_id', 'status', 'create_time', 'update_time'], 'integer'],
-            [['name', 'foreign_name', 'pic', 'birthday', 'place', 'intro'], 'safe'],
+            [['id', 'douban_id', 'user_id', 'create_time', 'update_time'], 'integer'],
+            [['name', 'ename', 'pic', 'birthday', 'place', 'desc'], 'safe'],
         ];
     }
 
@@ -62,17 +62,16 @@ class MasterSearch extends Master
             'id' => $this->id,
             'douban_id' => $this->douban_id,
             'user_id' => $this->user_id,
-            'status' => $this->status,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'foreign_name', $this->foreign_name])
+            ->andFilterWhere(['like', 'ename', $this->ename])
             ->andFilterWhere(['like', 'pic', $this->pic])
             ->andFilterWhere(['like', 'birthday', $this->birthday])
             ->andFilterWhere(['like', 'place', $this->place])
-            ->andFilterWhere(['like', 'intro', $this->intro]);
+            ->andFilterWhere(['like', 'desc', $this->desc]);
 
         return $dataProvider;
     }

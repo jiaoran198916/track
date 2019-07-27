@@ -7,22 +7,6 @@ use Yii;
 /**
  * This is the model class for table "master".
  *
- * @property integer $id
- * @property string $name
- * @property string $foreign_name
- * @property string $pic
- * @property integer $type
- * @property string $birthday
- * @property string $place
- * @property string $intro
- * @property integer $douban_id
- * @property integer $user_id
- * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- *
- * @property Adminuser $user
- * @property Poststatus $status0
  */
 class Master extends \yii\db\ActiveRecord
 {
@@ -34,20 +18,6 @@ class Master extends \yii\db\ActiveRecord
         return 'master';
     }
 
-    const MASTER_TYPE_MUSICIAN = 0;
-    const MASTER_TYPE_DIRECTOR = 1;
-    const MASTER_TYPE_ACTOR = 2;
-    const MASTER_TYPE_OTHER = 3;
-
-    public static function masterType(){
-        return [
-            self::MASTER_TYPE_MUSICIAN => '音乐家',
-            self::MASTER_TYPE_DIRECTOR => '导演',
-            self::MASTER_TYPE_ACTOR => '演员',
-            self::MASTER_TYPE_OTHER => '其他',
-        ];
-    }
-
     /**
      * @inheritdoc
      */
@@ -55,11 +25,10 @@ class Master extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['intro'], 'string'],
-            [['type','douban_id', 'user_id', 'status', 'create_time', 'update_time', 'valid'], 'integer'],
-            [['name', 'foreign_name', 'place'], 'string', 'max' => 128],
+            [['desc'], 'string'],
+            [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid'], 'integer'],
+            [['name', 'ename', 'place', 'birthday'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
-            [['birthday'], 'string', 'max' => 11],
             [['douban_id', 'user_id'], 'default', 'value' => 0],
         ];
     }
@@ -72,18 +41,34 @@ class Master extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '姓名',
-            'foreign_name' => '外文名',
+            'ename' => '外文名',
             'pic' => '图片',
             'type' => '类型',
             'birthday' => '生日',
             'place' => '所在地',
-            'intro' => '简介',
+            'desc' => '简介',
             'douban_id' => '豆瓣 ID',
             'user_id' => '创建用户',
-            'status' => '状态',
             'create_time' => '创建时间',
             'update_time' => '更新时间',
+            'valid' => '1有效，2失效'
         ];
+    }
+
+    public function getTypeText()
+    {
+        switch ($this->type){
+            case 0:
+                $str = '音乐家';
+                break;
+            case 1:
+                $str = '导演';
+                break;
+            default:
+                $str = '';
+                break;
+        }
+        return $str;
     }
 
     public function beforeSave($insert)
@@ -100,13 +85,5 @@ class Master extends \yii\db\ActiveRecord
         }else{
             return false;
         }
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(Adminuser::className(), ['id' => 'user_id']);
     }
 }

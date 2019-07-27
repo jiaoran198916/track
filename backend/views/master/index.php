@@ -28,27 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
         'layout' => '{items}',
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-
+//            ['class' => 'yii\grid\SerialColumn'],
             'id',
             'name',
-            'foreign_name',
-            ['attribute' =>'type',
-                'value' =>function($model){
-                    return Master::masterType()[$model->type];
-                }
+            'ename',
+            [
+              'attribute' =>'type',
+              'value' =>'typeText'
             ],
-            'pic',
             'birthday',
-            // 'place',
-            // 'intro:ntext',
-            // 'douban_id',
-            // 'user_id',
-            // 'status',
+             'place',
             ['attribute' =>'create_time',
                 'format' =>['date', 'php:Y-m-d H:i:s']
             ],
-            // 'update_time:datetime',
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',

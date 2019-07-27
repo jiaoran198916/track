@@ -16,9 +16,9 @@ use common\models\Master;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'foreign_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ename')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->dropDownList(Master::masterType(),['prompt' => '请选择类型']) ?>
+    <?= $form->field($model, 'type')->radioList(['0' => '音乐家', '1' => '导演']) ?>
 
     <?= $form->field($model, 'pic')->textInput(['maxlength' => true]) ?>
 
@@ -26,8 +26,7 @@ use common\models\Master;
 
     <?= $form->field($model, 'place')->textInput(['maxlength' => true]) ?>
 
-
-    <?= $form->field($model, 'intro')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'desc')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'douban_id')->input('number') ?>
 

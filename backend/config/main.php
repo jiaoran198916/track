@@ -3,7 +3,6 @@ $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/params.php')
 );
-
 return [
     'id' => 'app-backend',
     'language' => 'zh-CN',
@@ -41,7 +40,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -53,7 +51,6 @@ return [
 //                '<controller:\w+>/<id:\d+>/<action:(create|update|delete)>'=>'<controller>/<action>',
             ],
         ],
-
     ],
     'params' => $params,
 ];

@@ -51,8 +51,9 @@ class MasterController extends CommonController
         $model = new Master();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
+            $model->loadDefaultValues();
             return $this->render('create', [
                 'model' => $model,
             ]);

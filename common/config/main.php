@@ -12,7 +12,7 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=127.0.0.1;dbname=track',
             'username' => 'root',
-            'password' => '',
+            'password' => '3G-uI2!k',
             'charset' => 'utf8'
         ],
     ],
