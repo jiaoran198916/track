@@ -20,10 +20,6 @@ body,.tooltip-inner{
     outline: none;          
 }
 
-.navbar{
-	min-height:55px;
-}
-
 .navbar-brand{
 	padding:0px 0px 5px 0px;
 }
@@ -42,7 +38,7 @@ body,.tooltip-inner{
 }
 
 .homepage,.filepage{
-	margin-top:70px;
+	margin-top:90px;
 }
 
 .list-group-item.active{
