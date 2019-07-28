@@ -53,7 +53,7 @@ class MovieSearch extends Movie
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+//             $query->where('0=1');
             return $dataProvider;
         }
 
@@ -73,6 +73,7 @@ class MovieSearch extends Movie
             ->andFilterWhere(['like', 'ename', $this->ename])
 //            ->andFilterWhere(['like', 'master_id', $this->master_id])
             ->andFilterWhere(['like', 'desc', $this->desc]);
+        $query->orderBy(['create_time' => SORT_DESC]);
 
         return $dataProvider;
     }

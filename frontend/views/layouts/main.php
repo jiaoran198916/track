@@ -112,15 +112,66 @@ AppAsset::register($this);
 <!--    </div>-->
 <!--</div>-->
 
-<footer class="container text-center footer" id="footer">
-    <div>
-    </div>
+<footer class="footer ">
+    <div class="container">
+        <div class="row footer-top">
+            <div class="col-md-6 col-lg-6">
+                <h4>
+                    <img src="/static/images/logofooter.png" width="241">
+                </h4>
+                <p>一个专注于<strong>电影原声</strong>分享与下载的网站</p>
+            </div>
+            <div class="col-md-6  col-lg-5 col-lg-offset-1">
+                <div class="row about">
+                    <div class="col-sm-4">
+                        <h4>关于</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/about">关于我们</a></li>
+                            <li><a href="/">广告合作</a></li>
+<!--                            <li><a href="/links/">友情链接</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4>联系方式</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://weibo.com/" title="皎然影音乐官方微博" target="_blank">新浪微博</a></li>
+                            <li><a href="mailto:920495391@qq.com" target="_blank">电子邮件</a></li>
+                            <li><a href="javascript:void(0)" target="_blank">QQ群： 131399457</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h4>友情链接</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://www.yiichina.com/" target="_blank">Yii中文网</a></li>
+                            <li><a href="https://movie.douban.com/" target="_blank">豆瓣电影</a></li>
+                            <li><a href="https://www.bootcdn.cn/" target="_blank">BootCDN</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-    <div>本站所有信息均由互联网爬虫自动搜索得来，相关链接已注明来源，版权归原创者所有。</div>
-    <div>如果无意中侵犯了您的权益，请通知我们（<a href="mailto:920495391@qq.com" target="_blank">920495391@qq.com</a>)，我们会及时做相应处理，谢谢合作。</div>
-    <div>音乐网官方QQ群： 131399457</div>
-    <div><a href="/" target="_blank">© 2019 jiaoran.net</a> <a href="https://www.cnzz.com/stat/website.php?web_id=" target="_blank" title="站长统计">站长统计</a></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备19038064号-1</a></li>
+                <li><a href="/" target="_blank">© 2019 jiaoran.net</a></li>
+                <li><a href="https://www.cnzz.com/stat/website.php?web_id=" target="_blank" title="站长统计">站长统计</a></li>
+            </ul>
+        </div>
+    </div>
 </footer>
+
+
+<!--<footer class="container text-center footer" id="footer">-->
+<!--    <div>-->
+<!--    </div>-->
+<!---->
+<!--    <div>本站所有信息均由互联网爬虫自动搜索得来，相关链接已注明来源，版权归原创者所有。</div>-->
+<!--    <div>如果无意中侵犯了您的权益，请通知我们（<a href="mailto:920495391@qq.com" target="_blank">920495391@qq.com</a>)，我们会及时做相应处理，谢谢合作。</div>-->
+<!--    <div>音乐网官方QQ群： 131399457</div>-->
+<!--    <div><a href="/" target="_blank">© 2019 jiaoran.net</a> <a href="https://www.cnzz.com/stat/website.php?web_id=" target="_blank" title="站长统计">站长统计</a></div>-->
+<!--</footer>-->
 
 <!-- Modal -->
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
