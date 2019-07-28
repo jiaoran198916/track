@@ -54,54 +54,44 @@ use yii\helpers\Url;
 
             <div class="title"><h3>曲目列表 <small>Lists</small></h3></div>
             <div class="intro">
-                <?php
-                if($model->episodes):
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">定位</th>
+                        <th scope="col">名称</th>
+                        <th scope="col">歌手</th>
+                        <th scope="col">试听</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if($model->episodes):
                     foreach ($model->episodes as $k => $v):?>
-                        <div class="SongRow__container___3eT_L"><span class="Anchor__placeholder___2VPN4"></span>
-                            <div class="SongRow__row___2Bih9">
-                                <div class="SongRow__side___2rJx8">
-                                    <div id="SoundPlayer-sound0" class="SoundPlayer__container___3qMnc SongEventRow__soundPlayer___2ku9n SoundPlayer__inverse___30f0B SoundPlayer__noArt___1HLUm">
-                                        <h4 style="font-size:40px;" class><?= $v->min.":".$v->sec ?></h4>
-
-                                    </div>
-                                </div>
-                                <div class="SongRow__center___1HKjk">
-                                    <h4 class="SongTitle__heading___3kxXK"><a href="javascript:" class="SongTitle__link___2OQHD" title="Heaven"><?= $v->name ?></a></h4>
-                                    <div class="SongEventRow__subtitle___3Qli4"><a href="javascript:" class="Subtitle__subtitle___1rSyh"><?= $v->musicians ?></a></div>
-                                </div>
-                                <div class="SongRow__side___2rJx8">
-                                    <div class="Vote__container___210Sb"><span><a href="javascript:" target="_self" class="Button__empty_yellow___2QACo Button__common___KEFlQ Button__empty___2bBGW Button__rounded___3h95S Vote__button___2_mZE">OK.</a></span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="SongRow__row___2Bih9" style="margin-top:-10px;">
-                                <div class="SongRow__side___2rJx8 SongRow__reorderDesktop___3_UL6"></div>
-                                <div class="SongRow__center___1HKjk"><div class="SongRow__descriptionContainer___2G0am"><div class="SongRow__reorderMobile___1CilR"></div><div class="SceneDescription__isEditable___1sC6E"><div class="SceneDescription__description___3Auqj"><em><?= $v->desc ?></em><span aria-hidden="true" class="fa fa-pencil SceneDescription__action___3jZYV"></span></div></div></div>
-                                    <div class="SongRow__row___2Bih9">
-                                        <div class="SongEventRow__storeLinks___1D_C1">
-                                            <div class="StoreLinks__container___2NqeJ">
-                                                <?php
-                                                if($v->resources):
-                                                foreach ($v->resources as $vi):?>
-                                                    <a href="<?= $vi->url?>" class="StoreLinks__amazon___3afSy" target="_blank"><img
-                                                                src="/static/images/<?= $vi->source->ename?>.png" alt="" style="width: 25px;"></a>
-                                                <?php
-                                                endforeach;
-                                                endif;?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="SongRow__side___2rJx8">
-                                    <ul class="SongEventRow__actions___2UKgA"><li><span class="SongEventRow__bookmark___1w4Od undefined"><span aria-hidden="true" class="fa fa-heart-o"></span></span></li><li><span class="ShareSong__container___ECQZA"><span aria-hidden="true" class="fa fa-share-alt ShareSong__icon___1FfLo"></span></span></li></ul></div>
-                            </div>
-                        </div>
-
+                    <tr>
+                        <th scope="row"><?= ($k+1)?></th>
+                        <td><?= $v->min.":".$v->sec ?></td>
+                        <td><?= $v->name ?>&nbsp;<?= $v->ename ?><br>
+                            <span style="font-size: 13px;font-style: italic"><?= $v->desc ?></span></td>
+                        <td><?= $v->musicians ?></td>
+                        <td>
+                            <?php
+                            if($v->resources):
+                                foreach ($v->resources as $vi):?>
+                                    <a href="<?= $vi->url?>" class="" target="_blank">
+                                        <img src="/static/images/<?= $vi->source->ename?>.png" alt="" style="width: 25px;">
+                                    </a>
+                                <?php
+                                endforeach;
+                            endif;?>
+                        </td>
+                    </tr>
                     <?php
                     endforeach;
-                endif;?>
+                    endif;?>
 
+                    </tbody>
+                </table>
             </div>
 
 
