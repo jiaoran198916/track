@@ -35,7 +35,7 @@ AppAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img alt="Brand" src="/static/images/logo1.png"></a>
+            <a class="navbar-brand" href="/"><img alt="Brand" src="/static/images/logo.png"></a>
         </div>
 
 
