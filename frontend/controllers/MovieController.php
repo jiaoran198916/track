@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Banner;
+use common\models\Resource;
 use Yii;
 use common\models\Movie;
 use common\models\MovieSearch;
@@ -133,6 +134,7 @@ class MovieController extends Controller
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
+        $onlineCount = Resource::find()->where(['item_id' => $id, 'type' => 1, 'valid' => 1, 'is_download' => 0])->count();
 
         //访问数+1
         $model->updateCounters(['count' => 1]);
@@ -140,7 +142,8 @@ class MovieController extends Controller
         return $this->render('detail',[
             'model'=>$model,
             'news'=>$news,
-            'hots'=>$hots
+            'hots'=>$hots,
+            'onlineCount'=>$onlineCount,
         ]);
 
     }

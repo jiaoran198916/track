@@ -23,7 +23,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?= Html::csrfMetaTags() ?>
-    <title>电影原声网后台管理系统</title>
+    <title>皎然影音乐后台管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -58,9 +58,9 @@ AppAsset::register($this);
         <!-- Logo -->
         <a href="//index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>电</b>影原声</span>
+            <span class="logo-mini"><b>皎</b>然影音乐</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>电影</b>原声网</span>
+            <span class="logo-lg"><b>皎然</b>影音乐</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">

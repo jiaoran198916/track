@@ -17,10 +17,16 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <?= Html::csrfMetaTags() ?>
-    <title>电影原声网</title>
+    <meta name="keywords" content="电影原声,皎然影音乐,原声,原声带,OST,电影音乐,Soundtrack,原声下载,原声音乐下载">
+    <meta name="Description" content="皎然影音乐，专注于电影原声音乐分享与下载">
+    <title>皎然影音乐 - 专注于电影原声音乐分享与下载</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -94,7 +100,6 @@ AppAsset::register($this);
 <!--        </div>-->
 <!--    </div>-->
 <!--</nav>-->
-<?= Yii::$app->request->getUrl()?>
 <?= $content ?>
 
 <!--<div class="footer" id="footer">-->

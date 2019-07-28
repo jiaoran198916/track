@@ -49,7 +49,7 @@ use yii\helpers\Url;
         <div class="row m-t-10">
             <div class="title"><h3>音乐简介 <small>Description</small></h3></div>
             <div class="intro">
-                　　<?= strip_tags($model->desc) ?>
+                　　<?= $model->desc ?>
             </div>
 
             <div class="title"><h3>曲目列表 <small>Lists</small></h3></div>
@@ -99,9 +99,9 @@ use yii\helpers\Url;
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="dwn">
                     <div class="btn-group btn-group-justified">
-                        <div class="btn-group"><button type="button" class="btn btn-primary active" id="tab_all">全部</button></div>
-                        <div class="btn-group"><button type="button" class="btn btn-primary" id="tab_online">在线</button></div>
-                        <div class="btn-group"><button type="button" class="btn btn-primary" id="tab_download">下载</button></div>
+                        <div class="btn-group"><button type="button" class="btn btn-success active" id="tab_all">全部</button></div>
+                        <div class="btn-group"><button type="button" class="btn btn-success" id="tab_online">在线&nbsp;<span class="badge"><?= $onlineCount?></span></button></div>
+                        <div class="btn-group"><button type="button" class="btn btn-success" id="tab_download">下载&nbsp;<span class="badge"><?= count($model->resources) - $onlineCount?></span></button></div>
                     </div>
                     <table class="table table-striped table-hover">
                         <tbody>
