@@ -18,7 +18,7 @@ use frontend\components\RankingWidget;
                 <div class="swiper-slide movie-item">
                     <div class="mv-img">
                         <a target="_blank" href="<?= Url::to(['detail', 'id' => $v->movie_id])?>">
-                            <img class="img hvr-shutter-out-horizontal" src="<?= Yii::$app->params['adminhost'].$v->movie->cover?>" alt="<?= $v->title ?>"></a>
+                            <img class="img" src="<?= Yii::$app->params['adminhost'].$v->movie->cover?>" alt="<?= $v->title ?>"></a>
                     </div>
                     <div class="title-in">
                         <h5><a target="_blank" href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" tabindex="-1"><?= $v->movie->name .' '.$v->movie->year ?></a></h5>
@@ -75,11 +75,10 @@ use frontend\components\RankingWidget;
 <!-- Initialize Swiper -->
 <script>
     let swiper = new Swiper('.swiper-container', {
-        slidesPerView: 4,
+        slidesPerView: 5,
         spaceBetween: 20,
         autoplay: true,
         loop: true,
-        loopedSlides: 4,
         lazy:true,
         // pagination: {
         //     el: '.swiper-pagination',
