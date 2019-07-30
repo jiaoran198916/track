@@ -230,5 +230,81 @@ a:focus, a:hover {
 .body{
 	margin-top: 20px;
 }
+.content{
+	padding-right: 10px;
+}
+/****************** *************************/
+.content .excerpt{
+    border: 1px solid #eaeaea;
+    padding: 20px 20px 20px 220px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: -1px;
+}
+.excerpt:hover {
+	background-color: #f9f9f9;
+	position: relative;
+	z-index: 2;
+}
+.excerpt .focus {
+	float: left;
+	margin-left: -190px;
+	/*width: 220px;*/
+}
+.excerpt .thumb {
+	width: 140px;
+	height: 200px;
+}
+.excerpt header {
+	margin-bottom: 10px;
+}
+.excerpt .cat {
+	color: #fff;
+	background-color: #45BCF9;
+	padding: 3px 6px;
+	font-size: 12px;
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	margin-right: 6px;
+}
+.excerpt h2 {
+	display: inline;
+	font-size: 18px;
+	line-height: 1.4;
+	margin-top: 0;
+	font-weight: bold;
+}
+.excerpt h2 a:hover {
+	color: #45B6F7;
+}
+.excerpt h2 a {
+	color: #555;
+}
+.excerpt .meta {
+	color: #999;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+.excerpt time, .excerpt .pv, .excerpt .pc, .excerpt .author {
+	margin-right: 20px;
+}
+.excerpt .meta .fa {
+	margin-right: 4px;
+}
+.excerpt .meta a {
+	color: #999;
+}
+.excerpt .post-like {
+	float: right;
+}
+.excerpt .note {
+	font-size: 12px;
+	color: #999;
+	word-wrap: break-word;
+	line-height: 20px;
+	margin-bottom: 0;
+}
+
 
 

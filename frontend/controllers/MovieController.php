@@ -43,7 +43,7 @@ class MovieController extends Controller
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
         $dataProvider->pagination = [
-            'pageSize' => 12,
+            'pageSize' => 6,
         ];
         $keyword = '';
         $view = 'index';

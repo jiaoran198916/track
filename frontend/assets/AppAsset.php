@@ -13,10 +13,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'static/css/bootstrap.css',
+        'static/css/font-awesome.min.css',
         'static/css/ihd.css',
-        'static/css/common.css?v=0002',
+        'static/css/common.css?v=0003',
         'static/fonts/NotoSans-Regular.ttf',
         'static/fonts/glyphicons-halflings-regular.woff2',
+        'static/fonts/fontawesome-webfont.woff2',
     ];
     public $js = [
         'static/js/jquery-1.11.3.js',

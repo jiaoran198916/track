@@ -52,7 +52,7 @@ use yii\helpers\Url;
                 　　<?= $model->desc ?>
             </div>
 
-            <div class="title"><h3>曲目列表 <small>Lists</small></h3></div>
+            <div class="title" id="songList"><h3>曲目列表 <small>Lists</small></h3></div>
             <div class="intro">
                 <table class="table table-striped table-hover">
                     <thead>

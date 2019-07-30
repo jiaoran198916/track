@@ -202,6 +202,17 @@ class Movie extends \yii\db\ActiveRecord
         return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['create_time' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
     }
 
+
+    public function getIntro($length=200)
+    {
+        $tmpStr = strip_tags($this->desc);
+        $tmpLen = mb_strlen($tmpStr);
+
+        $tmpStr = mb_substr($tmpStr,0,$length,'utf-8');
+        return $tmpStr.($tmpLen>$length?'...':'');
+    }
+
+
     /**
      * 获取年份数组
      * @return array

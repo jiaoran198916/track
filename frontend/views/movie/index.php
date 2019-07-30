@@ -41,10 +41,22 @@ use frontend\components\RankingWidget;
             </div>
     </div>
 
+
+<!--        <div class="media">-->
+<!--            <div class="media-left">-->
+<!--                <a href="#">-->
+<!--                    <img class="media-object" src="..." alt="...">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="media-body">-->
+<!--                <h4 class="media-heading">Media heading</h4>-->
+<!--                ...-->
+<!--            </div>-->
+<!--        </div>-->
             <?= ListView::widget([
                     'id' => 'postList',
-                    'options' => ['tag' => 'div', 'class' => 'row'],
-                    'itemOptions' => ['tag' => 'div', 'class' => 'col-xs-6 col-sm-4 col-md-3'],
+                    'options' => ['tag' => 'div', 'class' => 'row content'],
+//                    'itemOptions' => ['tag' => 'div', 'class' => 'col-xs-6 col-sm-4 col-md-3'],
                     'dataProvider' => $dataProvider,
                     'itemView' => '_listimg',//子视图,显示一篇文章的标题等内容.
                     'layout' => '{items}<div class="col-md-12" style="padding: 0">{pager}</div>',
