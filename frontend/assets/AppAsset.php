@@ -14,7 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'static/css/bootstrap.css',
         'static/css/ihd.css',
-        'static/css/common.css?v=0001',
+        'static/css/common.css?v=0002',
         'static/fonts/NotoSans-Regular.ttf',
         'static/fonts/glyphicons-halflings-regular.woff2',
     ];

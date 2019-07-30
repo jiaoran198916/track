@@ -5,35 +5,33 @@ use yii\helpers\Url;
 use frontend\components\RankingWidget;
 
 ?>
-<div class="container homepage">
-    <div id="ihd-carousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <?php foreach ($bannerData as $k=>$v):?>
-                <li data-target="#ihd-carousel" data-slide-to="<?= $k?>" class="<?= $k==0 ?'active': ''?>"></li>
-            <?php endforeach;?>
-        </ol>
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="/static/css/swiper.min.css">
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
+<div class="container homepage">
+
+    <!-- Swiper -->
+    <div class="swiper-container movie-items">
+        <div class="swiper-wrapper">
+
             <?php foreach ($bannerData as $k=>$v):?>
-                <div class="item <?= $k==0 ?'active': ''?>">
-                    <a target="_blank" href="<?= Url::to(['detail', 'id' => $v->movie_id])?>">
-                        <img class="img-rounded" src="<?= Yii::$app->params['adminhost'].$v->img?>" alt="<?= $v->title ?>"></a>
+                <div class="swiper-slide movie-item">
+                    <div class="mv-img">
+                        <a target="_blank" href="<?= Url::to(['detail', 'id' => $v->movie_id])?>">
+                            <img class="img hvr-shutter-out-horizontal" src="<?= Yii::$app->params['adminhost'].$v->movie->cover?>" alt="<?= $v->title ?>"></a>
+                    </div>
+                    <div class="title-in">
+                        <h5><a target="_blank" href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" tabindex="-1"><?= $v->movie->name .' '.$v->movie->year ?></a></h5>
+                        <p><i class="ion-android-star"></i><span><?= count($v->movie->episodes)?></span>&nbsp;songs</p>
+                    </div>
                 </div>
             <?php endforeach;?>
-        </div>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#ihd-carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#ihd-carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        </div>
+        <!-- Add Pagination -->
+<!--        <div class="swiper-pagination"></div>-->
     </div>
+    <div class="body">
     <div class="col-md-9">
     <div class="row">
             <div class="panel panel-warning">
@@ -69,6 +67,25 @@ use frontend\components\RankingWidget;
         </div>
 
     </div>
+    </div>
 </div>
+
+<!-- Swiper JS -->
+<script src="/static/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+    let swiper = new Swiper('.swiper-container', {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        autoplay: true,
+        loop: true,
+        loopedSlides: 4,
+        lazy:true,
+        // pagination: {
+        //     el: '.swiper-pagination',
+        //     clickable: true,
+        // }
+    });
+</script>
 
 

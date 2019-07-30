@@ -124,3 +124,110 @@ a:focus, a:hover {
 }
 
 
+/****************  banner  ****************/
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-container .img{
+	width: 100%;
+}
+
+.movie-items .movie-item .mv-img {
+	position: relative;
+}
+
+.movie-items .movie-item .mv-img:after {
+	box-shadow: inset -5px -50px 100px -15px #000000;
+	-webkit-box-shadow: inset -5px -50px 100px -15px #000000;
+	-moz-box-shadow: inset -5px -50px 100px -15px #000000;
+	-o-box-shadow: inset -5px -50px 100px -15px #000000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	content: "";
+}
+
+.movie-items .movie-item .title-in {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+}
+
+.movie-items .movie-item .title-in h5 a {
+	font-family: 'Dosis', sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.movie-items .movie-item .title-in p {
+	font-size: 12px;
+	color: #ffffff;
+}
+
+.movie-items .movie-item .title-in p i {
+	color: #f5b50a;
+	font-size: 22px;
+}
+
+.movie-items .movie-item .title-in p span {
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.movie-items .movie-item:hover .title-in,.movie-items .movie-item:hover img {
+	/*-webkit-transition: all 0.5s ease-out;*/
+	/*-moz-transition: all 0.5s ease-out;*/
+	/*-o-transition: all 0.5s ease-out;*/
+	/*transition: all 0.5s ease-out;*/
+	/*-moz-opacity: 0.25;*/
+	/*-khtml-opacity: 0.25;*/
+	/*-webkit-opacity: 0.25;*/
+	/*opacity: 0.5;*/
+	/*transform: translateY(0);*/
+	/*-webkit-transform: translateZ(0);*/
+	/*-ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=25);*/
+	/*filter: alpha(opacity=25);*/
+}
+
+.movie-items .movie-item:hover h5 a {
+	color: #dcf836;
+}
+
+/****************  banner  ****************/
+
+.body{
+	margin-top: 20px;
+}
+
+
