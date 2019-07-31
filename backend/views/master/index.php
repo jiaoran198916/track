@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'value' =>'typeText'
             ],
             'birthday',
-             'place',
+             'city_id',
             ['attribute' =>'create_time',
                 'format' =>['date', 'php:Y-m-d H:i:s']
             ],

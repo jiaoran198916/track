@@ -3,11 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\User;
-use common\models\Master;
+use common\models\City;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Master */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 
@@ -19,12 +16,13 @@ use common\models\Master;
     <?= $form->field($model, 'ename')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'type')->radioList(['0' => '音乐家', '1' => '导演']) ?>
+    <?= $form->field($model, 'type')->radioList(['0' => '保密', '1' => '男', '2' => '女']) ?>
 
     <?= $form->field($model, 'pic')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'birthday')->input('date') ?>
 
-    <?= $form->field($model, 'place')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'city_id')->dropDownList(City::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择所在城市']) ?>
 
     <?= $form->field($model, 'desc')->textInput(['maxlength' => true]) ?>
 

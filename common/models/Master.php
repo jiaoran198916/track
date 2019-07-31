@@ -26,10 +26,10 @@ class Master extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['desc'], 'string'],
-            [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid'], 'integer'],
-            [['name', 'ename', 'place', 'birthday'], 'string', 'max' => 128],
+            [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid','city_id', 'sex'], 'integer'],
+            [['name', 'ename',  'birthday'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
-            [['douban_id', 'user_id'], 'default', 'value' => 0],
+            [['douban_id', 'user_id', 'sex','city_id'], 'default', 'value' => 0],
         ];
     }
 
@@ -44,8 +44,9 @@ class Master extends \yii\db\ActiveRecord
             'ename' => '外文名',
             'pic' => '图片',
             'type' => '类型',
+            'sex' => '性别',
             'birthday' => '生日',
-            'place' => '所在地',
+            'city_id' => '所在地',
             'desc' => '简介',
             'douban_id' => '豆瓣 ID',
             'user_id' => '创建用户',

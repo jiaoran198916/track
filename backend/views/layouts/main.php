@@ -213,6 +213,22 @@ AppAsset::register($this);
                     </ul>
                 </li>
 
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>地区管理</span>
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="<?= Url::to(['country/index'])?>"><i class="fa fa-circle-o"></i> 国家列表</a></li>
+                        <li><a href="<?= Url::to(['country/create'])?>"><i class="fa fa-plus-circle"></i> 添加国家</a></li>
+                        <li><a href="<?= Url::to(['city/index'])?>"><i class="fa fa-circle-o"></i> 城市列表</a></li>
+                        <li><a href="<?= Url::to(['city/create'])?>"><i class="fa fa-plus-circle"></i> 添加城市</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="#"><i class="fa fa-university"></i> <span> 前台网站</span></a></li>
                 <li class="header">LABELS</li>
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
