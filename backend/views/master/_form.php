@@ -16,7 +16,7 @@ use common\models\City;
     <?= $form->field($model, 'ename')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'type')->radioList(['0' => '音乐家', '1' => '导演']) ?>
-    <?= $form->field($model, 'type')->radioList(['0' => '保密', '1' => '男', '2' => '女']) ?>
+    <?= $form->field($model, 'sex')->radioList(['0' => '保密', '1' => '男', '2' => '女']) ?>
 
     <?= $form->field($model, 'pic')->textInput(['maxlength' => true]) ?>
 
