@@ -47,6 +47,9 @@ class MasterSearch extends Master
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 0,
+            ],
         ]);
 
         $this->load($params);

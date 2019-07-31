@@ -86,7 +86,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     window.onload = function(){
         $(function () {
-            $('#example').DataTable()
+            $('#example').DataTable({
+                "iDisplayLength" : 20,
+            })
         })
     }
 
