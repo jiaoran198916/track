@@ -6,6 +6,8 @@ use common\models\User;
 use common\models\City;
 
 ?>
+<!-- bootstrap wysihtml5 - text editor -->
+<link rel="stylesheet" href="/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 
 <?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
@@ -18,13 +20,13 @@ use common\models\City;
     <?= $form->field($model, 'type')->radioList(['0' => '音乐家', '1' => '导演']) ?>
     <?= $form->field($model, 'sex')->radioList(['0' => '保密', '1' => '男', '2' => '女']) ?>
 
-    <?= $form->field($model, 'pic')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'pic')->widget('common\widgets\file_upload\FileUpload') ?>
 
     <?= $form->field($model, 'birthday')->input('date') ?>
 
     <?= $form->field($model, 'city_id')->dropDownList(City::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择所在城市']) ?>
 
-    <?= $form->field($model, 'desc')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'desc')->textarea() ?>
 
     <?= $form->field($model, 'douban_id')->input('number') ?>
 
@@ -38,3 +40,13 @@ use common\models\City;
     </div>
 
     <?php ActiveForm::end(); ?>
+
+<script>
+    window.onload = function() {
+        $(function () {
+            //bootstrap WYSIHTML5 - text editor
+            $('#master-desc').wysihtml5()
+        })
+    }
+</script>
+

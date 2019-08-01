@@ -14,6 +14,18 @@ use yii\filters\VerbFilter;
  */
 class MasterController extends CommonController
 {
+
+    public function actions()
+    {
+        return [
+            'upload'=>[
+                'class' => 'common\widgets\file_upload\UploadAction',     //这里扩展地址别写错
+                'config' => [
+                    'imagePathFormat' => "/uploads/image/master/{yyyy}{mm}{dd}/{time}{rand:6}",
+                ]
+            ]
+        ];
+    }
     /**
      * Lists all Master models.
      * @return mixed
@@ -71,7 +83,7 @@ class MasterController extends CommonController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

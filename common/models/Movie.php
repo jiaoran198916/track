@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "movie".
@@ -133,6 +134,27 @@ class Movie extends \yii\db\ActiveRecord
     }
 
     /**
+     * 获取音乐作者，根据作者ID
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMaster(){
+        $str = '';
+        if(!empty($this->musician_id)){
+            $masters = explode(',', $this->musician_id);
+            foreach ($masters as $id){
+                $master = Master::findOne($id);
+                if($master){
+                    $str .= '<a href="'.$master->detail.'" target="_blank">'.$master->name.'</a>/';
+                }
+            }
+        }
+        if($str){
+            $str = substr($str, 0 , -1);
+        }
+        return $str;
+    }
+
+    /**
      * 获取导演，根据导演ID
      * @return \yii\db\ActiveQuery
      */
@@ -203,7 +225,7 @@ class Movie extends \yii\db\ActiveRecord
     }
 
 
-    public function getIntro($length=200)
+    public function getIntro($length=180)
     {
         $tmpStr = strip_tags($this->desc);
         $tmpLen = mb_strlen($tmpStr);

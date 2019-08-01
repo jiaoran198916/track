@@ -49,7 +49,7 @@ class MasterSearch extends Master
             'query' => $query,
             'pagination' => [
                 'pageSize' => 0,
-            ],
+            ]
         ]);
 
         $this->load($params);

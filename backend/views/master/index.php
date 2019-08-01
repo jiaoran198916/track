@@ -37,7 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
               'value' =>'typeText'
             ],
             'birthday',
-             'city_id',
+            ['attribute' =>'city_id',
+                'value' =>'city'
+            ],
             ['attribute' =>'create_time',
                 'format' =>['date', 'php:Y-m-d H:i:s']
             ],
@@ -88,6 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $(function () {
             $('#example').DataTable({
                 "iDisplayLength" : 20,
+                "order": [[ 0, "desc" ]]
             })
         })
     }

@@ -28,7 +28,7 @@ use yii\helpers\Url;
                     <?php endif;?>
 
                     <tr><td>导演</td><td><?= $model->director ?></td></tr>
-                    <tr><td>音乐</td><td><?= $model->musicians ?></td></tr>
+                    <tr><td>音乐</td><td><?= $model->master ?></td></tr>
                     <tr><td>年份</td><td><?= $model->year?> 年</td></tr>
                     <tr><td>片长</td><td><?= $model->duration ?>分钟</td></tr>
                     <tr><td> </td><td> </td></tr>

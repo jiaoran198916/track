@@ -72,6 +72,46 @@ class Master extends \yii\db\ActiveRecord
         return $str;
     }
 
+    public function getSexText()
+    {
+        switch ($this->sex){
+            case 0:
+                $str = '保密';
+                break;
+            case 1:
+                $str = '男';
+                break;
+            case 2:
+                $str = '女';
+                break;
+            default:
+                $str = '';
+                break;
+        }
+        return $str;
+    }
+
+    /**
+     * 获取地区
+     */
+    public function getCity(){
+        $str = '';
+        $city = City::findOne($this->city_id);
+        if($city){
+            $str = $city->country->name. ','.$city->name;
+        }
+        return $str;
+    }
+
+    /**
+     * 获取链接
+     * @return string
+     */
+    public function getDetail(){
+        return Yii::$app->urlManager->createUrl(
+            ['master/detail','id' => $this->id ]);
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
