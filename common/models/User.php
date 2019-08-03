@@ -20,7 +20,6 @@ use yii\web\IdentityInterface;
  * @property integer $create_time
  * @property integer $update_time
  * @property string $password write-only password
- * @property Comment[] $comments
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -73,6 +72,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'required'],
             [['email'], 'email'],
             [['username'], 'safe'],
+            ['password_reset_token', 'default', 'value' => ''],
         ];
     }
 

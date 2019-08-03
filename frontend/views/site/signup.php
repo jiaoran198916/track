@@ -6,30 +6,46 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use frontend\components\RankingWidget;
 
-$this->title = 'Signup';
+$this->title = '注册';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+<div class="container filepage">
+    <div class="col-md-9">
+        <div class="site-signup">
+            <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+            <p>&nbsp;</p>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <div class="row">
+                <div class="col-lg-5">
+                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'email') ?>
+                    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                    <?= $form->field($model, 'email') ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= $form->field($model, 'password')->passwordInput() ?>
+                    <?= $form->field($model, 'repassword')->passwordInput() ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('注册', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
+                    <hr>
+                    <p>已有账号？去&nbsp;&nbsp;&nbsp;<?= Html::a('登录',['site/login'], ['class' => 'btn btn-success', 'name' => 'signup-button'])?></p>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
+    <div class="col-md-3 bounceInLeft animated" style="padding-right:5px">
+        <div class="list-group">
+            <a href="javascript:" class="list-group-item active">点击排行</a>
+            <?= RankingWidget::widget(['items'=>$hots])?>
+        </div>
+    </div>
+
 </div>

@@ -45,6 +45,9 @@ return [
             'rules' => [
 //                '<controller:\w+>/<id:\d+>' => '<controller>/detail',
                 'about' => 'post/about',
+                'login' => 'site/login',
+                'signup' => 'site/signup',
+                'logout' => 'site/logout',
             '<controller:\w+>/<id:\d+>/'=>'<controller>/detail',
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],

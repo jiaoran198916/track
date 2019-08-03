@@ -1,3 +1,6 @@
+body{
+	font-size: 12px;
+}
 .ch-grid {
 	margin: 20px 0 0 0;
 	padding: 0;
@@ -47,7 +50,7 @@ a:focus, a:hover {
 }
 .navbar-inverse .navbar-nav > li > a {
 	color :#ccc;
-	font-size: 14px;
+	font-size: 12px;
 }
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > li > a:hover{
 	color :#fff;
@@ -92,6 +95,34 @@ a:focus, a:hover {
 	margin-left: 60px;
 	margin-top: 18px;
 }
+
+
+
+.m-tophead{
+	margin-bottom: 0;
+}
+.m-tophead .link{
+	display: block;
+	/*width: 28px;*/
+	/*margin-top: 7px;*/
+	color: #787878;
+	line-height:40px;
+	padding: 15px;
+
+}
+.m-tophead .link:hover{
+	text-decoration: underline;
+	background-color: initial;
+}
+.m-tophead:hover .link {
+	color: #999;
+}
+
+
+
+
+
+
 
 /************************ footer *******************/
 .footer, .footer a {

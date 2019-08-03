@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Movie;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -43,7 +44,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -92,12 +93,17 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
+            $news = Movie::findNewTen();
+            $hots = Movie::findHotTen();
             return $this->render('login', [
                 'model' => $model,
+                'news' => $news,
+                'hots' => $hots,
             ]);
         }
     }
@@ -162,9 +168,13 @@ class SiteController extends Controller
                 }
             }
         }
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
 
         return $this->render('signup', [
             'model' => $model,
+            'news' => $news,
+            'hots' => $hots,
         ]);
     }
 

@@ -15,7 +15,7 @@ class AppAsset extends AssetBundle
         'static/css/bootstrap.css',
         'static/css/font-awesome.min.css',
         'static/css/ihd.css',
-        'static/css/common.css?v=0003',
+        'static/css/common.css?v=0004',
         'static/fonts/NotoSans-Regular.ttf',
         'static/fonts/glyphicons-halflings-regular.woff2',
         'static/fonts/fontawesome-webfont.woff2',

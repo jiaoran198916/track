@@ -65,19 +65,43 @@ AppAsset::register($this);
                 </div>
 
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="javascript:void(0)">游客</a></li>
-<!--                <li class="dropdown">-->
-<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="#">Action</a></li>-->
-<!--                        <li><a href="#">Another action</a></li>-->
-<!--                        <li><a href="#">Something else here</a></li>-->
-<!--                        <li role="separator" class="divider"></li>-->
-<!--                        <li><a href="#">Separated link</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+            <?php
+            if (Yii::$app->user->isGuest){?>
+            <ul class="navbar-right m-tophead">
+               <li class="">
+                <a href="/login" class="link">登录 / 注册</a>
+                </li>
             </ul>
+            <?php } else { ?>
+                <ul class=" nav navbar-nav pull-right">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= Yii::$app->user->identity->username?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+<!--                    <li><a href="/profile/1403789/movies/planned">我的电影</a></li>-->
+<!--                    <li><a href="/profile/1403789/collections/own">我的专辑</a></li>-->
+<!--                    <li><a href="/status/user_comments/1407762">我的影评</a></li>-->
+                    <li><a href="#"><span class="glyphicon glyphicon-heart-empty"></span>&nbsp;我的关注</a></li>
+                    <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;个人设置</a></li>
+<!--                    <li class="divider"></li>-->
+                    <li class="dropdown-item"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;注销</a></li>
+                </ul>
+            </li>
+                </ul>
+            <?php } ?>
+
+<!--            <ul class=" navbar-nav1 navbar-right m-tophead">-->
+<!--                <li class="">-->
+<!--                    <a href="/login" class="link">登录 / 注册<span class="caret"></span></a>-->
+<!--<!--                    <ul class="dropdown-menu">-->-->
+<!--<!--                        <li><a href="#">Action</a></li>-->-->
+<!--<!--                        <li><a href="#">Another action</a></li>-->-->
+<!--<!--                        <li><a href="#">Something else here</a></li>-->-->
+<!--<!--                        <li role="separator" class="divider"></li>-->-->
+<!--<!--                        <li><a href="#">Separated link</a></li>-->-->
+<!--<!--                    </ul>-->-->
+<!---->
+<!--                </li>-->
+<!--            </ul>-->
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
