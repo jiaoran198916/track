@@ -180,7 +180,7 @@ AppAsset::register($this);
             <ul class="list-inline text-center">
                 <li><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备19038064号-1</a></li>
                 <li><a href="/" target="_blank">© 2019 jiaoran.net</a></li>
-                <li><a href="https://www.cnzz.com/stat/website.php?web_id=" target="_blank" title="站长统计">站长统计</a></li>
+                <li><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script></li>
             </ul>
         </div>
     </div>
@@ -218,8 +218,6 @@ AppAsset::register($this);
         </form>
     </div>
 </div>
-
-
 
 <?php $this->endBody() ?>
 </body>
