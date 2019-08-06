@@ -73,7 +73,9 @@ class MovieController extends CommonController
             unset($params['Movie']['id']);
         }else{
             $model = new Movie();
-            $model->loadDefaultValues();
+            $model->status = 1;
+            //取库里的默认值
+//            $model->loadDefaultValues();
         }
         if($params){
             if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){

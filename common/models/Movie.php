@@ -3,8 +3,6 @@
 namespace common\models;
 
 use Yii;
-use yii\helpers\Html;
-
 /**
  * This is the model class for table "movie".
  *

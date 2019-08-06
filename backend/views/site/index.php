@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="<?= Url::to(['movie/index'])?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?= Url::to(['movie/index'])?>" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="<?= Url::to(['master/index'])?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?= Url::to(['master/index'])?>" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="<?= Url::to(['user/index'])?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?= Url::to(['user/index'])?>" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="<?= Url::to(['episode/index'])?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?= Url::to(['episode/index'])?>" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
