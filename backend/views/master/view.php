@@ -18,8 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-body">
-                <!-- /.box-header -->
-                <!-- form start -->
+
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [

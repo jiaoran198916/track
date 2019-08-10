@@ -47,7 +47,7 @@ class CommonController extends Controller
             'msg'=>$msg,
             'data'=>$data
         ];
-        return Json::encode($params);
+        return json_encode($params);
     }
 
 

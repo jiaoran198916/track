@@ -216,6 +216,22 @@ AppAsset::register($this);
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
+                        <span>奖项管理</span>
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="<?= Url::to(['awards/index'])?>"><i class="fa fa-circle-o"></i> 奖项列表</a></li>
+                        <li><a href="<?= Url::to(['awards/create'])?>"><i class="fa fa-plus-circle"></i> 添加奖项</a></li>
+                        <li><a href="<?= Url::to(['awardsitem/index'])?>"><i class="fa fa-circle-o"></i> 电影节列表</a></li>
+                        <li><a href="<?= Url::to(['awardsitem/create'])?>"><i class="fa fa-plus-circle"></i> 添加电影节</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
                         <span>地区管理</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
