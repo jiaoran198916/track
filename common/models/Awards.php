@@ -64,6 +64,15 @@ class Awards extends \yii\db\ActiveRecord
     }
 
     /**
+     * 获取链接
+     * @return string
+     */
+    public function getDetail(){
+        return Yii::$app->urlManager->createUrl(
+            ['awards/detail','id' => $this->id ]);
+    }
+
+    /**
      * 获取奖项条目
      * @return \yii\db\ActiveQuery
      */
@@ -74,7 +83,7 @@ class Awards extends \yii\db\ActiveRecord
             foreach ($items as $v){
                 $res .= Yii::$app->params['awardsItems'][$v] . '，';
             }
-            $res = substr($res, 0 ,-1);
+            $res = mb_substr($res, 0 ,-1);
         }else{
             $res = Yii::$app->params['awardsItems'][$this->item_id];
         }

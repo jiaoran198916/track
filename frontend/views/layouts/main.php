@@ -50,6 +50,7 @@ AppAsset::register($this);
             <ul class="nav navbar-nav">
                 <li class="<?= (Yii::$app->request->getUrl() == '/' || Yii::$app->request->getUrl() == '') ? 'active':''?>"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
                 <li class="<?= (Yii::$app->request->getUrl() == '/movie') ? 'active':''?>"><a href="/movie">电影</a></li>
+                <li class="<?= (Yii::$app->request->getUrl() == '/awards') ? 'active':''?>"><a href="/awards">奖项</a></li>
                 <li class="<?= (Yii::$app->request->getUrl() == '/about') ? 'active':''?>"><a href="/about">关于</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="<?= Url::to(['movie/index'])?>" method="get">
@@ -220,6 +221,8 @@ AppAsset::register($this);
 </div>
 
 <?php $this->endBody() ?>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1277889664&web_id=1277889664"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
