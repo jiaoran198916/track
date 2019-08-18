@@ -210,6 +210,8 @@ AppAsset::register($this);
                     <ul class="treeview-menu">
                         <li><a href="<?= Url::to(['post/index'])?>"><i class="fa fa-circle-o"></i> 文章列表</a></li>
                         <li><a href="<?= Url::to(['post/create'])?>"><i class="fa fa-plus-circle"></i> 添加文章</a></li>
+                        <li><a href="<?= Url::to(['cate/index'])?>"><i class="fa fa-circle-o"></i> 分类列表</a></li>
+                        <li><a href="<?= Url::to(['cate/create'])?>"><i class="fa fa-plus-circle"></i> 添加分类</a></li>
                     </ul>
                 </li>
 

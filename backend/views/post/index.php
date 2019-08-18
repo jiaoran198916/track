@@ -34,18 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' =>'id',
                 'contentOptions' => ['width' =>'30px']
             ],
-            'title',
-             //'author_id',
-            ['attribute' =>'authorName',
-             'label' => '作者',
-             'value' => 'author.nickname'
+            'name',
+            ['attribute' =>'cate_id',
+             'value' => 'cate.name'
             ],
-            'key',
-            ['attribute' =>'type',
-                'value' =>function($model){
-                    return \common\models\Post::postType()[$model->type];
-                }
-            ],
+            'count',
 //            'content:ntext',
             'tags:ntext',
             ['attribute' =>'create_time',
@@ -97,7 +90,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     window.onload = function(){
         $(function () {
-            $('#example').DataTable()
+            $('#example').DataTable({
+                "iDisplayLength" : 20,
+                "order": [[ 0, "desc" ]]
+            })
         })
     }
 </script>

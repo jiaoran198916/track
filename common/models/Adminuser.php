@@ -10,17 +10,6 @@ use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "adminuser".
- *
- * @property integer $id
- * @property string $username
- * @property string $nickname
- * @property string $password
- * @property string $auth_key
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $profile
- * @property Post[] $posts
  */
 class Adminuser extends ActiveRecord implements IdentityInterface
 {
