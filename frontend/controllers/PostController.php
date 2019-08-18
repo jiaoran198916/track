@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Cate;
 use Yii;
 use common\models\Post;
 use common\models\Movie;
@@ -38,13 +39,22 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-
+        $params = Yii::$app->request->queryParams;
+        if(isset($params['cate_id'])){
+            $params['PostSearch']['cate_id'] = $params['cate_id'];
+        }
         $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($params);
+
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'news' => $news,
+            'hots' => $hots,
+            'cates' => Cate::find()->where(['valid' => 1])->orderBy('position asc')->all(),
         ]);
     }
 
@@ -126,19 +136,20 @@ class PostController extends Controller
         }
     }
 
-    public function actionDetail()
+    public function actionDetail($id)
     {
+        $model = $this->findModel($id);
 
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
-        //step3.传数据给视图渲染
+        //访问数+1
+        $model->updateCounters(['count' => 1]);
 
         return $this->render('detail',[
-//            'model'=>$model,
+            'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,
-            'added'=>$this->added,
         ]);
 
     }

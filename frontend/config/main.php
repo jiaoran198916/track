@@ -49,6 +49,7 @@ return [
                 'signup' => 'site/signup',
                 'logout' => 'site/logout',
             '<controller:\w+>/<id:\d+>/'=>'<controller>/detail',
+            '<controller:\w+>/index/<cate_id:\d+>/'=>'<controller>/index',
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
         ],

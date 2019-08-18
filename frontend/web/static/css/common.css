@@ -337,5 +337,34 @@ a:focus, a:hover {
 	margin-bottom: 0;
 }
 
+/******************** 文章首页 start  **********************/
+.ps-r {
+	position: relative;
+}
+.pr-6 {
+	padding-right: 30px;
+}
+.category-nav li {
+	display: inline-block;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.category-nav li a.active, .category-nav li a:hover {
+	background: #171717;
+	color: #fff;
+}
+.category-nav li a {
+	background: #f4f4f4;
+	display: inline-block;
+	padding: 7px 22px;
+	border-radius: 20px;
+	color: #171717;
+	margin: 0 5px 10px 0;
+}
+/******************** 文章首页 end  **********************/
+
 
 

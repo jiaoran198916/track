@@ -48,8 +48,9 @@ AppAsset::register($this);
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="<?= (Yii::$app->request->getUrl() == '/' || Yii::$app->request->getUrl() == '') ? 'active':''?>"><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <!--<li class="/*= (Yii::$app->request->getUrl() == '/' || Yii::$app->request->getUrl() == '') ? 'active':''*/?>"><a href="/">首页 <span class="sr-only">(current)</span></a></li>-->
                 <li class="<?= (Yii::$app->request->getUrl() == '/movie') ? 'active':''?>"><a href="/movie">电影</a></li>
+                <li class="<?= (Yii::$app->request->getUrl() == '/post') ? 'active':''?>"><a href="/post">文章</a></li>
                 <li class="<?= (Yii::$app->request->getUrl() == '/awards') ? 'active':''?>"><a href="/awards">奖项</a></li>
                 <li class="<?= (Yii::$app->request->getUrl() == '/about') ? 'active':''?>"><a href="/about">关于</a></li>
             </ul>
