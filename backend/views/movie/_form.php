@@ -27,9 +27,9 @@ use common\models\Movie;
 
     <?= $form->field($model, 'year', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->dropDownList(Movie::getYearData(),['class' => 'select2', 'style' => 'width: 100%;']) ?>
 
-    <?= $form->field($model, 'musician_id', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
+    <?= $form->field($model, 'musician_id', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
 
-    <?= $form->field($model, 'director_id')->dropDownList(Master::find()->select(['name', 'id'])->where('type=1')->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择导演"]) ?>
+    <?= $form->field($model, 'director_id')->dropDownList(Master::find()->select(['name', 'id'])->where('type=1')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择导演"]) ?>
 
     <?= $form->field($model, 'desc')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'duration', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->textInput() ?>
