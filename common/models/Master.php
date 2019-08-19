@@ -25,6 +25,7 @@ class Master extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
+            ['name', 'unique'],
             [['desc'], 'string'],
             [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid','city_id', 'sex'], 'integer'],
             [['name', 'ename',  'birthday'], 'string', 'max' => 128],
