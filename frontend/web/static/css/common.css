@@ -29,6 +29,20 @@ body{
 a:focus, a:hover {
 	text-decoration: none;
 }
+
+/*******************  common  ***************/
+.bg{
+	background-color: #eee;
+}
+.text-common{
+	font-size: 16px !important;
+	line-height: 1.9em;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+
+
 /******************* nav ****************/
 .navbar{
 	min-height:70px;

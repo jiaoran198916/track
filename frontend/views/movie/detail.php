@@ -20,8 +20,8 @@ use yii\helpers\Url;
     <div class="col-md-9">
         <div class="row">
             <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->ename?> (<?= $model->year?>)</small></h2></div>
-            <div class="col-xs-12 col-sm-5 col-md-5 poster">
-                <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->cover ?>" style="width: 300px;height: 444px;" alt="<?= $model->name?>电影海报"></div>
+            <div class="col-xs-12 col-sm-4 col-md-4 poster">
+                <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->cover ?>" style="width: 225px;height: 333px;" alt="<?= $model->name?>电影海报"></div>
             <div class="col-xs-12 col-sm-7 col-md-7 m-t-15"><table border="0" class="file-intro"><tbody>
                     <?php if($model->ename): ?>
                         <tr><td>又名</td><td><?= $model->ename ?></td></tr>
@@ -34,21 +34,18 @@ use yii\helpers\Url;
                     <tr><td> </td><td> </td></tr>
                     <tr><td>发布</td><td><?= date('Y-m-d',$model->create_time)?></td></tr>
                     <tr><td>浏览</td><td><?= $model->count ?> 次</td></tr>
-                    </tbody></table>
-
-                <table class="score-intro"><tbody><tr>
-                        <th align="center" scope="col">
-                            <a href="https://movie.douban.com/subject/<?= $model->douban_id ?>/" target="_blank" class="score-block btn-success img-circle animated rotateIn" data-toggle="tooltip" data-placement="top" title="" data-original-title="豆瓣">7<small>.6</small></a>
-                        </th>
+                    <tr><td> </td><td> </td></tr>
+                    <tr><td>豆瓣</td>
+                        <td>
+                            <a href="https://movie.douban.com/subject/<?= $model->douban_id ?>/" target="_blank" class=""><?= $model->douban_id ?></a>
+                        </td>
                     </tr>
-                    </tbody>
-                </table>
-
+                    </tbody></table>
             </div>
         </div>
         <div class="row m-t-10">
             <div class="title"><h3>音乐简介 <small>Description</small></h3></div>
-            <div class="intro">
+            <div class="intro bg text-common">
                 　　<?= $model->desc ?>
             </div>
 
