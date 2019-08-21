@@ -39,9 +39,9 @@ a:focus, a:hover {
 	line-height: 1.9em;
 	margin-bottom: 10px;
 	color: #333;
+	margin-left: 10px;
+	border-radius: 6px;
 }
-
-
 
 /******************* nav ****************/
 .navbar{
