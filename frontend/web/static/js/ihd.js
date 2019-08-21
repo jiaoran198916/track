@@ -311,6 +311,6 @@ function UserUpdata(){
 }
 
 (function(){
-   var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?25b16f30ca46b8c804fe7f4c01187871":"https://jspassport.ssl.qhimg.com/11.0.1.js?25b16f30ca46b8c804fe7f4c01187871";
-   document.write('<script src="' + src + '" id="sozz"><\/script>');
+   // var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?25b16f30ca46b8c804fe7f4c01187871":"https://jspassport.ssl.qhimg.com/11.0.1.js?25b16f30ca46b8c804fe7f4c01187871";
+   // document.write('<script src="' + src + '" id="sozz"><\/script>');
 })();	
