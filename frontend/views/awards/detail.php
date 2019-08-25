@@ -40,8 +40,16 @@ use yii\helpers\Url;
 
 
             <div class="title"><h3>历届电影节 <small>Festivals</small></h3></div>
-            <div class="tab-content">
-
+            <div class="intro">
+                <?php
+                if($model->awardsitems):
+                    foreach ($model->awardsitems as $k => $v):?>
+                        <div class="col-xs-6 col-sm-4 col-md-3">
+                        <a class="btn btn-primary btn-block" href="<?= $v->detail?>" role="button" target="_blank">第 <?= $v->idx?> 届 <samll>(<?= $v->year?>)</samll></a>
+                        </div>
+                    <?php
+                    endforeach;
+                endif;?>
             </div>
         </div>
     </div>

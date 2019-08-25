@@ -64,6 +64,15 @@ class Awards extends \yii\db\ActiveRecord
     }
 
     /**
+     * 获取历届电影节
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAwardsitems()
+    {
+        return $this->hasMany(Awardsitem::className(), ['awards_id' => 'id'])->where(['valid' => 1])->orderBy(['idx' => SORT_DESC, 'id' =>SORT_ASC]);
+    }
+
+    /**
      * 获取链接
      * @return string
      */
@@ -71,6 +80,8 @@ class Awards extends \yii\db\ActiveRecord
         return Yii::$app->urlManager->createUrl(
             ['awards/detail','id' => $this->id ]);
     }
+
+
 
     /**
      * 获取奖项条目

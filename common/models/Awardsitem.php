@@ -63,6 +63,15 @@ class Awardsitem extends \yii\db\ActiveRecord
      * 获取链接
      * @return string
      */
+    public function getDetail(){
+        return Yii::$app->urlManager->createUrl(
+            ['awardsitem/detail','id' => $this->id ]);
+    }
+
+    /**
+     * 获取链接
+     * @return string
+     */
     public function getUrl(){
         return Yii::$app->urlManager->createUrl(
             ['awardsitem/view','id' => $this->id ]);
