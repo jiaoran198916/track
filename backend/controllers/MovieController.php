@@ -77,6 +77,10 @@ class MovieController extends CommonController
             //取库里的默认值
 //            $model->loadDefaultValues();
         }
+        if ($model->load($params) && Yii::$app->request->isAjax) {
+            Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+            return \yii\bootstrap\ActiveForm::validate($model);
+        }
         if($params){
             if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
                 $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
@@ -108,6 +112,10 @@ class MovieController extends CommonController
             $id = $params['Movie']['id'];
         }
         $model = $this->findModel($id);
+        if ($model->load($params) && Yii::$app->request->isAjax) {
+            Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+            return \yii\bootstrap\ActiveForm::validate($model);
+        }
 
         if($params){
             if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
@@ -115,7 +123,8 @@ class MovieController extends CommonController
             }
             if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
                 $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
-            }        }
+            }
+        }
 
         if ($model->load($params) && $model->save()) {
             return $this->redirect(['index']);

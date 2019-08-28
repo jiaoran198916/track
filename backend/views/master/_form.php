@@ -10,7 +10,7 @@ use common\models\City;
 <link rel="stylesheet" href="/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 
-<?php $form = ActiveForm::begin(['options' => ['role' => 'form']]); ?>
+<?php $form = ActiveForm::begin(['options' => ['role' => 'form'], 'enableAjaxValidation' => true]); ?>
 <div class="box-body">
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>

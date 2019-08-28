@@ -17,7 +17,7 @@ use common\models\Movie;
         color: red;
     }
 </style>
-<?php $form = ActiveForm::begin(['options' => ['role' => 'form'], 'action' => \yii\helpers\Url::to(['create'])]); ?>
+<?php $form = ActiveForm::begin(['options' => ['role' => 'form'], 'enableAjaxValidation' => true, 'action' => \yii\helpers\Url::to(['create'])]); ?>
 <div class="box-body">
 
     <input type="hidden" id="movie-id" name="Movie[id]" value="<?= $model->id? $model->id: 0?>">

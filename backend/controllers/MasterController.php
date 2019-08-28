@@ -62,6 +62,11 @@ class MasterController extends CommonController
     {
         $model = new Master();
 
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+             Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+             return \yii\bootstrap\ActiveForm::validate($model);
+         }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
@@ -81,6 +86,11 @@ class MasterController extends CommonController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+             Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+            return \yii\bootstrap\ActiveForm::validate($model);
+         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
