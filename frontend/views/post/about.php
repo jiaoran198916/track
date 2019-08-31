@@ -53,8 +53,9 @@ use frontend\components\RankingWidget;
                 </div>
                 <div class="panel-body">
                     <p>目前网站只本人一个人负责，目前在职，利用业余时间在做，决定做这个公益性质的项目，纯兴趣使然，所以诚心邀请有志者参与进来，技术帮助，产品设计，宣传推广都非常欢迎！</p>
-                    <p>如感兴趣可扫码下面微信二维码</p>
-                    <img src="/static/images/erweima.jpg" class="img-responsive" alt="" style="width: 300px;">
+                    <p>如感兴趣可扫码下面个人微信二维码，右边为粉丝群，可扫描加入</p>
+                    <img src="/static/images/erweima.jpg" class="" alt="" style="width: 300px;">
+                    <img src="/static/images/fans.jpg" class="pull-right" alt="" style="width: 300px;">
                 </div>
             </div>
 
