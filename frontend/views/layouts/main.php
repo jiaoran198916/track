@@ -24,9 +24,9 @@ AppAsset::register($this);
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <?= Html::csrfMetaTags() ?>
-    <meta name="keywords" content="电影原声,皎然影音乐,原声,原声带,OST,电影音乐,Soundtrack,原声下载,原声音乐下载">
-    <meta name="Description" content="皎然影音乐，专注于电影原声音乐分享与下载">
-    <title>皎然影音乐 - 专注于电影原声音乐分享与下载</title>
+    <meta name="keywords" content="电影原声,皎然影音乐,原声,原声带,OST,电影音乐,Soundtrack,原声下载,原声音乐下载，score">
+    <meta name="Description" content="皎然影音乐，专注于电影音乐的盘点与分享">
+    <title>皎然影音乐 - 专注于电影音乐的盘点与分享</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -145,7 +145,7 @@ AppAsset::register($this);
                 <h4>
                     <img src="/static/images/logofooter.png" width="241">
                 </h4>
-                <p>一个专注于<strong>电影原声</strong>分享与下载的网站</p>
+                <p>一个专注于<strong> 电影音乐 </strong>盘点与分享的网站</p>
             </div>
             <div class="col-md-6  col-lg-5 col-lg-offset-1">
                 <div class="row about">
@@ -170,7 +170,7 @@ AppAsset::register($this);
                         <ul class="list-unstyled">
                             <li><a href="https://www.yiichina.com/" target="_blank">Yii中文网</a></li>
                             <li><a href="https://movie.douban.com/" target="_blank">豆瓣电影</a></li>
-                            <li><a href="https://www.bootcdn.cn/" target="_blank">BootCDN</a></li>
+                            <li><a href="http://www.ttost.com/" target="_blank">听听原声</a></li>
                         </ul>
                     </div>
                 </div>
