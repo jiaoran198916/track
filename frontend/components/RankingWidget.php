@@ -25,6 +25,9 @@ class RankingWidget extends Widget
             case 'score':
                 $val = 'score';
                 break;
+            case 'post':
+                $val = 'post';
+                break;
             default:
                 $val = 'score';
                 break;
@@ -32,8 +35,12 @@ class RankingWidget extends Widget
 		
 		foreach ($this->items as $key => $item)
 		{
+		    if($val == 'post'){
+                $itemString.= '<a href="'.$item->url.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item single">【'.$item->cate->name.'】'.$item->name.'</a>';
+            }else{
+                $itemString.= '<a href="'.$item->detail.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item">'.$item->name.'<span class="badge" >'.(($val == 'score') ? $item->count : date('m-d',$item->create_time)).'</span></a>';
 
-            $itemString.= '<a href="'.$item->detail.'" alt="'.$item->name .'" title="'. $item->name .'" target="_blank" class="list-group-item">'.$item->name.'<span class="badge" >'.(($val == 'score') ? $item->count : date('m-d',$item->create_time)).'</span></a>';
+            }
 
 		}
 

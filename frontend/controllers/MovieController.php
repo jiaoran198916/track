@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Banner;
+use common\models\Post;
 use common\models\Resource;
 use Yii;
 use common\models\Movie;
@@ -42,6 +43,7 @@ class MovieController extends Controller
         $bannerModel = Banner::getBannerData();
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
+        $posts = Post::findNewTen();
         $dataProvider->pagination = [
             'pageSize' => 6,
         ];
@@ -57,6 +59,7 @@ class MovieController extends Controller
             'bannerData' => $bannerModel,
             'news' => $news,
             'hots' => $hots,
+            'posts' => $posts,
             'keyword' => $keyword
         ]);
     }

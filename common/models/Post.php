@@ -92,7 +92,14 @@ class Post extends \yii\db\ActiveRecord
         }else{
             return false;
         }
+    }
 
+    /**
+     * 获取最新文章
+     * @return object
+     */
+    public static function findNewTen(){
+        return Post::find()->where(['valid' => 1])->orderBy(['create_time' => SORT_DESC])->limit(10)->all();
     }
 
     public function getUrl(){

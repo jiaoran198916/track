@@ -28,7 +28,7 @@ use yii\helpers\Url;
 
             <br>
 
-            <div class="content">
+            <div class="content text-common bg">
                 <?= HTMLPurifier::process($model->content)?>
             </div>
 
@@ -38,7 +38,7 @@ use yii\helpers\Url;
                 <?php
                 if(!empty($model->tags)): ?>
                     <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                    <?= implode(',',$model->tags);?>
+                    <?= $model->tags?>
                 <?php endif;?>
 
                 <br>
