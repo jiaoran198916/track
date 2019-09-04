@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use common\models\Banner;
+use common\models\Episode;
+use common\models\Master;
 use common\models\Post;
 use common\models\Resource;
 use Yii;
@@ -60,7 +62,10 @@ class MovieController extends Controller
             'news' => $news,
             'hots' => $hots,
             'posts' => $posts,
-            'keyword' => $keyword
+            'keyword' => $keyword,
+            'movieCount' => Movie::find()->count(),
+            'masterCount' => Master::find()->count(),
+            'episodeCount' => Episode::find()->count(),
         ]);
     }
 

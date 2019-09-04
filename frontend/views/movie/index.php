@@ -100,6 +100,25 @@ use frontend\components\RankingWidget;
 
     </div>
     <div class="col-md-3 bounceInLeft animated" style="padding-right:5px">
+        <div class="count-box list-group clearfix">
+            <div>
+                <strong>本站收录</strong>
+            </div>
+            <div class="col-md-4">
+                <h2><?= $movieCount?></h2>
+                <p>电影</p>
+            </div>
+            <div class="col-md-4">
+                <h2><?= $masterCount?></h2>
+                <p>作曲家</p>
+            </div>
+            <div class="col-md-4">
+                <h2><?= $episodeCount?></h2>
+                <p>歌曲</p>
+            </div>
+
+        </div>
+
         <div class="widget widget_ui_textasb list-group">
             <a class="style02" href="<?= Yii::$app->urlManager->createUrl(
             ['post/detail','id' => '1235',

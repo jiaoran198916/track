@@ -394,6 +394,25 @@ ul {
 }
 /******************** 文章详情 end  **********************/
 
+.count-box{
+	border: 1px solid #eaeaea;
+	background-color: #fff;
+	font-size: 12px;
+	border-radius: 4px;
+}
+.count-box strong{
+	background-color:#FF5E52;
+	margin: -1px 0 0 15px;
+	display: inline-block;
+	padding: 4px 15px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+}
+.count-box .col-md-4{
+	text-align: center;
+}
+
 /******************** fuliba ********************/
 /* widget_ui_textads ======================================================================================================== */
 .widget_nav_menu ul {
