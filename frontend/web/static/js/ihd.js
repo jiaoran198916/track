@@ -46,24 +46,24 @@ $(function(){
 		}
 	});
 	
-    $("#tab1 .imglist,#tab2 .imglist,#tab3 .imglist").slick({
-        dots:false,infinite:false,speed:300,slidesToShow:5,slidesToScroll:5,
-        responsive:[
-            {breakpoint:1200,settings:{slidesToShow:4,slidesToScroll:4}},
-            {breakpoint:700,settings:{slidesToShow:3,slidesToScroll:3}},
-	        {breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
-	        {breakpoint:480,settings:{slidesToShow:2,slidesToScroll:1}}
-        ],init:(function(){alert(3)})
-    });
+    // $("#tab1 .imglist,#tab2 .imglist,#tab3 .imglist").slick({
+    //     dots:false,infinite:false,speed:300,slidesToShow:5,slidesToScroll:5,
+    //     responsive:[
+    //         {breakpoint:1200,settings:{slidesToShow:4,slidesToScroll:4}},
+    //         {breakpoint:700,settings:{slidesToShow:3,slidesToScroll:3}},
+	 //        {breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
+	 //        {breakpoint:480,settings:{slidesToShow:2,slidesToScroll:1}}
+    //     ],init:(function(){alert(3)})
+    // });
 	
 	window.setTimeout(function(){
 		$("#tab2,#tab1").removeClass("active");
 	},500);
 	
-	$("img.l_d").lazyload({
-		effect:"fadeIn",
-		threshold:100
-	});
+	// $("img.l_d").lazyload({
+	// 	effect:"fadeIn",
+	// 	threshold:100
+	// });
 
 	if ($(".filepage #trailer").length > 0){
 	    $(".filepage #trailer button").click(function(){
@@ -199,34 +199,34 @@ $(function(){
 		if (r != null) return decodeURI(r[2]); return null;
 	}
 	
-	$(".coll-panel").slick({
-        dots:false,infinite:false,speed:300,slidesToShow:5,slidesToScroll:5,
-        responsive:[
-            {breakpoint:1200,settings:{slidesToShow:4,slidesToScroll:4}},
-            {breakpoint:700,settings:{slidesToShow:3,slidesToScroll:3}},
-	        {breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
-	        {breakpoint:480,settings:{slidesToShow:2,slidesToScroll:1}}
-        ]
-    });
+    // $(".coll-panel").slick({
+    //     dots:false,infinite:false,speed:300,slidesToShow:5,slidesToScroll:5,
+    //     responsive:[
+    //         {breakpoint:1200,settings:{slidesToShow:4,slidesToScroll:4}},
+    //         {breakpoint:700,settings:{slidesToShow:3,slidesToScroll:3}},
+	 //        {breakpoint:600,settings:{slidesToShow:2,slidesToScroll:2}},
+	 //        {breakpoint:480,settings:{slidesToShow:2,slidesToScroll:1}}
+    //     ]
+    // });
 	
 	$('[data-toggle="tooltip"]').tooltip();
 	
-	$.scrollUp({
-		scrollName:'scrollUp',
-        scrollDistance:300,
-        scrollFrom:'top',
-        scrollSpeed:300,
-        easingType:'linear',        // Scroll to top easing (see http://easings.net/)
-        animation:'fade',           // Fade, slide, none
-        animationSpeed:200,         // Animation speed (ms)
-        scrollTrigger:false,        // Set a custom triggering element. Can be an HTML string or jQuery object
-        scrollTarget:false,         // Set a custom target element for scrolling to. Can be element or number
-        scrollText:'Scroll to top', // Text for element, can contain HTML
-        scrollTitle:false,          // Set a custom <a> title if required.
-        scrollImg:true,            // Set true to use image
-        activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-        zIndex: 2147483647     
-	});
+	// $.scrollUp({
+	// 	scrollName:'scrollUp',
+     //    scrollDistance:300,
+     //    scrollFrom:'top',
+     //    scrollSpeed:300,
+     //    easingType:'linear',        // Scroll to top easing (see http://easings.net/)
+     //    animation:'fade',           // Fade, slide, none
+     //    animationSpeed:200,         // Animation speed (ms)
+     //    scrollTrigger:false,        // Set a custom triggering element. Can be an HTML string or jQuery object
+     //    scrollTarget:false,         // Set a custom target element for scrolling to. Can be element or number
+     //    scrollText:'Scroll to top', // Text for element, can contain HTML
+     //    scrollTitle:false,          // Set a custom <a> title if required.
+     //    scrollImg:true,            // Set true to use image
+     //    activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+     //    zIndex: 2147483647
+	// });
 	
 	/* 百度分享开始 */
 	var $bdPic = window.location.hostname + ((window.location.href.indexOf("/file/") > 0)?$(".poster img").attr("src"):"/images/web/web_logo.gif");
