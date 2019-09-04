@@ -27,7 +27,8 @@ use common\models\Adminuser;
 
     <?= $form->field($model, 'movie_id')->dropDownList(\common\models\Movie::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;']) ?>
 
-    <?= $form->field($model, 'content', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}'])->input('hidden') ?>
+    <div id="container"></div>
 
     <?= $form->field($model, 'tags')->textarea(['rows' => 6]) ?>
 
@@ -46,7 +47,20 @@ use common\models\Adminuser;
     window.onload = function(){
         $(function () {
             //Initialize Select2 Elements
-            $('.select2').select2()
+            $('.select2').select2();
+
+            let E = window.wangEditor;
+            let editor = new E('#container');
+            let $content = $('#post-content');
+            editor.customConfig.onchange = function (html) {
+                // 监控变化，同步更新到 textarea
+                $content.val(html)
+            };
+            editor.customConfig.uploadImgShowBase64 = true;
+            editor.create();
+            // 初始化 textarea 的值
+            editor.txt.html($content.val())
+
         })
     }
 

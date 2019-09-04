@@ -29,7 +29,7 @@ use yii\helpers\Url;
             <br>
 
             <div class="content text-common bg">
-                <?= HTMLPurifier::process($model->content)?>
+                <?= ($model->content)?>
             </div>
 
             <br>

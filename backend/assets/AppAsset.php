@@ -48,6 +48,7 @@ class AppAsset extends AssetBundle
     "/static/plugins/input-mask/jquery.inputmask.date.extensions.js",
     "/static/plugins/input-mask/jquery.inputmask.extensions.js",
     "/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
+    "/static/plugins/wangEditor/wangEditor.min.js",
     "/static/dialog/layer.js",
     "/js/dialog.js",
     ];
