@@ -110,13 +110,12 @@ use frontend\components\RankingWidget;
             </div>
             <div class="col-md-4">
                 <h2><?= $masterCount?></h2>
-                <p>作曲家</p>
+                <p>音乐家</p>
             </div>
             <div class="col-md-4">
                 <h2><?= $episodeCount?></h2>
                 <p>歌曲</p>
             </div>
-
         </div>
 
         <div class="widget widget_ui_textasb list-group">

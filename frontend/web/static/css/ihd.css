@@ -39,19 +39,20 @@ body,.tooltip-inner{
 
 .homepage,.filepage{
 	margin-top:90px;
+	min-height: 600px;
 }
 
-.list-group-item.active{
+.sidebar .list-group-item.active{
     background-color:#333;
     border-color:#333
 }
 
-.list-group-item.active:hover {
+.sidebar .list-group-item.active:hover {
     background-color:#c9302c;
     border-color:#c9302c;
 }
 
-.list-group-item:not(.active):nth-child(odd){
+.sidebar .list-group-item:not(.active):nth-child(odd){
 	background:#f3f3f3;
 }
 
@@ -202,7 +203,7 @@ body,.tooltip-inner{
 	padding:0px 10px 0px 10px;
 }
 
-.filepage .tab-pane{
+.filepage .tab-pane1{
     border:solid 1px #ddd;
     border-radius:4px;
     padding:15px;

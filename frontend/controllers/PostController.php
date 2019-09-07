@@ -3,6 +3,9 @@
 namespace frontend\controllers;
 
 use common\models\Cate;
+use common\models\Episode;
+use common\models\Master;
+use common\models\Source;
 use Yii;
 use common\models\Post;
 use common\models\Movie;
@@ -166,6 +169,10 @@ class PostController extends Controller
 //            'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,
+            'movieCount' => Movie::find()->count(),
+            'masterCount' => Master::find()->count(),
+            'episodeCount' => Episode::find()->count(),
+            'source' => Source::findAll('valid=1'),
         ]);
 
     }

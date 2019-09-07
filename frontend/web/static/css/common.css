@@ -1,5 +1,5 @@
 body{
-	font-size: 12px;
+	font-size: 14px;
 }
 .ch-grid {
 	margin: 20px 0 0 0;
@@ -132,8 +132,24 @@ a:focus, a:hover {
 	color: #999;
 }
 
+/********************
+*	关于我们
+ */
+.about .list-group-item{
+	font-size: 1.5rem;
+	letter-spacing: 2px;
+	/*text-align: center;*/
+	padding-left: 20px;
+}
 
-
+.count-about .col-md-4{
+	text-align: center;
+}
+.count-about p{
+	/*font-size: 1.75rem;*/
+	/*font-weight: 700;*/
+	/*padding: 0 30px;*/
+}
 
 
 

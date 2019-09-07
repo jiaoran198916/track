@@ -15,7 +15,7 @@ class AppAsset extends AssetBundle
         'static/css/bootstrap.min.css',
         'static/css/font-awesome.min.css',
         'static/css/ihd.css',
-        'static/css/common.css?v=0008'
+        'static/css/common.css?v=0009'
     ];
     public $js = [
         'static/js/jquery.min.js',
