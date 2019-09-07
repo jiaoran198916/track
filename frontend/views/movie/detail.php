@@ -108,7 +108,13 @@ use yii\helpers\Url;
 
                             <tr id="<?= ($v->is_download == 0) ?'online':'download' ?>">
                                 <td>
-                                    <div><?= $v->name ?></div>
+
+                                    <div><img src="/static/images/cdbao.png" alt="" height="20"><?= $v->name ?></div>
+                                    <?php if(!Yii::$app->user->isGuest):
+                                    ?>
+                                    <div style="padding-left: 20px"><?= $v->desc ?></div>
+                                    <?php endif;
+                                    ?>
 <!--                                    <div class="label label-default">7.6 GB</div><div class="label label-success">磁力</div>-->
                                 </td>
                                 <td class="t_dwn"><a href="<?= $v->url ?>" target="_blank" class="btn btn-default pull-right"><?= ($v->is_download == 0) ?'跳转':'下载' ?></a>
