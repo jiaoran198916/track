@@ -145,13 +145,22 @@ use frontend\components\RankingWidget;
                                 <tr>
                                     <td>1</td>
                                     <td>
+                                        百度网盘 <img src="/static/images/baiduyun.jpg" alt="" height="20">
+                                    </td>
+                                    <td></td>
+                                    <td>个人上传的资源一般会通过度盘分享，需登录下载</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>
                                         CD包音乐网 <img src="/static/images/cdbao.png" alt="" height="20">
                                     </td>
                                     <td><a href="https://www.cdbao.net/" target="_blank">https://www.cdbao.net/</a></td>
                                     <td>高清音质分享下载论坛，有原声版块</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
+                                    <td>3</td>
                                     <td>
                                         听听原声 <img src="/static/images/ttost.png" alt="" height="20" style="background: #000">
                                     </td>
