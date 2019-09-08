@@ -28,6 +28,7 @@ use yii\helpers\Url;
                     <tr><td>性别</td><td><?= $model->sexText ?></td></tr>
                     <tr><td>出生</td><td><?= $model->birthday ?></td></tr>
                     <tr><td>地区</td><td><?= $model->city?> </td></tr>
+                    <tr><td>官网</td><td><a href="<?= $model->official?>" target="_blank"><?= $model->official?></a> </td></tr>
                     <tr><td>豆瓣</td><td><a href="https://movie.douban.com/celebrity/<?= $model->douban_id ?>/" target="_blank"><?= $model->douban_id ?></a></td></tr>
                     <tr><td> </td><td> </td></tr>
                     <tr><td>发布</td><td><?= date('Y-m-d',$model->create_time)?></td></tr>

@@ -29,6 +29,7 @@ use common\models\City;
     <?= $form->field($model, 'desc')->textarea() ?>
 
     <?= $form->field($model, 'douban_id')->input('number') ?>
+    <?= $form->field($model, 'official')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择作者']) ?>
 

@@ -27,8 +27,9 @@ class Master extends \yii\db\ActiveRecord
             [['name'], 'required'],
             ['name', 'unique', 'message' => '艺术家已存在'],
             [['desc'], 'string'],
+            [['official'], 'url'],
             [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid','city_id', 'sex'], 'integer'],
-            [['name', 'ename',  'birthday'], 'string', 'max' => 128],
+            [['name', 'ename',  'birthday', 'official'], 'string', 'max' => 128],
             [['pic'], 'string', 'max' => 255],
             [['douban_id', 'user_id', 'sex','city_id'], 'default', 'value' => 0],
         ];
@@ -49,6 +50,7 @@ class Master extends \yii\db\ActiveRecord
             'birthday' => '生日',
             'city_id' => '所在地',
             'desc' => '简介',
+            'official' => '官方网站',
             'douban_id' => '豆瓣 ID',
             'user_id' => '创建用户',
             'create_time' => '创建时间',

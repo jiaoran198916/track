@@ -19,7 +19,7 @@ class MasterSearch extends Master
     {
         return [
             [['id', 'douban_id', 'user_id', 'create_time', 'update_time'], 'integer'],
-            [['name', 'ename', 'pic', 'birthday', 'city_id', 'desc'], 'safe'],
+            [['name', 'ename', 'pic', 'birthday', 'city_id', 'desc', 'official'], 'safe'],
         ];
     }
 
