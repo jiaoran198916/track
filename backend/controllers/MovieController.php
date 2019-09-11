@@ -105,7 +105,8 @@ class MovieController extends CommonController
             if(isset($params['Movie']['language_id']) && !empty($params['Movie']['language_id'])){
                 $params['Movie']['language_id'] = implode(',', $params['Movie']['language_id']);
             }
-            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover'])){
+            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover']) && (strpos($model->cover, 'cdn') !== false)){
+                //去除cdn前缀
                 $params['Movie']['cover'] = substr($params['Movie']['cover'], 23);
             }
         }
@@ -153,7 +154,7 @@ class MovieController extends CommonController
             if(isset($params['Movie']['language_id']) && !empty($params['Movie']['language_id'])){
                 $params['Movie']['language_id'] = implode(',', $params['Movie']['language_id']);
             }
-            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover'])){
+            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover']) && (strpos($model->cover, 'cdn') !== false)){
                 //去除cdn前缀
                 $params['Movie']['cover'] = substr($params['Movie']['cover'], 23);
             }
