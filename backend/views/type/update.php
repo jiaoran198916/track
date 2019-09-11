@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Cate */
+/* @var $model common\models\Type */
 
-$this->title = '修改文章分类';
-$this->params['breadcrumbs'][] = ['label' => '分类列表', 'url' => ['index']];
+$this->title = '修改类型';
+$this->params['breadcrumbs'][] = ['label' => '类型列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="content">
@@ -22,4 +22,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
-

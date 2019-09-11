@@ -21,16 +21,19 @@ use yii\helpers\Url;
         <div class="row">
             <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->ename?> (<?= $model->year?>)</small></h2></div>
             <div class="col-xs-12 col-sm-4 col-md-4 poster">
-                <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->cover ?>" style="width: 225px;height: 333px;" alt="<?= $model->name?>电影海报"></div>
+                <img class="img-responsive img-rounded animated bounceIn" src="<?= (strpos($model->cover, 'uploads') !== false) ? Yii::$app->params['adminhost'].$model->cover : Yii::$app->params['cdnHost'].$model->cover ?>" style="width: 225px;height: 333px;" alt="<?= $model->name?>电影海报"></div>
             <div class="col-xs-12 col-sm-7 col-md-7 m-t-15"><table border="0" class="file-intro"><tbody>
                     <?php if($model->ename): ?>
                         <tr><td>又名</td><td><?= $model->ename ?></td></tr>
                     <?php endif;?>
 
                     <tr><td>导演</td><td><?= $model->director ?></td></tr>
-                    <tr><td>音乐</td><td><?= $model->master ?></td></tr>
+                    <tr><td>作曲</td><td><?= $model->master ?></td></tr>
                     <tr><td>年份</td><td><?= $model->year?> 年</td></tr>
                     <tr><td>片长</td><td><?= $model->duration ?>分钟</td></tr>
+                    <tr><td>地区</td><td><?= $model->area ?></td></tr>
+                    <tr><td>类型</td><td><?= $model->type ?></td></tr>
+                    <tr><td>语言</td><td><?= $model->language ?></td></tr>
                     <tr><td> </td><td> </td></tr>
                     <tr><td>发布</td><td><?= date('Y-m-d',$model->create_time)?></td></tr>
                     <tr><td>浏览</td><td><?= $model->count ?> 次</td></tr>

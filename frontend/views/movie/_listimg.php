@@ -10,7 +10,7 @@ use yii\helpers\Html;
 <article class="media excerpt">
 <!--    <div class="media-left">-->
         <a href="<?= $model->detail ?>" class="focus">
-            <img class="media-object thumb" src="<?= Yii::$app->params['adminhost'].$model->cover?>" alt="<?= $model->name?>" >
+            <img class="media-object thumb" src="<?= (strpos($model->cover, 'uploads') !== false) ? Yii::$app->params['adminhost'].$model->cover : Yii::$app->params['cdnHost'].$model->cover?>" alt="<?= $model->name?>" >
         </a>
 <!--    </div>-->
     <header>

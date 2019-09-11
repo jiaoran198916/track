@@ -2,13 +2,15 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\Cate */
 
-$this->title = '修改文章分类';
-$this->params['breadcrumbs'][] = ['label' => '分类列表', 'url' => ['index']];
+/* @var $this yii\web\View */
+/* @var $model common\models\Language */
+
+$this->title = '新建语言';
+$this->params['breadcrumbs'][] = ['label' => '语言列表', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -22,4 +24,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
-

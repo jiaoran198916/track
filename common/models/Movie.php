@@ -25,9 +25,10 @@ class Movie extends \yii\db\ActiveRecord
         return [
             [['name', 'year', 'cover', 'duration', 'douban_id'], 'required'],
             ['name', 'unique', 'message' => '电影名已存在'],
+            ['douban_id', 'unique', 'message' => '豆瓣ID已存在'],
             [['year', 'valid', 'duration', 'douban_id', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
             [['desc', 'ename'], 'string'],
-            [['director_id', 'musician_id'], 'safe'],
+            [['director_id', 'musician_id', 'area_id', 'type_id', 'language_id'], 'safe'],
             [['user_id'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => 1],
         ];
@@ -44,11 +45,14 @@ class Movie extends \yii\db\ActiveRecord
             'ename' => '原名',
             'cover' => '封面图',
             'year' => '年份',
-            'duration' => '时长（分）',
+            'duration' => '片长（分）',
             'douban_id' => '豆瓣ID',
-            'desc' => '概要',
-            'musician_id' => '音乐作者',
+            'desc' => '剧情简介',
+            'musician_id' => '作曲',
             'director_id' => '导演',
+            'area_id' => '地区',
+            'type_id' => '类型',
+            'language_id' => '语言',
             'user_id' => '创建者',
             'status' => '状态，0待审核，1已审核',
             'count' => '浏览量',
@@ -169,6 +173,66 @@ class Movie extends \yii\db\ActiveRecord
             $res = Master::findOne($this->director_id)->name;
         }
 
+        return $res;
+    }
+
+    /**
+     * 获取地区，根据 area_id
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArea(){
+        $res = '';
+        if($this->area_id){
+            if(strpos($this->area_id, ',')){
+                $areas = explode(',', $this->area_id);
+                foreach ($areas as $v){
+                    $res .= Country::findOne($v)->name . '/';
+                }
+                $res = substr($res, 0 ,-1);
+            }else{
+                $res = Country::findOne($this->area_id)->name;
+            }
+        }
+        return $res;
+    }
+
+    /**
+     * 获取类型，根据 type_id
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType(){
+        $res = '';
+        if($this->type_id){
+            if(strpos($this->type_id, ',')){
+                $areas = explode(',', $this->type_id);
+                foreach ($areas as $v){
+                    $res .= Type::findOne($v)->name . '/';
+                }
+                $res = substr($res, 0 ,-1);
+            }else{
+                $res = Type::findOne($this->type_id)->name;
+            }
+        }
+        return $res;
+    }
+
+    /**
+     * 获取语言，根据 language_id
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguage(){
+        $res = '';
+        if($this->language_id){
+            if(strpos($this->language_id, ',')){
+                $areas = explode(',', $this->language_id);
+                foreach ($areas as $v){
+                    $res .= Language::findOne($v)->name . '/';
+                }
+                $res = substr($res, 0 ,-1);
+            }else{
+                $res = Language::findOne($this->language_id)->name;
+            }
+        }
         return $res;
     }
 

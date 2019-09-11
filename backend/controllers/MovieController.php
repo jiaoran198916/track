@@ -53,6 +53,12 @@ class MovieController extends CommonController
         $model = $this->findModel($id);
         $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
         $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
+        $model->area_id = strpos($model->area_id, ',') !== false ? explode(',', $model->area_id): $model->area_id;
+        $model->type_id = strpos($model->type_id, ',') !== false ? explode(',', $model->type_id): $model->type_id;
+        $model->language_id = strpos($model->language_id, ',') !== false ? explode(',', $model->language_id): $model->language_id;
+        if(!(strpos($model->cover, 'uploads') !== false)){
+            $model->cover = Yii::$app->params['cdnHost'].$model->cover;
+        }
         return $this->render('view', [
             'model' => $model,
             'episodeModel' => new Episode(),
@@ -74,6 +80,8 @@ class MovieController extends CommonController
         }else{
             $model = new Movie();
             $model->status = 1;
+            //作曲家默认暂无
+            $model->musician_id = 10;
             //取库里的默认值
 //            $model->loadDefaultValues();
         }
@@ -87,6 +95,18 @@ class MovieController extends CommonController
             }
             if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
                 $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
+            }
+            if(isset($params['Movie']['area_id']) && !empty($params['Movie']['area_id'])){
+                $params['Movie']['area_id'] = implode(',', $params['Movie']['area_id']);
+            }
+            if(isset($params['Movie']['type_id']) && !empty($params['Movie']['type_id'])){
+                $params['Movie']['type_id'] = implode(',', $params['Movie']['type_id']);
+            }
+            if(isset($params['Movie']['language_id']) && !empty($params['Movie']['language_id'])){
+                $params['Movie']['language_id'] = implode(',', $params['Movie']['language_id']);
+            }
+            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover'])){
+                $params['Movie']['cover'] = substr($params['Movie']['cover'], 23);
             }
         }
 
@@ -124,6 +144,19 @@ class MovieController extends CommonController
             if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
                 $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
             }
+            if(isset($params['Movie']['area_id']) && !empty($params['Movie']['area_id'])){
+                $params['Movie']['area_id'] = implode(',', $params['Movie']['area_id']);
+            }
+            if(isset($params['Movie']['type_id']) && !empty($params['Movie']['type_id'])){
+                $params['Movie']['type_id'] = implode(',', $params['Movie']['type_id']);
+            }
+            if(isset($params['Movie']['language_id']) && !empty($params['Movie']['language_id'])){
+                $params['Movie']['language_id'] = implode(',', $params['Movie']['language_id']);
+            }
+            if(isset($params['Movie']['cover']) && !empty($params['Movie']['cover'])){
+                //去除cdn前缀
+                $params['Movie']['cover'] = substr($params['Movie']['cover'], 23);
+            }
         }
 
         if ($model->load($params) && $model->save()) {
@@ -131,6 +164,12 @@ class MovieController extends CommonController
         } else {
             $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
             $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
+            $model->area_id = strpos($model->area_id, ',') !== false ? explode(',', $model->area_id): $model->area_id;
+            $model->type_id = strpos($model->type_id, ',') !== false ? explode(',', $model->type_id): $model->type_id;
+            $model->language_id = strpos($model->language_id, ',') !== false ? explode(',', $model->language_id): $model->language_id;
+            if(!(strpos($model->cover, 'uploads') !== false)){
+                $model->cover = Yii::$app->params['cdnHost'].$model->cover;
+            }
             return $this->render('update', [
                 'model' => $model,
             ]);

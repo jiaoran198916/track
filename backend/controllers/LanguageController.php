@@ -3,22 +3,22 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Cate;
-use common\models\CateSearch;
+use common\models\Language;
+use common\models\LanguageSearch;
 use yii\web\NotFoundHttpException;
 
 /**
- * CateController implements the CRUD actions for Cate model.
+ * LanguageController implements the CRUD actions for Language model.
  */
-class CateController extends CommonController
+class LanguageController extends CommonController
 {
     /**
-     * Lists all Cate models.
+     * Lists all Language models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CateSearch();
+        $searchModel = new LanguageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -28,16 +28,15 @@ class CateController extends CommonController
     }
 
     /**
-     * Creates a new Cate model.
-     * If creation is successful, the browser will be redirected to the 'index' page.
+     * Creates a new Language model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $params = Yii::$app->request->post();
-        $model = new Cate();
+        $model = new Language();
 
-        if ($model->load($params) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -47,8 +46,8 @@ class CateController extends CommonController
     }
 
     /**
-     * Updates an existing Cate model.
-     * If update is successful, the browser will be redirected to the 'index' page.
+     * Updates an existing Language model.
+     * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
@@ -66,7 +65,7 @@ class CateController extends CommonController
     }
 
     /**
-     * Deletes an existing Cate model.
+     * Deletes an existing Language model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -79,15 +78,15 @@ class CateController extends CommonController
     }
 
     /**
-     * Finds the Cate model based on its primary key value.
+     * Finds the Language model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Cate the loaded model
+     * @return Language the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Cate::findOne($id)) !== null) {
+        if (($model = Language::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

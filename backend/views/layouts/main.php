@@ -154,6 +154,8 @@ AppAsset::register($this);
                         <li><a href="<?= Url::to(['episode/index'])?>"><i class="fa fa-music"></i> 歌曲管理</a></li>
                         <li><a href="<?= Url::to(['resource/index'])?>"><i class="fa fa-folder"></i> 资源管理</a></li>
                         <li><a href="<?= Url::to(['source/index'])?>"><i class="fa fa-pinterest"></i> 来源管理</a></li>
+                        <li><a href="<?= Url::to(['type/index'])?>"><i class="fa fa-pinterest"></i> 类型管理</a></li>
+                        <li><a href="<?= Url::to(['language/index'])?>"><i class="fa fa-pinterest"></i> 语言管理</a></li>
                     </ul>
                 </li>
 
