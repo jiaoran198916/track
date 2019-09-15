@@ -64,7 +64,7 @@ class MovieController extends Controller
             'posts' => $posts,
             'keyword' => $keyword,
             'movieCount' => Movie::find()->count(),
-            'masterCount' => Master::find()->count(),
+            'masterCount' => Master::find()->where('type=0')->count(),
             'episodeCount' => Episode::find()->count(),
         ]);
     }

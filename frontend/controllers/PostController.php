@@ -159,18 +159,14 @@ class PostController extends Controller
 
     public function actionAbout()
     {
-
-
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
-
-
         return $this->render('about',[
 //            'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,
             'movieCount' => Movie::find()->count(),
-            'masterCount' => Master::find()->count(),
+            'masterCount' => Master::find()->where('type=0')->count(),
             'episodeCount' => Episode::find()->count(),
             'source' => Source::findAll('valid=1'),
         ]);
