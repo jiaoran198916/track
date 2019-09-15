@@ -18,7 +18,7 @@ class MasterSearch extends Master
     public function rules()
     {
         return [
-            [['id', 'douban_id', 'user_id', 'create_time', 'update_time'], 'integer'],
+            [['id', 'douban_id', 'user_id', 'create_time', 'update_time','type'], 'integer'],
             [['name', 'ename', 'pic', 'birthday', 'city_id', 'desc', 'official'], 'safe'],
         ];
     }
@@ -63,6 +63,7 @@ class MasterSearch extends Master
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'type' => $this->type,
             'douban_id' => $this->douban_id,
             'user_id' => $this->user_id,
             'create_time' => $this->create_time,
@@ -75,6 +76,7 @@ class MasterSearch extends Master
             ->andFilterWhere(['like', 'birthday', $this->birthday])
             ->andFilterWhere(['like', 'city_id', $this->city_id])
             ->andFilterWhere(['like', 'desc', $this->desc]);
+//        echo $query->createCommand()->getRawSql();die;
 
         return $dataProvider;
     }

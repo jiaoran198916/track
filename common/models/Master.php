@@ -133,4 +133,30 @@ class Master extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+
+    /**
+     * @notes: 获取作曲家列表
+     * @user : liusijun
+     * @date : 2019/9/4 16:05
+     */
+    public static function getComposers($keyword=''){
+        if($keyword!=''){
+            return Yii::$app->getDb()->createCommand("select * from master where `type`=0 and get_first_pinyin_char(name) = '{$keyword}' order by id desc")->queryAll();
+        }
+        return self::find()->where(['type' => 0])->andWhere(['<>','pic',''])->orderBy('update_time desc')->limit(20)->asArray()->all();
+    }
+
+    /**
+     * @notes: 判读字符是否为字符
+     * @user : liusijun
+     * @date : 2019/9/10 11:32
+     */
+    public static function getChar($keyword){
+        $keyword = strtoupper($keyword);
+        $charArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        if(in_array($keyword,$charArr))
+            return $keyword;
+        return false;
+    }
 }

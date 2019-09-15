@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use common\models\Banner;
 use common\models\Movie;
-use common\models\Resource;
 use Yii;
 use common\models\Master;
 use common\models\MasterSearch;
@@ -38,23 +37,22 @@ class MasterController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new MasterSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $bannerModel = Banner::getBannerData();
-        $dataProvider->pagination = [
-            'pageSize' => 6,
-        ];
-        $keyword = '';
-        $view = 'index';
-        if(!empty(Yii::$app->request->queryParams) && isset(Yii::$app->request->queryParams['MovieSearch']['name'])){
-            $keyword = Yii::$app->request->queryParams['MovieSearch']['name'];
-//            $view = 'list';
+
+        if(isset(Yii::$app->request->queryParams['char'])){     //按字母筛选
+            $keyword = Master::getChar(Yii::$app->request->queryParams['char']);
+            $composersList = Master::getComposers($keyword ? $keyword : '');
+        } elseif(isset(Yii::$app->request->queryParams['MasterSearch']['name'])){   //关键字搜索
+            $searchModel = new MasterSearch();
+            $params = Yii::$app->request->queryParams;
+            $params['MasterSearch']['type'] = 0;
+            $dataProvider = $searchModel->search($params);
+            $composersList = $dataProvider->getModels();
+        }else{  //默认展示最近修改的，含图片
+            $composersList = Master::getComposers();
         }
-        return $this->render( $view, [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'bannerData' => $bannerModel,
-            'keyword' => $keyword
+
+        return $this->render( 'index', [
+            'composersList' => $composersList,
         ]);
     }
 
