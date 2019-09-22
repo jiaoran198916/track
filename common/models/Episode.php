@@ -10,8 +10,6 @@ use Yii;
  */
 class Episode extends \yii\db\ActiveRecord
 {
-
-    public static $movie_id;
     /**
      * @inheritdoc
      */
@@ -26,11 +24,12 @@ class Episode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['min', 'sec', 'movie_id'], 'required'],
+            [['name', 'movie_id'], 'required'],
             [['desc', 'ename'], 'string'],
             [['musician_id'], 'safe'],
             [[ 'min', 'sec','movie_id', 'valid', 'create_time', 'update_time'], 'integer'],
             [[ 'name', 'ename','desc', 'musician_id'], 'default', 'value' => ''],
+            [[ 'min', 'sec'], 'default', 'value' => 0],
         ];
     }
 
@@ -45,7 +44,7 @@ class Episode extends \yii\db\ActiveRecord
             'sec' => '位置:秒',
             'name' => '标题',
             'ename' => '外文名',
-            'desc' => '简介',
+            'desc' => '场景',
             'movie_id' => '所属电影',
             'musician_id' => '歌手',
             'create_time' => '创建时间',
@@ -88,14 +87,24 @@ class Episode extends \yii\db\ActiveRecord
             $masters = explode(',', $this->musician_id);
             foreach ($masters as $v){
                 $master = Master::findOne($v);
-                $res .= $master ? $master->name : '' . '/';
+                $res .= $master ? $master->name. ' / ' : '' ;
             }
-            $res = substr($res, 0 ,-1);
+            $res = substr($res, 0 ,-2);
         }else{
             $master = Master::findOne($this->musician_id);
             $res = $master ? $master->name : '';
         }
+        return $res;
+    }
 
+    /**
+     * 获取歌曲所在位置
+     */
+    public function getLocation(){
+        $res = '';
+        if($this->min > 0 || $this->sec > 0){
+            $res = $this->min.':'.$this->sec;
+        }
         return $res;
     }
 

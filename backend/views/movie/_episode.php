@@ -34,7 +34,7 @@ use yii\grid\GridView;
     <?php foreach ($model->episodes as $e): ?>
         <tr>
         <td><?= $e->id ?></td>
-        <td><?= $e->min .':'.$e->sec ?></td>
+        <td><?= $e->location ?></td>
         <td><?= $e->name ?></td>
         <td><?= $e->ename ?></td>
         <td><?= $e->movie->name ?></td>
