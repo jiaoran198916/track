@@ -47,10 +47,19 @@ use yii\helpers\Url;
             </div>
         </div>
         <div class="row m-t-10">
-            <div class="title"><h3>音乐简介 <small>Description</small></h3></div>
+            <br>
+            <div class="title"><h3>剧情简介 <small>Storyline</small></h3></div>
             <div class="intro bg text-common">
                 　　<?= $model->desc ?>
             </div>
+            <br>
+            <?php if(!empty($model->music_desc)): ?>
+            <div class="title"><h3>音乐简介 <small>Description</small></h3></div>
+            <div class="intro bg text-common">
+                　　<?= $model->music_desc ?>
+            </div>
+            <?php endif; ?>
+            <br>
 
             <div class="title" id="songList"><h3>曲目列表 <small>Lists</small></h3></div>
             <div class="intro">

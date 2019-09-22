@@ -27,7 +27,7 @@ class Movie extends \yii\db\ActiveRecord
             ['name', 'unique', 'message' => '电影名已存在'],
             ['douban_id', 'unique', 'message' => '豆瓣ID已存在'],
             [['year', 'valid', 'duration', 'douban_id', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
-            [['desc', 'ename'], 'string'],
+            [['desc', 'music_desc', 'ename'], 'string'],
             [['director_id', 'musician_id', 'area_id', 'type_id', 'language_id'], 'safe'],
             [['user_id'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => 1],
@@ -48,6 +48,7 @@ class Movie extends \yii\db\ActiveRecord
             'duration' => '片长（分）',
             'douban_id' => '豆瓣ID',
             'desc' => '剧情简介',
+            'music_desc' => '音乐简介',
             'musician_id' => '作曲',
             'director_id' => '导演',
             'area_id' => '地区',
@@ -296,7 +297,6 @@ class Movie extends \yii\db\ActiveRecord
         $tmpStr = mb_substr($tmpStr,0,$length,'utf-8');
         return $tmpStr.($tmpLen>$length?'...':'');
     }
-
 
     /**
      * 获取年份数组

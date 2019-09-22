@@ -19,7 +19,7 @@ class MovieSearch extends Movie
     {
         return [
             [['id', 'year', 'duration', 'douban_id', 'user_id', 'status', 'create_time', 'update_time','valid'], 'integer'],
-            [['name', 'ename', 'musician_id','director_id', 'desc'], 'safe'],
+            [['name', 'ename', 'musician_id','director_id', 'desc', 'music_desc'], 'safe'],
         ];
     }
 
@@ -75,8 +75,9 @@ class MovieSearch extends Movie
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'ename', $this->ename])
 //            ->andFilterWhere(['like', 'master_id', $this->master_id])
+            ->andFilterWhere(['like', 'music_desc', $this->music_desc])
             ->andFilterWhere(['like', 'desc', $this->desc]);
-        $query->orderBy(['create_time' => SORT_DESC]);
+        $query->orderBy(['id' => SORT_DESC]);
 
         return $dataProvider;
     }

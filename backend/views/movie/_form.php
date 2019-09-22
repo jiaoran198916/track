@@ -53,6 +53,7 @@ use common\models\Language;
     <?= $form->field($model, 'language_id', ['options' =>['class' => 'col-md-12']])->dropDownList(Language::find()->select(['name', 'id'])->where('valid=1')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择语言"]) ?>
 
     <?= $form->field($model, 'desc', ['options' =>['class' => 'col-md-12']])->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'music_desc', ['options' =>['class' => 'col-md-12']])->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'duration', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}', 'options' =>['class' => 'col-md-12']])->textInput() ?>
 
 
@@ -87,18 +88,29 @@ use common\models\Language;
                 console.log(rsp)
                 if(rsp && rsp.error_code === 0){
                     data = rsp.data;
-                    $("#movie-name").val(data.name);
-                    $("#movie-ename").val(data.other_name);
+                    let idx = data.name.indexOf(' ');
+                    if(idx > 0){
+                        let name = data.name.substring(0, idx);
+                        let ename = data.name.substring(idx + 1);
+                        $("#movie-name").val(name);
+                        $("#movie-ename").val(ename);
+                    }else{
+                        $("#movie-name").val(data.name);
+                        $("#movie-ename").val('');
+                    }
                     $("#movie-cover").val(data.cover);
                     $("#img-area").empty().append('<img src="'+data.cover+'" alt="" width="109" height="146">');
                     $("#movie-year").val(data.year).trigger("change");
                     select2ByText("movie-director_id", data.directors);
-                    select2ByText("movie-area_id", data.area);
                     select2ByText("movie-type_id", data.type);
                     if(data.language.indexOf('/') > 0){
                         data.language = data.language.split(' / ')
                     }
                     select2ByText("movie-language_id", data.language);
+                    if(data.area.indexOf('/') > 0){
+                        data.area = data.area.split(' / ')
+                    }
+                    select2ByText("movie-area_id", data.area);
                     $("#movie-desc").val(data.summary);
                     $("#movie-duration").val(parseInt(data.duration));
                 }
