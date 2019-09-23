@@ -33,7 +33,7 @@ use yii\grid\GridView;
     <?= $form->field($model, 'musician_id')->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择歌手"]) ?>
 </div>
 <div class="box-footer">
-    <button type="button" class="btn btn-success btn-lg" onclick="doAdd()"> 确定</button>
+    <button type="button" class="btn btn-success btn-lg" onclick="doAdd()"> 确 定</button>
 </div>
 <?php ActiveForm::end(); ?>
 
