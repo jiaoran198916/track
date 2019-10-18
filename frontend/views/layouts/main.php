@@ -153,7 +153,6 @@ AppAsset::register($this);
                         <ul class="list-unstyled">
                             <li><a href="https://www.yiichina.com/" target="_blank">Yii中文网</a></li>
                             <li><a href="https://movie.douban.com/" target="_blank">豆瓣电影</a></li>
-                            <li><a href="http://www.ttost.com/" target="_blank">听听原声</a></li>
                         </ul>
                     </div>
                 </div>
