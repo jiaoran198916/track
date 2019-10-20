@@ -18,7 +18,7 @@ use yii\helpers\Url;
         <div class="row">
             <div class="title"><h2><?= $model->name?>&nbsp;<small><?= $model->ename?></small></h2></div>
             <div class="col-xs-12 col-sm-4 col-md-4 poster">
-                <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->pic ?>" style="width: 150px;height: 222px;" alt="<?= $model->name?>图片"></div>
+                <img class="img-responsive img-rounded animated bounceIn" src="<?= (strpos($model->pic, 'upload')===false)? Yii::$app->params['cdnHost'].$model->pic:Yii::$app->params['adminhost'].$model->pic ?>" style="width: 150px;height: 222px;" alt="<?= $model->name?>图片"></div>
             <div class="col-xs-12 col-sm-8 col-md-8 m-t-15"><table border="0" class="file-intro"><tbody>
                     <?php if($model->ename): ?>
                         <tr><td>又名</td><td><?= $model->ename ?></td></tr>

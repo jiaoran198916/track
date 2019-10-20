@@ -6,7 +6,10 @@ namespace common\widgets\file_upload;
  * 图片上传组件
  * 如何配置请到官网（Yii中文网）查看相关文章
  */
- 
+use Yii;
+use Qiniu\Auth;
+use Qiniu\Storage\UploadManager;
+
 class Uploader
 {
     private $fileField; //文件域名
@@ -107,11 +110,29 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
             return;
         }
+
+        // 构建鉴权对象
+        $auth = new \Qiniu\Auth(Yii::$app->params['qiniu']['accessKey'], Yii::$app->params['qiniu']['secretKey']);
+
+        // 生成上传 Token
+        $token = $auth->uploadToken(Yii::$app->params['qiniu']['bucket']);
+
+        // 上传到七牛后保存的文件名
+        $key = $this->fullName;
+
+        // 初始化 UploadManager 对象并进行文件的上传。
+        $uploadMgr = new \Qiniu\Storage\UploadManager();
+
+        // 调用 UploadManager 的 putFile 方法进行文件的上传。
+        list($ret, $err) = $uploadMgr->putFile($token, $key, $file["tmp_name"]);
+
         //移动文件
-        if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
+//        if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
+        if ($err !== null) { //移动失败
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
         } else { //移动成功
             $this->stateInfo = $this->stateMap[0];
+            $this->filePath = $ret['key'];
         }
     }
     /**
@@ -247,7 +268,7 @@ class Uploader
         $format = str_replace("{ii}", $d[5], $format);
         $format = str_replace("{ss}", $d[6], $format);
         $format = str_replace("{time}", $t, $format);
-        //过滤文件名的非法自负,并替换文件名
+        //过滤文件名的非法字符,并替换文件名
         $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
         $oriName = preg_replace("/[\|\?\"\<\>\/\*\\\\]+/", '', $oriName);
         $format = str_replace("{filename}", $oriName, $format);
@@ -255,6 +276,10 @@ class Uploader
         $randNum = rand(1, 10000000000) . rand(1, 10000000000);
         if (preg_match("/\{rand\:([\d]*)\}/i", $format, $matches)) {
             $format = preg_replace("/\{rand\:[\d]*\}/i", substr($randNum, 0, $matches[1]), $format);
+        }
+        $prefix = $this->config["imagePrefix"];
+        if(!empty($prefix)){
+            $format = $prefix.'/'.$format;
         }
         $ext = $this->getFileExt();
         return $format . $ext;

@@ -74,7 +74,7 @@
                                 <tr>
                                     <td valign="top">
                                         <a href="/master/<?= $v['id'];?>" class="thumbnail" target="_blank">
-                                            <img src="<?= Yii::$app->params['adminhost'].$v['pic'];?>" border="0" class="img-responsive" style="height: 135px"/>
+                                            <img src="<?= (strpos($v['pic'], 'upload')===false)? Yii::$app->params['cdnHost'].$v['pic']:Yii::$app->params['adminhost'].$v['pic'];?>" border="0" class="img-responsive" style="height: 135px"/>
                                         </a>
                                     </td>
                                     <td valign="top">&nbsp;&nbsp;</td>

@@ -20,7 +20,7 @@ use common\models\City;
     <?= $form->field($model, 'type')->radioList(['0' => '音乐家', '1' => '导演']) ?>
     <?= $form->field($model, 'sex')->radioList(['0' => '保密', '1' => '男', '2' => '女']) ?>
 
-    <?= $form->field($model, 'pic')->widget('common\widgets\file_upload\FileUpload') ?>
+    <?= $form->field($model, 'pic')->widget('common\widgets\file_upload\FileUpload', ['config' => ['domain_url' => Yii::$app->params['qiniu']['domain']]]) ?>
 
     <?= $form->field($model, 'birthday')->input('date') ?>
 

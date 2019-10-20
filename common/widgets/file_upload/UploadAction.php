@@ -10,7 +10,7 @@ namespace common\widgets\file_upload;
 use Yii;
 use yii\base\Action;
 use yii\helpers\ArrayHelper;
-use common\widgets\file_upload\Uploader;
+//use common\widgets\file_upload\Uploader;
 
 class UploadAction extends Action
 {
@@ -64,6 +64,7 @@ class UploadAction extends Action
                 "pathFormat" => $this->config['imagePathFormat'],
                 "maxSize" => $this->config['imageMaxSize'],
                 "allowFiles" => $this->config['imageAllowFiles'],
+                "imagePrefix" => $this->config['imagePrefix'],
                 );
                 $fieldName = $this->config['imageFieldName'];
                 break;
@@ -73,7 +74,8 @@ class UploadAction extends Action
                 $config = array(
                 "pathFormat" => $this->config['filePathFormat'],
                 "maxSize" => $this->config['fileMaxSize'],
-                "allowFiles" => $this->config['fileAllowFiles']
+                "allowFiles" => $this->config['fileAllowFiles'],
+                "imagePrefix" => $this->config['imagePrefix'],
                 );
                 $fieldName = $this->config['fileFieldName'];
                 break;

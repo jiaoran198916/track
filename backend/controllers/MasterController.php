@@ -21,11 +21,28 @@ class MasterController extends CommonController
             'upload'=>[
                 'class' => 'common\widgets\file_upload\UploadAction',     //这里扩展地址别写错
                 'config' => [
-                    'imagePathFormat' => "/uploads/image/master/{yyyy}{mm}{dd}/{time}{rand:6}",
+                    'imagePathFormat' => "{yyyy}{mm}{dd}-{time}-{rand:6}{filename}",
+                    'imagePrefix' => "master",
                 ]
             ]
         ];
     }
+
+    /**
+     * Lists all Master models.
+     * @return mixed
+     */
+    public function actionUpload()
+    {
+        $searchModel = new MasterSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Lists all Master models.
      * @return mixed

@@ -15,4 +15,10 @@ return [
         '3' => '最佳原创配乐',
         '4' => '最佳原创歌曲',
     ],
+    'qiniu' => [
+        'accessKey' => 'nGQY8IhK9TlB1P6n_jxZltkiiGPorSO7z1E3OLtE',
+        'secretKey' => 'YRrAQonHa1XSc6iG6do7f_KgZ41uHOii3HRaQj5J',
+        'domain' => 'http://cdn.jiaoran.net/',
+        'bucket' => 'track',
+    ],
 ];
