@@ -43,18 +43,21 @@ use yii\grid\GridView;
         var url = '/episode/doadd';
         var data = $('#episode').serialize();
         $.post(url, data, function (rsp) {
-            layer.open({
-                content:rsp.msg,
-                yes:function () {
-                    if(rsp.code == 200){
-                        layer.closeAll();
-                        parent.layer.closeAll();
-                        window.parent.location.reload();
-                    }else{
-                        layer.closeAll()
-                    }
-                }
+            layer.msg(rsp.msg, {icon:6,time:1000},function () {
+                $('#episode-name').val('')
             })
+            // layer.open({
+            //     content:rsp.msg,
+            //     yes:function () {
+            //         if(rsp.code == 200){
+            //             layer.closeAll();
+            //             parent.layer.closeAll();
+            //             window.parent.location.reload();
+            //         }else{
+            //             layer.closeAll()
+            //         }
+            //     }
+            // })
         }, 'json')
     }
 
