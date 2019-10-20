@@ -44,7 +44,9 @@ use yii\grid\GridView;
         var data = $('#episode').serialize();
         $.post(url, data, function (rsp) {
             layer.msg(rsp.msg, {icon:6,time:1000},function () {
-                $('#episode-name').val('')
+                $('#episode')[0].reset()
+                // $('#episode-name').val('')
+                $('#episode-musician_id').val([]).trigger("change");
             })
             // layer.open({
             //     content:rsp.msg,

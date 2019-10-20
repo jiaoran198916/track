@@ -16,28 +16,26 @@ use yii\grid\GridView;
 <p>
     <button type="button" class="btn btn-success" onclick="addEpisode(0, <?= $model->id?>)"><i class="fa fa-plus"></i> 新增片段</button>
 </p>
-<table id="teaListTable" class="table table-bordered table-striped">
+<table id="episodeListTable" class="table table-bordered table-striped">
     <thead>
     <tr>
 <!--        <th><input id="checkall" type="checkbox" onclick="checkall()"/></th>-->
-        <th>ID</th>
+        <th>#</th>
         <th>定位(分秒)</th>
         <th>名称</th>
         <th>原名</th>
-        <th>电影</th>
         <th>歌手</th>
         <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <?php if(!empty($model->episodes)):?>
-    <?php foreach ($model->episodes as $e): ?>
+    <?php foreach ($model->episodes as $i=>$e): ?>
         <tr>
-        <td><?= $e->id ?></td>
+        <td><?= ($i +1) ?></td>
         <td><?= $e->location ?></td>
         <td><?= $e->name ?></td>
         <td><?= $e->ename ?></td>
-        <td><?= $e->movie->name ?></td>
         <td><?= $e->musicians ?></td>
         <td>
 
@@ -113,7 +111,12 @@ use yii\grid\GridView;
     }
 
     window.onload = function(){
-
+        $(function () {
+            $('#episodeListTable').DataTable({
+                "iDisplayLength" : 50,
+                "order": [[ 0, "desc" ]]
+            })
+        })
     }
 
 </script>
