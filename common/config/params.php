@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'support@example.com',
+    'supportEmail' => 'support1@example.com',
     'doubanurl' => 'https://movie.douban.com/subject/',
     'cdnHost' => 'http://cdn.jiaoran.net/',
     'user.passwordResetTokenExpire' => 3600,
