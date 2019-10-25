@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -47,7 +48,7 @@ class CommonController extends Controller
             'msg'=>$msg,
             'data'=>$data
         ];
-        return json_encode($params);
+        return Json::encode($params);
     }
 
 

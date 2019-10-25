@@ -7,7 +7,7 @@ use Yii;
  * This is the model class for table "movie".
  *
  */
-class Movie extends \yii\db\ActiveRecord
+class Movie extends Common
 {
     /**
      * @inheritdoc
@@ -26,7 +26,7 @@ class Movie extends \yii\db\ActiveRecord
             [['name', 'year', 'cover', 'duration', 'douban_id'], 'required'],
             ['name', 'unique', 'message' => '电影名已存在'],
             ['douban_id', 'unique', 'message' => '豆瓣ID已存在'],
-            [['year', 'valid', 'duration', 'douban_id', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
+            [['year', 'valid', 'duration', 'douban_id', 'is_showing', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
             [['desc', 'music_desc', 'ename'], 'string'],
             [['director_id', 'musician_id', 'area_id', 'type_id', 'language_id'], 'safe'],
             [['user_id'], 'default', 'value' => 0],
@@ -54,6 +54,7 @@ class Movie extends \yii\db\ActiveRecord
             'area_id' => '地区',
             'type_id' => '类型',
             'language_id' => '语言',
+            'is_showing' => '热映中',
             'user_id' => '创建者',
             'status' => '状态，0待审核，1已审核',
             'count' => '浏览量',
@@ -64,20 +65,22 @@ class Movie extends \yii\db\ActiveRecord
     }
 
 
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
+    /**
+     * 获取状态
+     */
 
-        }else{
-            return false;
-        }
+    public function getStatusName()
+    {
+        return ($this->status == 0) ? '待审核': '已审核';
+    }
+
+    /**
+     * 获取上映状态
+     */
+
+    public function getIsShowing()
+    {
+        return ($this->is_showing == 0) ? '否': '是';
     }
 
     /**
@@ -96,26 +99,6 @@ class Movie extends \yii\db\ActiveRecord
     public function getUrl(){
         return Yii::$app->urlManager->createUrl(
             ['movie/view','id' => $this->id ]);
-    }
-
-    /**
-     * 获取状态
-     */
-
-    public function getStatusName()
-    {
-        switch ($this->status){
-            case 0:
-                $str = '待审核';
-                break;
-            case 1:
-                $str = '已审核';
-                break;
-            default:
-                $str = '';
-                break;
-        }
-        return $str;
     }
 
     /**

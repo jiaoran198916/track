@@ -54,6 +54,17 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'label' => '作者',
                                     'value' => 'musicians'
                                 ],
+                                [
+                                  'attribute' => 'is_showing',
+                                  'value' => function($model){
+                                      return Html::a($model->isShowing, 'javascript:void(0)',['onclick' => "switchShowing(".$model->id.",this)"]);
+//                                          ($model->is_showing == 1) ? ['class' => 'bg-green'] : [];
+                                  },
+                                    'contentOptions' => function($model){
+                                        return ($model->is_showing == 1) ? ['class' => 'bg-green'] : [];
+                                    },
+                                    'format' => 'raw'
+                                ],
                                 'duration',
 //                'douban_id',
                                 // 'summary:ntext',
@@ -130,6 +141,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- /.content-wrapper -->
 
 <script>
+    function switchShowing (id, obj) {
+        $.post('/movie/switch-showing', {id: id}, function(rsp){
+            layer.msg(rsp.msg, {icon:6,time:2000},function () {
+                if(rsp.code === 200){
+                    obj.innerHTML = rsp.data
+                }
+            })
+        }, 'json');
+    }
     window.onload = function(){
         $(function () {
             $('#example').DataTable({

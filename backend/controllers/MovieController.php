@@ -177,6 +177,20 @@ class MovieController extends CommonController
         }
     }
 
+
+    public function actionSwitchShowing()
+    {
+        $id = Yii::$app->request->post('id');
+
+        $model = Movie::findOne($id);
+        $model->is_showing = ($model->is_showing ==0)? 1: 0;
+        if($model->save()){
+            return $this->renderJson($model->isShowing);
+        }
+
+        return $this->renderJson('', '切换上映状态失败', 500);
+    }
+
     /**
      * Deletes an existing Movie model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

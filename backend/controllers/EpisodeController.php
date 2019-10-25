@@ -116,17 +116,6 @@ class EpisodeController extends CommonController
     }
 
 
-    public function renderJson($msg = '成功', $code = 200, $data = [])
-    {
-        $rsp = [
-            'msg' => $msg,
-            'code' => $code,
-            'data' => $data,
-        ];
-        return json_encode($rsp);
-    }
-
-
     public function actionModify()
     {
         $post = Yii::$app->request->post();
