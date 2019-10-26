@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\Movie;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -81,29 +82,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout = 'main1';
-        $searchModel = new MovieSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $bannerModel = Banner::getBannerData();
-        $news = Movie::findNewTen();
-        $hots = Movie::findHotTen();
-        $posts = Post::findNewTen();
-        $dataProvider->pagination = [
-            'pageSize' => 6,
-        ];
-        $keyword = '';
-        $view = 'index';
-        if(!empty(Yii::$app->request->queryParams) && isset(Yii::$app->request->queryParams['MovieSearch']['name'])){
-            $keyword = Yii::$app->request->queryParams['MovieSearch']['name'];
-//            $view = 'list';
-        }
-        return $this->render( $view, [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        $showing = Movie::findIsShowing();
+        $default = $showing;
+        $sort = ArrayHelper::getColumn($showing, 'num');
+        array_multisort($sort,SORT_DESC,$showing);
+
+        $master = Master::getHotMaster();
+        $posts = Post::getHotFive();
+
+        return $this->render( 'index', [
             'bannerData' => $bannerModel,
-            'news' => $news,
-            'hots' => $hots,
+            'master' => $master,
             'posts' => $posts,
-            'keyword' => $keyword,
+            'showing' => $showing,
+            'default' => $default,
             'movieCount' => Movie::find()->count(),
             'masterCount' => Master::find()->where('type=0')->count(),
             'episodeCount' => Episode::find()->count(),
@@ -112,7 +105,7 @@ class SiteController extends Controller
 
     public function actionError()
     {
-        $message = '您访问的页面不存在o';
+        $message = '您访问的页面不存在';
         return $this->render('error', ['message' => $message]);
     }
 

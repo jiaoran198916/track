@@ -148,6 +148,17 @@ class Master extends \yii\db\ActiveRecord
     }
 
     /**
+     * 获取热门音乐家列表
+     * @param string $keyword
+     * @return array|\yii\db\ActiveRecord[]
+     * @throws \yii\db\Exception
+     */
+    public static function getHotMaster(){
+
+        return self::find()->where(['type' => 0])->andWhere(['<>','pic',''])->orderBy('update_time desc')->limit(5)->all();
+    }
+
+    /**
      * @notes: 判读字符是否为字符
      * @user : liusijun
      * @date : 2019/9/10 11:32

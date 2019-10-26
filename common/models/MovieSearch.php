@@ -78,7 +78,7 @@ class MovieSearch extends Movie
 //            ->andFilterWhere(['like', 'master_id', $this->master_id])
             ->andFilterWhere(['like', 'music_desc', $this->music_desc])
             ->andFilterWhere(['like', 'desc', $this->desc]);
-//        $query->orderBy(['id' => SORT_DESC]);
+        $query->orderBy(['id' => SORT_DESC]);
 
         return $dataProvider;
     }

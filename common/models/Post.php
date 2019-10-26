@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /**
  * This is the model class for table "post".
  */
-class Post extends \yii\db\ActiveRecord
+class Post extends Common
 {
     /**
      * @inheritdoc
@@ -78,20 +78,13 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
     }
 
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
+    /**
+     * 获取热门文章，用于首页展示
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public static function getHotFive(){
 
-        }else{
-            return false;
-        }
+        return self::find()->where(['valid' => 1])->orderBy('create_time desc')->limit(5)->asArray()->all();
     }
 
     /**

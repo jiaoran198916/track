@@ -240,6 +240,16 @@ class Movie extends Common
     }
 
     /**
+     * 获取歌曲数量
+     * @return integer
+     */
+    public function getNum()
+    {
+        return Episode::find()->where(['movie_id' => $this->id, 'valid' => 1])->count();
+//        return count($this->hasMany(Episode::className(), ['movie_id' => 'id'])->where(['valid' => 1]));
+    }
+
+    /**
      * 获取资源列表
      * @return \yii\db\ActiveQuery
      */
@@ -261,6 +271,14 @@ class Movie extends Common
      */
     public static function findHotTen(){
         return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['count' => SORT_DESC, 'update_time' => SORT_DESC])->limit(10)->all();
+    }
+
+    /**
+     * 获取正在上映的电影
+     * @return object
+     */
+    public static function findIsShowing(){
+        return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['id' => SORT_DESC])->limit(12)->all();
     }
 
     /**

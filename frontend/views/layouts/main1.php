@@ -33,7 +33,7 @@ AppsAsset::register($this);
 <?php $this->beginBody() ?>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="/static/images/new/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="/static/images/logo.png" alt="" width="277">
     <div id="status">
         <span></span>
         <span></span>
@@ -134,7 +134,7 @@ AppsAsset::register($this);
                         <span></span>
                     </div>
                 </div>
-                <a href="index.html"><img class="logo" src="/static/images/new/logo1.png" alt="" width="119" height="58"></a>
+                <a href="index.html"><img class="logo" src="/static/images/logo.png" alt="" width="277" style=""></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -143,54 +143,31 @@ AppsAsset::register($this);
                         <a href="#page-top"></a>
                     </li>
                     <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown">
-                            Home <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <a class="btn btn-default dropdown-toggle lv1" href="/">
+                            首页
                         </a>
-                        <ul class="dropdown-menu level1">
-                            <li><a href="index.html">Home 01</a></li>
-                            <li><a href="homev2.html">Home 02</a></li>
-                            <li><a href="homev3.html">Home 03</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                            movies<i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <a class="btn btn-default dropdown-toggle lv1" href="/movie">
+                            电影
                         </a>
-                        <ul class="dropdown-menu level1">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
-                                <ul class="dropdown-menu level2">
-                                    <li><a href="moviegrid.html">Movie grid</a></li>
-                                    <li><a href="moviegridfw.html">movie grid full width</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="movielist.html">Movie list</a></li>
-                            <li><a href="moviesingle.html">Movie single</a></li>
-                            <li class="it-last"><a href="seriessingle.html">Series single</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                            celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <a class="btn btn-default dropdown-toggle lv1" href="/master">
+                            音乐家
                         </a>
-                        <ul class="dropdown-menu level1">
-                            <li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-                            <li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-                            <li><a href="celebritylist.html">celebrity list</a></li>
-                            <li class="it-last"><a href="celebritysingle.html">celebrity single</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                            news <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <a class="btn btn-default dropdown-toggle lv1" href="/post">
+                            博客
                         </a>
-                        <ul class="dropdown-menu level1">
-                            <li><a href="bloglist.html">blog List</a></li>
-                            <li><a href="bloggrid.html">blog Grid</a></li>
-                            <li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
-                        </ul>
                     </li>
                     <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" href="/about">
+                            关于
+                        </a>
+                    </li>
+                    <!--<li class="dropdown first">
                         <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
                             community <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
@@ -200,22 +177,22 @@ AppsAsset::register($this);
                             <li><a href="userprofile.html">user profile</a></li>
                             <li class="it-last"><a href="userrate.html">user rate</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
                 <ul class="nav navbar-nav flex-child-menu menu-right">
-                    <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                            pages <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </a>
-                        <ul class="dropdown-menu level1">
-                            <li><a href="landing.html">Landing</a></li>
-                            <li><a href="404.html">404 Page</a></li>
-                            <li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Help</a></li>
-                    <li class="loginLink"><a href="#">LOG In</a></li>
-                    <li class="btn signupLink"><a href="#">sign up</a></li>
+<!--                    <li class="dropdown first">-->
+<!--                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">-->
+<!--                            pages <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu level1">-->
+<!--                            <li><a href="landing.html">Landing</a></li>-->
+<!--                            <li><a href="404.html">404 Page</a></li>-->
+<!--                            <li class="it-last"><a href="comingsoon.html">Coming soon</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li><a href="#">Help</a></li>-->
+                    <li class="loginLink"><a href="#">登录</a></li>
+                    <li class="btn signupLink"><a href="#">注册</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -224,10 +201,10 @@ AppsAsset::register($this);
         <!-- top search form -->
         <div class="top-search">
             <select>
-                <option value="united">TV show</option>
-                <option value="saab">Others</option>
+                <option value="united"> 电 影 </option>
+                <option value="saab"> 其 他 </option>
             </select>
-            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+            <input type="text" placeholder="搜索电影、音乐家、歌曲">
         </div>
     </div>
 </header>
@@ -240,63 +217,66 @@ AppsAsset::register($this);
     <div class="container">
         <div class="flex-parent-ft">
             <div class="flex-child-ft item1">
-                <a href="index.html"><img class="logo" src="/static/images/new/logo1.png" alt=""></a>
-                <p>5th Avenue st, manhattan<br>
-                    New York, NY 10001</p>
-                <p>Call us: <a href="#">(+01) 202 342 6789</a></p>
+<!--                <a href="/"><img class="logo" src="/static/images/logo.png" alt="" width="241"></a>-->
+<!--                <p>南京, NJ</p>-->
+<!--                <p>Call us: <a href="#">(+01) 920 495 391</a></p>-->
+                <h4>
+                    <img src="/static/images/logo.png" width="241" style="margin-bottom: 0;">
+                </h4>
+                <p style="font-size: 18px">专注于<strong> 电影音乐 </strong>的盘点与分享</p>
             </div>
             <div class="flex-child-ft item2">
-                <h4>Resources</h4>
+                <h4>资源</h4>
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blockbuster</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Forums</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Help Center</a></li>
+                    <li><a href="/about">关于</a></li>
+                    <li><a href="/post">博客</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">广告合作</a></li>
+
                 </ul>
             </div>
             <div class="flex-child-ft item3">
-                <h4>Legal</h4>
+                <h4>服务</h4>
                 <ul>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Security</a></li>
+                    <li><a href="#">使用说明</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">
+                            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+                            <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1277889664&web_id=1277889664"></script></a></li>
                 </ul>
             </div>
             <div class="flex-child-ft item4">
-                <h4>Account</h4>
+                <h4>账户</h4>
                 <ul>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Watchlist</a></li>
-                    <li><a href="#">Collections</a></li>
-                    <li><a href="#">User Guide</a></li>
+                    <li><a href="#">我的账户</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">我的评论</a></li>
+                    <li><a href="#">用户指南</a></li>
                 </ul>
             </div>
             <div class="flex-child-ft item5">
-                <h4>Newsletter</h4>
-                <p>Subscribe to our newsletter system now <br> to get latest news from us.</p>
+                <h4>订阅我们</h4>
+                <p>关注我们的订阅，<br> 可第一时间获取资讯</p>
                 <form action="#">
-                    <input type="text" placeholder="Enter your email...">
+                    <input type="text" placeholder="输入您的邮箱...">
                 </form>
-                <a href="#" class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
+                <a href="#" class="btn">立即订阅<i class="ion-ios-arrow-forward"></i></a>
             </div>
         </div>
     </div>
-    <div class="ft-copyright">
-        <div class="ft-left">
-            <p>© 2017 Blockbuster. All Rights <a href="http://www.bootstrapmb.com/" title="bootstrapmb">Reserved</a>. Designed by leehari.</p>
-        </div>
-        <div class="backtotop">
-            <p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
-        </div>
-    </div>
+<!--    <div class="ft-copyright">-->
+<!--        <div class="ft-left">-->
+<!--            <p><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备19038064号-1</a></p>-->
+<!--        </div>-->
+<!--        <div class="backtotop">-->
+<!--            <p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>-->
+<!--        </div>-->
+<!--    </div>-->
 </footer>
 <!-- end of footer section-->
 
 <?php $this->endBody() ?>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
-<script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1277889664&web_id=1277889664"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
