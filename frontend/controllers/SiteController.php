@@ -91,12 +91,19 @@ class SiteController extends Controller
         $master = Master::getHotMaster();
         $posts = Post::getHotFive();
 
+        $recent = Movie::findNewTen();
+        $default_recent = $recent;
+        $sort = ArrayHelper::getColumn($recent, 'num');
+        array_multisort($sort,SORT_DESC,$recent);
+
         return $this->render( 'index', [
             'bannerData' => $bannerModel,
             'master' => $master,
             'posts' => $posts,
             'showing' => $showing,
             'default' => $default,
+            'recent' => $recent,
+            'default_recent' => $default_recent,
             'movieCount' => Movie::find()->count(),
             'masterCount' => Master::find()->where('type=0')->count(),
             'episodeCount' => Episode::find()->count(),

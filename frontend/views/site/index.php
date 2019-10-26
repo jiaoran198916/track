@@ -92,7 +92,7 @@ use frontend\components\RankingWidget;
                                                 </div>
                                                 <div class="title-in">
                                                     <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
-                                                    <p><i class="ion-android-star"></i><span><?= $v->num?></span> song</p>
+                                                    <p><i class="ion-android-star"></i><span><?= $v->num?></span> songs</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@ use frontend\components\RankingWidget;
                         <div id="tab21" class="tab">
                             <div class="row">
                                 <div class="slick-multiItem">
-                                    <?php foreach ($default as $k=>$v):?>
+                                    <?php foreach ($default_recent as $k=>$v):?>
                                         <div class="slide-it">
                                             <div class="movie-item">
                                                 <div class="mv-img">
@@ -127,7 +127,7 @@ use frontend\components\RankingWidget;
                                                 </div>
                                                 <div class="title-in">
                                                     <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
-                                                    <p><i class="ion-android-star"></i><span><?= $v->num?></span> song</p>
+                                                    <p><i class="ion-android-star"></i><span><?= $v->num?></span> songs</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@ use frontend\components\RankingWidget;
                         <div id="tab22" class="tab active">
                             <div class="row">
                                 <div class="slick-multiItem">
-                                    <?php foreach ($showing as $k=>$v):?>
+                                    <?php foreach ($recent as $k=>$v):?>
                                         <div class="slide-it">
                                             <div class="movie-item">
                                                 <div class="mv-img">

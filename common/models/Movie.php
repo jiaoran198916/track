@@ -278,7 +278,7 @@ class Movie extends Common
      * @return object
      */
     public static function findIsShowing(){
-        return Movie::find()->where(['status' => 1, 'valid' => 1])->orderBy(['id' => SORT_DESC])->limit(12)->all();
+        return Movie::find()->where(['status' => 1, 'valid' => 1, 'is_showing' => 1])->orderBy(['id' => SORT_DESC])->limit(20)->all();
     }
 
     /**
