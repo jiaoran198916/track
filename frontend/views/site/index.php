@@ -113,7 +113,7 @@ use frontend\components\RankingWidget;
 <!--                        <li><a href="#tab23">  #最高评价 </a></li>-->
                     </ul>
                     <div class="tab-content">
-                        <div id="tab21" class="tab">
+                        <div id="tab21" class="tab active">
                             <div class="row">
                                 <div class="slick-multiItem">
                                     <?php foreach ($default_recent as $k=>$v):?>
@@ -135,7 +135,7 @@ use frontend\components\RankingWidget;
                                 </div>
                             </div>
                         </div>
-                        <div id="tab22" class="tab active">
+                        <div id="tab22" class="tab">
                             <div class="row">
                                 <div class="slick-multiItem">
                                     <?php foreach ($recent as $k=>$v):?>
