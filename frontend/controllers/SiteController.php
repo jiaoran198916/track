@@ -112,7 +112,7 @@ class SiteController extends Controller
 
     public function actionError()
     {
-        $message = '您访问的页面不存在';
+        $message = '您访问的页面不存在o';
         return $this->render('error', ['message' => $message]);
     }
 
