@@ -13,6 +13,13 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\Banner;
+use common\models\Episode;
+use common\models\Master;
+use common\models\Post;
+use common\models\Resource;
+use common\models\MovieSearch;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller
@@ -66,14 +73,41 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
+
+    /** 网站首页
+     * Lists all Movie models.
      * @return mixed
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $this->layout = 'main1';
+        $searchModel = new MovieSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $bannerModel = Banner::getBannerData();
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
+        $posts = Post::findNewTen();
+        $dataProvider->pagination = [
+            'pageSize' => 6,
+        ];
+        $keyword = '';
+        $view = 'index';
+        if(!empty(Yii::$app->request->queryParams) && isset(Yii::$app->request->queryParams['MovieSearch']['name'])){
+            $keyword = Yii::$app->request->queryParams['MovieSearch']['name'];
+//            $view = 'list';
+        }
+        return $this->render( $view, [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'bannerData' => $bannerModel,
+            'news' => $news,
+            'hots' => $hots,
+            'posts' => $posts,
+            'keyword' => $keyword,
+            'movieCount' => Movie::find()->count(),
+            'masterCount' => Master::find()->where('type=0')->count(),
+            'episodeCount' => Episode::find()->count(),
+        ]);
     }
 
     public function actionError()
