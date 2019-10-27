@@ -155,4 +155,25 @@ class MovieController extends Controller
         ]);
 
     }
+
+    public function actionView($id)
+    {
+        $this->layout = 'main1';
+        $model = $this->findModel($id);
+
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
+        $onlineCount = Resource::find()->where(['item_id' => $id, 'type' => 1, 'valid' => 1, 'is_download' => 0])->count();
+
+        //访问数+1
+        $model->updateCounters(['count' => 1]);
+
+        return $this->render('view',[
+            'model'=>$model,
+            'news'=>$news,
+            'hots'=>$hots,
+            'onlineCount'=>$onlineCount,
+        ]);
+
+    }
 }
