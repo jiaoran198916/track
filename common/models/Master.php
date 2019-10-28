@@ -25,7 +25,8 @@ class Master extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            ['name', 'unique', 'message' => '艺术家已存在'],
+            [['name', 'ename'], 'trim'],
+            [['name', 'ename'], 'unique', 'message' => '艺术家已存在'],
             [['desc'], 'string'],
             [['official'], 'url'],
             [['type','douban_id', 'user_id', 'create_time', 'update_time', 'valid','city_id', 'sex'], 'integer'],
