@@ -239,7 +239,6 @@ use yii\helpers\Url;
                                 </div>
                                 <div id="master" class="tab">
                                     <div class="row">
-
                                         <div class="title-hd-sm">
                                             <h4>导演</h4>
                                         </div>
