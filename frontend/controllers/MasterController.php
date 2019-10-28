@@ -87,4 +87,20 @@ class MasterController extends Controller
         ]);
 
     }
+
+
+    public function actionView($id)
+    {
+        $this->layout = 'main1';
+        $model = $this->findModel($id);
+        $news = Movie::findNewTen();
+        $hots = Movie::findHotTen();
+
+        return $this->render('view',[
+            'model'=>$model,
+            'news'=>$news,
+            'hots'=>$hots,
+        ]);
+
+    }
 }
