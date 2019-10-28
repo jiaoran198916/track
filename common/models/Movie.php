@@ -28,7 +28,7 @@ class Movie extends Common
             ['douban_id', 'unique', 'message' => '豆瓣ID已存在'],
             [['year', 'valid', 'duration', 'douban_id', 'is_showing', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
             [['desc', 'music_desc', 'ename'], 'string'],
-            [['director_id', 'musician_id', 'area_id', 'type_id', 'language_id'], 'safe'],
+            [['director_id', 'musician_id','supervisor_id', 'area_id', 'type_id', 'language_id'], 'safe'],
             [['user_id'], 'default', 'value' => 0],
             [['status'], 'default', 'value' => 1],
         ];
@@ -50,6 +50,7 @@ class Movie extends Common
             'desc' => '剧情简介',
             'music_desc' => '音乐简介',
             'musician_id' => '作曲',
+            'supervisor_id' => '音乐监督',
             'director_id' => '导演',
             'area_id' => '地区',
             'type_id' => '类型',
@@ -128,6 +129,27 @@ class Movie extends Common
         $str = '';
         if(!empty($this->musician_id)){
             $masters = explode(',', $this->musician_id);
+            foreach ($masters as $id){
+                $master = Master::findOne($id);
+                if($master){
+                    $str .= '<a href="'.$master->detail.'" target="_blank">'.$master->name.'</a>/';
+                }
+            }
+        }
+        if($str){
+            $str = substr($str, 0 , -1);
+        }
+        return $str;
+    }
+
+    /**
+     * 获取音乐监督
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSupervisor(){
+        $str = '';
+        if(!empty($this->supervisor_id)){
+            $masters = explode(',', $this->supervisor_id);
             foreach ($masters as $id){
                 $master = Master::findOne($id);
                 if($master){

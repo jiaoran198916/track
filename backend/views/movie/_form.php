@@ -44,6 +44,8 @@ use common\models\Language;
 
     <?= $form->field($model, 'musician_id', ['template' => '{label}<i class="fa fa-certificate"></i>{input}{hint}{error}', 'options' =>['class' => 'col-md-12']])->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐作者"]) ?>
 
+    <?= $form->field($model, 'supervisor_id', ['options' =>['class' => 'col-md-12']])->dropDownList(Master::find()->select(['name', 'id'])->where('type=0')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择音乐监督"]) ?>
+
     <?= $form->field($model, 'director_id', ['options' =>['class' => 'col-md-12']])->dropDownList(Master::find()->select(['name', 'id'])->where('type=1')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择导演"]) ?>
 
     <?= $form->field($model, 'area_id', ['options' =>['class' => 'col-md-12']])->dropDownList(Country::find()->select(['name', 'id'])->where('valid=1')->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['class' => 'select2', 'style' => 'width: 100%;', 'multiple' => 'multiple', 'data-placeholder' => "选择地区"]) ?>

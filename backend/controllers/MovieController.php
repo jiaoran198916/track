@@ -52,6 +52,7 @@ class MovieController extends CommonController
     {
         $model = $this->findModel($id);
         $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
+        $model->supervisor_id = strpos($model->supervisor_id, ',') !== false ? explode(',', $model->supervisor_id): $model->supervisor_id;
         $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
         $model->area_id = strpos($model->area_id, ',') !== false ? explode(',', $model->area_id): $model->area_id;
         $model->type_id = strpos($model->type_id, ',') !== false ? explode(',', $model->type_id): $model->type_id;
@@ -92,6 +93,9 @@ class MovieController extends CommonController
         if($params){
             if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
                 $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
+            }
+            if(isset($params['Movie']['supervisor_id']) && !empty($params['Movie']['supervisor_id'])){
+                $params['Movie']['supervisor_id'] = implode(',', $params['Movie']['supervisor_id']);
             }
             if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
                 $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
@@ -142,6 +146,9 @@ class MovieController extends CommonController
             if(isset($params['Movie']['musician_id']) && !empty($params['Movie']['musician_id'])){
                 $params['Movie']['musician_id'] = implode(',', $params['Movie']['musician_id']);
             }
+            if(isset($params['Movie']['supervisor_id']) && !empty($params['Movie']['supervisor_id'])){
+                $params['Movie']['supervisor_id'] = implode(',', $params['Movie']['supervisor_id']);
+            }
             if(isset($params['Movie']['director_id']) && !empty($params['Movie']['director_id'])){
                 $params['Movie']['director_id'] = implode(',', $params['Movie']['director_id']);
             }
@@ -164,6 +171,7 @@ class MovieController extends CommonController
             return $this->redirect(['index']);
         } else {
             $model->musician_id = strpos($model->musician_id, ',') !== false ? explode(',', $model->musician_id): $model->musician_id;
+            $model->supervisor_id = strpos($model->supervisor_id, ',') !== false ? explode(',', $model->supervisor_id): $model->supervisor_id;
             $model->director_id = strpos($model->director_id, ',') !== false ? explode(',', $model->director_id): $model->director_id;
             $model->area_id = strpos($model->area_id, ',') !== false ? explode(',', $model->area_id): $model->area_id;
             $model->type_id = strpos($model->type_id, ',') !== false ? explode(',', $model->type_id): $model->type_id;
