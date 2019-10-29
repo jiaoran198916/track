@@ -24,6 +24,7 @@ class Movie extends Common
     {
         return [
             [['name', 'year', 'cover', 'duration', 'douban_id'], 'required'],
+            [['name', 'ename', 'douban_id'], 'trim'],
             ['name', 'unique', 'message' => '电影名已存在'],
             ['douban_id', 'unique', 'message' => '豆瓣ID已存在'],
             [['year', 'valid', 'duration', 'douban_id', 'is_showing', 'user_id', 'status','count', 'create_time', 'update_time'], 'integer'],
