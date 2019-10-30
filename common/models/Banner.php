@@ -2,12 +2,10 @@
 
 namespace common\models;
 
-use Yii;
-
 /**
  * This is the model class for table "banner".
  */
-class Banner extends \yii\db\ActiveRecord
+class Banner extends Common
 {
     /**
      * @inheritdoc
@@ -49,7 +47,7 @@ class Banner extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => '标题',
-            'desc' => '简介1',
+            'desc' => '简介',
             'img' => '图片',
             'type' => '类型',
             'position' => '排序',
@@ -58,23 +56,6 @@ class Banner extends \yii\db\ActiveRecord
             'create_time' => '创建时间',
             'update_time' => '修改时间',
         ];
-    }
-
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
     }
 
     /**

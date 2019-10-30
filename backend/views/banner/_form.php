@@ -21,10 +21,9 @@ use common\models\Movie;
 
         <?= $form->field($model, 'img')->widget('common\widgets\file_upload\FileUpload') ?>
 
-
         <?= $form->field($model, 'position')->input('number') ?>
 
-        <?= $form->field($model, 'movie_id')->dropDownList(Movie::find()->select(['name', 'id'])->orderBy(['id' => SORT_ASC])->indexBy('id')->column(),['prompt' => '请选择电影']) ?>
+        <?= $form->field($model, 'movie_id')->dropDownList(Movie::find()->select(['name', 'id'])->orderBy(['id' => SORT_DESC])->indexBy('id')->column(),['prompt' => '请选择电影','class' => 'select2', 'style' => 'width: 100%;', 'data-placeholder' => "请选择电影"]) ?>
 
 </div>
 
@@ -34,3 +33,11 @@ use common\models\Movie;
 </div>
 
 <?php ActiveForm::end(); ?>
+
+<script>
+    window.onload = function() {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+    }
+
+</script>
