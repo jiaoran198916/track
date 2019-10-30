@@ -26,21 +26,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
         'layout' => '{items}',
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-            'id',
+            ['class' => 'yii\grid\SerialColumn'],
+//            'id',
             'title',
-            'desc',
-            ['attribute' =>'type',
-                'value' =>function($model){
-                    return \common\models\Banner::bannerType()[$model->type];
-                }
-            ],
-            'position',
+//            'desc',
+//            ['attribute' =>'type',
+//                'value' =>function($model){
+//                    return \common\models\Banner::bannerType()[$model->type];
+//                }
+//            ],
+//            'position',
             // 'movie_id',
+            ['attribute' =>'movie_id',
+                'value' => 'movie.name'
+            ],
             // 'status',
             ['attribute' =>'create_time',
+                'format' =>['date', 'php:Y-m-d H:i:s'],
+            ],
+
+            ['attribute' =>'update_time',
                 'format' =>['date', 'php:Y-m-d H:i:s']
-            ],            // 'update_time:datetime',
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '<ul class="icon-list">{view} {update} {delete}</ul>',
