@@ -40,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' =>'movie_id',
                 'value' => 'movie.name'
             ],
-            // 'status',
             ['attribute' =>'create_time',
                 'format' =>['date', 'php:Y-m-d H:i:s'],
             ],
@@ -97,6 +96,5 @@ $this->params['breadcrumbs'][] = $this->title;
             $('#example').DataTable()
         })
     }
-
 
 </script>
