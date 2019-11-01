@@ -86,7 +86,6 @@ class SiteController extends CommonController
             return $this->goBack();
         } else {
 //            echo $this->layout;die;
-//            echo 56;die;
             return $this->render('login', [
                 'model' => $model,
             ]);

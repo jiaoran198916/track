@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-
             <div class="box">
                 <div class="box-header">
                     <?= Html::a('<i class="fa fa-plus"></i> 新建Banner', ['create'], ['class' => 'btn btn-success']) ?>

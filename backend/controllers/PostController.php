@@ -39,10 +39,6 @@ class PostController extends CommonController
      */
     public function actionView($id)
     {
-//        $post = Yii::$app->db->createCommand("select * from post where id = :id and status =:status")->bindValue(":id",$_GET['id'])
-//            ->bindValue(":status",2)->queryOne();
-//        var_dump($post);die;
-
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -55,9 +51,6 @@ class PostController extends CommonController
      */
     public function actionCreate()
     {
-//        if(!Yii::$app->user->can('createPost')){
-//            throw new ForbiddenHttpException('您没有此操作的权限');
-//        }
 
         $model = new Post();
 
@@ -78,10 +71,6 @@ class PostController extends CommonController
      */
     public function actionUpdate($id)
     {
-//        if(!Yii::$app->user->can('updatePost')){
-//            throw new ForbiddenHttpException('您没有此操作的权限');
-//        }
-//        print_r(Yii::$app->request->post());die;
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -101,10 +90,6 @@ class PostController extends CommonController
      */
     public function actionDelete($id)
     {
-//        if(!Yii::$app->user->can('deletePost')){
-//            throw new ForbiddenHttpException('您没有此操作的权限');
-//        }
-
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
