@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\BannerSearch */
@@ -13,31 +13,23 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'layout' => 'inline',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'title')->textInput(['placeholder' => '标题']) ?>
 
-    <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'desc') ?>
-
-    <?= $form->field($model, 'image') ?>
-
-    <?= $form->field($model, 'position') ?>
+    <?= $form->field($model, 'movie_id')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\Movie::find()->select('id, name')->all(), 'id', 'name'), ['prompt' => '关联电影', 'class' => 'select2']) ?>
 
     <?php // echo $form->field($model, 'movie_id') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'create_time') ?>
-
-    <?php // echo $form->field($model, 'update_time') ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('重置', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+

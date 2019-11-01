@@ -18,12 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::a('<i class="fa fa-plus"></i> 新建Banner', ['create'], ['class' => 'btn btn-success']) ?>
                 </div>
                 <!-- /.box-header -->
+                <div class="box-header">
+                <?=
+                $this->render('_search',['model' => $searchModel]);
+                ?>
+                </div>
                 <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
-        'layout' => '{items}',
+//        'layout' => '{items}',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 //            'id',
@@ -92,7 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     window.onload = function(){
         $(function () {
-            $('#example').DataTable()
+            // $('#example').DataTable()
+            $('.select2').select2();
         })
     }
 
