@@ -203,6 +203,9 @@ use frontend\components\RankingWidget;
                                 <p>
                                     <strong>2019-08-30</strong> 网站被 <a href="http://www.ruanyifeng.com/blog/2019/08/weekly-issue-71.html" target="_blank">阮一峰科技周刊71期</a> 被推荐，流量猛增，当天浏览近万，独立访客过千
                                 </p>
+                                <p>
+                                    <strong>2019-11-02</strong> 网站正式换成Block新模板，并打算长期使用
+                                </p>
                             </div>
                         </div>
                     </div>
