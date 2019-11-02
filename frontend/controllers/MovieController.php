@@ -136,10 +136,15 @@ class MovieController extends Controller
         }
     }
 
+    /**
+     * 电影详情
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionDetail($id)
     {
         $model = $this->findModel($id);
-
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
         $onlineCount = Resource::find()->where(['item_id' => $id, 'type' => 1, 'valid' => 1, 'is_download' => 0])->count();
@@ -156,9 +161,8 @@ class MovieController extends Controller
 
     }
 
-    public function actionView($id)
+    public function actionDetailBak($id)
     {
-        $this->layout = 'main1';
         $model = $this->findModel($id);
 
         $news = Movie::findNewTen();
@@ -168,7 +172,7 @@ class MovieController extends Controller
         //访问数+1
         $model->updateCounters(['count' => 1]);
 
-        return $this->render('view',[
+        return $this->render('detail_bak',[
             'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,

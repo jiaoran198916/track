@@ -21,15 +21,15 @@ use frontend\components\RankingWidget;
 
                     <div class="movie-item">
                         <div class="mv-img">
-                            <a href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" target="_blank">
+                            <a href="<?= Url::to(['movie/detail', 'id' => $v->movie_id])?>" target="_blank">
                                 <img src="<?= (strpos($v->movie->cover, 'uploads') !== false) ? Yii::$app->params['adminhost'].$v->movie->cover : Yii::$app->params['cdnHost'].$v->movie->cover ?>" alt="<?= $v->title ?>" width="285" height="437">
                             </a>
                         </div>
                         <div class="title-in">
                             <div class="cate">
-                                <span class="blue"><a href="<?= Url::to(['detail', 'id' => $v->movie_id])?>">Sci-fi</a></span>
+                                <span class="blue"><a href="<?= Url::to(['movie/detail', 'id' => $v->movie_id])?>">Sci-fi</a></span>
                             </div>
-                            <h6><a href="<?= Url::to(['detail', 'id' => $v->movie_id])?>" target="_blank"><?= $v->movie->name ?></a></h6>
+                            <h6><a href="<?= Url::to(['movie/detail', 'id' => $v->movie_id])?>" target="_blank"><?= $v->movie->name ?></a></h6>
                             <p><i class="ion-android-star"></i>
 <!--                                <span>7.4</span> /10-->
                                 <span><?= count($v->movie->episodes)?></span>&nbsp;songs
@@ -66,10 +66,10 @@ use frontend\components\RankingWidget;
                                                 <img src="<?= Yii::$app->params['cdnHost'].$v->cover?>" alt="" width="185" height="284" style="width: 185px">
                                             </div>
                                             <div class="hvr-inner">
-                                                <a  href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank">查看<i class="ion-android-arrow-dropright"></i> </a>
+                                                <a  href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank">查看<i class="ion-android-arrow-dropright"></i> </a>
                                             </div>
                                             <div class="title-in">
-                                                <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
+                                                <h6><a href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
                                                 <p><i class="ion-android-star"></i><span><?= $v->num?></span> songs</p>
                                             </div>
                                         </div>
@@ -88,10 +88,10 @@ use frontend\components\RankingWidget;
                                                     <img src="<?= Yii::$app->params['cdnHost'].$v->cover?>" alt="" width="185" height="284" style="width: 185px">
                                                 </div>
                                                 <div class="hvr-inner">
-                                                    <a  href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank">查看 <i class="ion-android-arrow-dropright"></i> </a>
+                                                    <a  href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank">查看 <i class="ion-android-arrow-dropright"></i> </a>
                                                 </div>
                                                 <div class="title-in">
-                                                    <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
+                                                    <h6><a href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
                                                     <p><i class="ion-android-star"></i><span><?= $v->num?></span> songs</p>
                                                 </div>
                                             </div>
@@ -123,10 +123,10 @@ use frontend\components\RankingWidget;
                                                     <img src="<?= Yii::$app->params['cdnHost'].$v->cover?>" alt="" width="185" height="284" style="width: 185px">
                                                 </div>
                                                 <div class="hvr-inner">
-                                                    <a  href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"> 查看<i class="ion-android-arrow-dropright"></i> </a>
+                                                    <a  href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank"> 查看<i class="ion-android-arrow-dropright"></i> </a>
                                                 </div>
                                                 <div class="title-in">
-                                                    <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
+                                                    <h6><a href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
                                                     <p><i class="ion-android-star"></i><span><?= $v->num?></span> songs</p>
                                                 </div>
                                             </div>
@@ -145,10 +145,10 @@ use frontend\components\RankingWidget;
                                                     <img src="<?= Yii::$app->params['cdnHost'].$v->cover?>" alt="" width="185" height="284" style="width: 185px">
                                                 </div>
                                                 <div class="hvr-inner">
-                                                    <a  href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank">查看 <i class="ion-android-arrow-dropright"></i> </a>
+                                                    <a  href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank">查看 <i class="ion-android-arrow-dropright"></i> </a>
                                                 </div>
                                                 <div class="title-in">
-                                                    <h6><a href="<?= Url::to(['detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
+                                                    <h6><a href="<?= Url::to(['movie/detail', 'id' => $v->id])?>" target="_blank"><?= $v->name?></a></h6>
                                                     <p><i class="ion-android-star"></i><span><?= $v->num?></span> song</p>
                                                 </div>
                                             </div>
@@ -248,7 +248,7 @@ use frontend\components\RankingWidget;
             <div class="col-md-4">
                 <div class="sidebar">
                     <div class="sb-facebook sb-it">
-                        <h4 class="sb-title">Find us on Facebook</h4>
+                        <h4 class="sb-title">Find us on douban</h4>
 <!--                        <iframe src="" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhaintheme%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="300" height="315" style="border:none;overflow:hidden" ></iframe>-->
                     </div>
                     <div class="sb-twitter1 sb-it">

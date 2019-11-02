@@ -81,7 +81,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'main1';
         $bannerModel = Banner::getBannerData();
         $showing = Movie::findIsShowing();
         $default = $showing;

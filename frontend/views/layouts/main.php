@@ -7,11 +7,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use frontend\assets\AppsAsset;
 use common\widgets\Alert;
 use yii\helpers\Url;
 
-AppAsset::register($this);
+AppsAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -31,148 +31,252 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img alt="Brand" src="/static/images/logo.png"></a>
-        </div>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" src="/static/images/logo.png" alt="" width="277">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+<!--login form popup-->
+<div class="login-wrapper" id="login-content">
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>Login</h3>
+        <form method="post" action="login.php">
+            <div class="row">
+                <label for="username">
+                    Username:
+                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                </label>
+            </div>
 
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <!--<li class="/*= (Yii::$app->request->getUrl() == '/' || Yii::$app->request->getUrl() == '') ? 'active':''*/?>"><a href="/">首页 <span class="sr-only">(current)</span></a></li>-->
-                <li class="<?= (Yii::$app->request->getUrl() == '/movie') ? 'active':''?>"><a href="/movie">电影</a></li>
-                <li class="<?= (Yii::$app->request->getUrl() == '/post') ? 'active':''?>"><a href="/post">文章</a></li>
-                <li class="<?= (Yii::$app->request->getUrl() == '/master') ? 'active':''?>"><a href="/master">音乐家</a></li>
-                <li class="<?= (Yii::$app->request->getUrl() == '/awards') ? 'active':''?>"><a href="/awards">奖项</a></li>
-                <li class="<?= (Yii::$app->request->getUrl() == '/about') ? 'active':''?>"><a href="/about">关于</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" action="<?= Url::to(['movie/index'])?>" method="get">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="电影名、音乐人" name="MovieSearch[name]">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-<!--                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>-->
-<!--                    <span class="input-group-btn">-->
-<!--                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>-->
-<!--                    </span>-->
+            <div class="row">
+                <label for="password">
+                    Password:
+                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+            <div class="row">
+                <div class="remember">
+                    <div>
+                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                    </div>
+                    <a href="#">Forget password ?</a>
                 </div>
+            </div>
+            <div class="row">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <div class="row">
+            <p>Or via social</p>
+            <div class="social-btn-2">
+                <a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+                <a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of login form popup-->
+<!--signup form popup-->
+<div class="login-wrapper"  id="signup-content">
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>sign up</h3>
+        <form method="post" action="signup.php">
+            <div class="row">
+                <label for="username-2">
+                    Username:
+                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                </label>
+            </div>
 
-            </form>
-            <?php
-            if (Yii::$app->user->isGuest){?>
-            <ul class="navbar-right m-tophead">
-               <li class="">
-                <a href="/login" class="link">登录 / 注册</a>
-                </li>
-            </ul>
-            <?php } else { ?>
-                <ul class=" nav navbar-nav pull-right">
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= Yii::$app->user->identity->username?><b class="caret"></b></a>
-                <ul class="dropdown-menu">
-<!--                    <li><a href="/profile/1403789/movies/planned">我的电影</a></li>-->
-<!--                    <li><a href="/profile/1403789/collections/own">我的专辑</a></li>-->
-<!--                    <li><a href="/status/user_comments/1407762">我的影评</a></li>-->
-                    <li><a href="#"><span class="glyphicon glyphicon-heart-empty"></span>&nbsp;我的关注</a></li>
-                    <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;个人设置</a></li>
-<!--                    <li class="divider"></li>-->
-                    <li class="dropdown-item"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;注销</a></li>
-                </ul>
-            </li>
-                </ul>
-            <?php } ?>
+            <div class="row">
+                <label for="email-2">
+                    your email:
+                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+            <div class="row">
+                <label for="password-2">
+                    Password:
+                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+            <div class="row">
+                <label for="repassword-2">
+                    re-type Password:
+                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+            <div class="row">
+                <button type="submit">sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--end of signup form popup-->
 
-<!--            <ul class=" navbar-nav1 navbar-right m-tophead">-->
-<!--                <li class="">-->
-<!--                    <a href="/login" class="link">登录 / 注册<span class="caret"></span></a>-->
-<!--<!--                    <ul class="dropdown-menu">-->-->
-<!--<!--                        <li><a href="#">Action</a></li>-->-->
-<!--<!--                        <li><a href="#">Another action</a></li>-->-->
-<!--<!--                        <li><a href="#">Something else here</a></li>-->-->
-<!--<!--                        <li role="separator" class="divider"></li>-->-->
-<!--<!--                        <li><a href="#">Separated link</a></li>-->-->
-<!--<!--                    </ul>-->-->
-<!---->
-<!--                </li>-->
-<!--            </ul>-->
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<!-- BEGIN | Header -->
+<header class="ht-header">
+    <div class="container">
+        <nav class="navbar navbar-default navbar-custom">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header logo">
+                <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <div id="nav-icon1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <a href="/"><img class="logo" src="/static/images/logo.png" alt="" width="277" style=""></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" href="/">
+                            首页
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" href="/">
+                            电影
+                        </a>
+                    </li>
+<!--                    <li class="dropdown first">-->
+<!--                        <a class="btn btn-default dropdown-toggle lv1" href="/master">-->
+<!--                            音乐家-->
+<!--                        </a>-->
+<!--                    </li>-->
+                    <!--<li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" href="/post">
+                            博客
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" href="/about">
+                            关于
+                        </a>
+                    </li>-->
+                    <!--<li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                            community <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu level1">
+                            <li><a href="userfavoritegrid.html">user favorite grid</a></li>
+                            <li><a href="userfavoritelist.html">user favorite list</a></li>
+                            <li><a href="userprofile.html">user profile</a></li>
+                            <li class="it-last"><a href="userrate.html">user rate</a></li>
+                        </ul>
+                    </li>-->
+                </ul>
+                <ul class="nav navbar-nav flex-child-menu menu-right">
+<!--                    <li class="dropdown first">-->
+<!--                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">-->
+<!--                            pages <i class="fa fa-angle-down" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu level1">-->
+<!--                            <li><a href="landing.html">Landing</a></li>-->
+<!--                            <li><a href="404.html">404 Page</a></li>-->
+<!--                            <li class="it-last"><a href="comingsoon.html">Coming soon</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li><a href="#">Help</a></li>-->
+                    <li class="loginLink"><a href="#">登录</a></li>
+                    <li class="btn signupLink"><a href="#">注册</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <!-- top search form -->
+        <div class="top-search">
+            <select>
+                <option value="united"> 电 影 </option>
+                <option value="saab"> 其 他 </option>
+            </select>
+            <input type="text" placeholder="搜索电影、音乐家、歌曲">
+        </div>
+    </div>
+</header>
+<!-- END | Header -->
 
 <?= $content ?>
 
-<!--<div class="footer" id="footer">-->
-<!--    <a href="javascript:void(0);" id="toTop" style="display: block;"></a>-->
-<!--    <div class="container">-->
-<!--        <span class="footer-logo"></span>-->
-<!--        <p class="law-info">-->
-<!--            Copyright © 2016.Company name All rights reserved.More-->
-<!--        </p>-->
-<!--    </div>-->
-<!--</div>-->
-
-<footer class="footer ">
+<!-- footer section-->
+<footer class="ht-footer">
     <div class="container">
-        <div class="row footer-top">
-            <div class="col-md-6 col-lg-6">
+        <div class="flex-parent-ft">
+            <div class="flex-child-ft item1">
+<!--                <a href="/"><img class="logo" src="/static/images/logo.png" alt="" width="241"></a>-->
+<!--                <p>南京, NJ</p>-->
+<!--                <p>Call us: <a href="#">(+01) 920 495 391</a></p>-->
                 <h4>
-                    <img src="/static/images/logofooter.png" width="241">
+                    <img src="/static/images/logo.png" width="241" style="margin-bottom: 0;">
                 </h4>
-                <p>一个专注于<strong> 电影音乐 </strong>盘点与分享的网站</p>
+                <p style="font-size: 18px">专注于<strong> 电影音乐 </strong>的盘点与分享</p>
             </div>
-            <div class="col-md-6  col-lg-5 col-lg-offset-1">
-                <div class="row about">
-                    <div class="col-sm-4">
-                        <h4>关于</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="/about">关于我们</a></li>
-                            <li><a href="/">广告合作</a></li>
-<!--                            <li><a href="/links/">友情链接</a></li>-->
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <h4>联系方式</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="https://weibo.com/" title="皎然影音乐官方微博" target="_blank">新浪微博</a></li>
-                            <li><a href="mailto:920495391@qq.com" target="_blank">电子邮件</a></li>
-                            <li><a href="javascript:void(0)" target="_blank">QQ群： 131399457</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <h4>友情链接</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="https://www.yiichina.com/" target="_blank">Yii中文网</a></li>
-                            <li><a href="https://movie.douban.com/" target="_blank">豆瓣电影</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="flex-child-ft item2">
+                <h4>资源</h4>
+                <ul>
+                    <li><a href="/about">关于</a></li>
+                    <li><a href="/post">博客</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">广告合作</a></li>
 
+                </ul>
             </div>
-        </div>
-        <hr>
-        <div class="row footer-bottom">
-            <ul class="list-inline text-center">
-                <li><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备19038064号-1</a></li>
-                <li><a href="/" target="_blank">© 2019 jiaoran.net</a></li>
-                <li><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script></li>
-            </ul>
+            <div class="flex-child-ft item3">
+                <h4>服务</h4>
+                <ul>
+                    <li><a href="#">使用说明</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">
+                            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
+                            <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1277889664&web_id=1277889664"></script></a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item4">
+                <h4>账户</h4>
+                <ul>
+                    <li><a href="#">我的账户</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">我的评论</a></li>
+                    <li><a href="#">用户指南</a></li>
+                </ul>
+            </div>
+            <div class="flex-child-ft item5">
+                <h4>订阅我们</h4>
+                <p>关注我们的订阅，<br> 可第一时间获取资讯</p>
+                <form action="#">
+                    <input type="text" placeholder="输入您的邮箱...">
+                </form>
+                <a href="#" class="btn">立即订阅<i class="ion-ios-arrow-forward"></i></a>
+            </div>
         </div>
     </div>
+<!--    <div class="ft-copyright">-->
+<!--        <div class="ft-left">-->
+<!--            <p><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备19038064号-1</a></p>-->
+<!--        </div>-->
+<!--        <div class="backtotop">-->
+<!--            <p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>-->
+<!--        </div>-->
+<!--    </div>-->
 </footer>
+<!-- end of footer section-->
 
 <?php $this->endBody() ?>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277889664'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277889664%26online%3D2' type='text/javascript'%3E%3C/script%3E"));</script>
-<script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1277889664&web_id=1277889664"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

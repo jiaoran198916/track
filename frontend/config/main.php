@@ -8,7 +8,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'movie/index',
+    'defaultRoute' => 'site/index',
     'layout' => 'main',
     'language' => 'zh-CN',
     'controllerNamespace' => 'frontend\controllers',

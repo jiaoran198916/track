@@ -74,6 +74,13 @@ class MasterController extends Controller
         }
     }
 
+
+    /**
+     * 音乐家详情
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionDetail($id)
     {
         $model = $this->findModel($id);
@@ -85,22 +92,20 @@ class MasterController extends Controller
             'news'=>$news,
             'hots'=>$hots,
         ]);
-
     }
 
-
-    public function actionView($id)
+    public function actionDetailBak($id)
     {
-        $this->layout = 'main1';
         $model = $this->findModel($id);
         $news = Movie::findNewTen();
         $hots = Movie::findHotTen();
 
-        return $this->render('view',[
+        return $this->render('detail_bak',[
             'model'=>$model,
             'news'=>$news,
             'hots'=>$hots,
         ]);
 
     }
+
 }
