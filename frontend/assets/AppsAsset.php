@@ -16,10 +16,13 @@ class AppsAsset extends AssetBundle
         'static/css/style.css',
     ];
     public $js = [
-        'static/js/jquery.js',
+//        'static/js/jquery.js',
+        'static/js/jquery.min.js',
+        'static/js/bootstrap.min.js',
         'static/js/plugins.js',
         'static/js/plugins2.js',
         'static/js/custom.js',
+
     ];
     public $depends = [
 //        'yii\web\YiiAsset',

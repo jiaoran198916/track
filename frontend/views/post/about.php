@@ -193,7 +193,6 @@ use frontend\components\RankingWidget;
                                 <h3 class="panel-title">Events</h3>
                             </div>
                             <div class="panel-body">
-
                                 <p>
                                     <strong>2019-06-30</strong> 项目启动，源码提交至github
                                 </p>

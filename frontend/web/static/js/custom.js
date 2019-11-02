@@ -49,7 +49,7 @@ $(function(){
 		$(this).toggleClass('open');
 	});
 	//js for tabs
-	var tabsClick = $('.tabs .tab-links a, .tab-links-2 a, .tab-links-3 a');
+	var tabsClick = $('.tabs .tab-links a');
 	var multiItem = $('.slick-multiItem');
 	var multiItem2 = $('.slick-multiItem2');
 	tabsClick.on('click', function(e)  {
@@ -64,6 +64,34 @@ $(function(){
 		multiItem.slick('setPosition');
 		multiItem2.slick('setPosition');
 	});
+	//二级点击切换标签
+    let tabsClick2 = $('.tab-links-2 a, .tab-links-3 a');
+    tabsClick2.on('click', function(e)  {
+        let currentAttrValue = $(this).attr('href');
+        let tabsCurrent = $('.tabs ' + currentAttrValue);
+        // Show/Hide Tabs
+        tabsCurrent.show().siblings().hide();
+        // Change/remove current tab to active
+        $('.tabs li:nth-child(2)').addClass('active').siblings().removeClass('active');
+        e.preventDefault();
+        //reset position for tabs
+        multiItem.slick('setPosition');
+        multiItem2.slick('setPosition');
+    });
+    //三级点击切换标签
+    let tabsClick3 = $('.tab-links-3 a');
+    tabsClick2.on('click', function(e)  {
+        let currentAttrValue = $(this).attr('href');
+        let tabsCurrent = $('.tabs ' + currentAttrValue);
+        // Show/Hide Tabs
+        tabsCurrent.show().siblings().hide();
+        // Change/remove current tab to active
+        $('.tabs li:nth-child(3)').addClass('active').siblings().removeClass('active');
+        e.preventDefault();
+        //reset position for tabs
+        multiItem.slick('setPosition');
+        multiItem2.slick('setPosition');
+    });
 	// js for time count down
 	function getTimeRemaining(endtime) {
 	  var t = Date.parse(endtime) - Date.parse(new Date());

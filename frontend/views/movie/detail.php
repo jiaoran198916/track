@@ -33,16 +33,16 @@ use yii\helpers\Url;
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="movie-img sticky-sb">
                     <img src="<?= (strpos($model->cover, 'uploads') !== false) ? Yii::$app->params['adminhost'].$model->cover : Yii::$app->params['cdnHost'].$model->cover ?>" alt="">
-                    <div class="movie-btn">
-                        <div class="btn-transform transform-vertical red">
+<!--                    <div class="movie-btn">-->
+                        <!--<div class="btn-transform transform-vertical red">
                             <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
-                            <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                            <div><a href="https://movie.douban.com/trailer/254820/" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
                         </div>
                         <div class="btn-transform transform-vertical">
                             <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
                             <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
-                        </div>
-                    </div>
+                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12">
@@ -69,7 +69,7 @@ use yii\helpers\Url;
                             </p>
                         </div>
                         <div class="rate-star">
-                            <p>为电影配乐打分:  </p>
+                            <p>为音乐打分:  </p>
                             <i class="ion-ios-star"></i>
                             <i class="ion-ios-star"></i>
                             <i class="ion-ios-star"></i>
@@ -94,22 +94,28 @@ use yii\helpers\Url;
                                 <div id="overview" class="tab active">
                                     <div class="row">
                                         <div class="col-md-8 col-sm-12 col-xs-12">
-                                            <p><?= !empty($model->music_desc) ? $model->music_desc:$model->desc ?></p>
+                                            <p><?= strip_tags($model->music_desc) ?></p>
 
                                             <div class="title-hd-sm">
-                                                <h4>音乐信息</h4>
-                                                <a href="#" class="time">全部音乐<i class="ion-ios-arrow-right"></i></a>
+                                                <h4>剧情简介</h4>
+                                            </div>
+                                            <div class="mvcast-item">
+                                                <p><?= strip_tags($model->desc) ?></p>
+                                            </div>
+                                            <div class="title-hd-sm tab-links-2">
+                                                <h4>音乐节选</h4>
+                                                <a href="#episodes" id="moreEpisodes" class="time">全部音乐<i class="ion-ios-arrow-right"></i></a>
                                             </div>
                                             <!-- movie cast -->
                                             <div class="mvcast-item">
                                                 <?php
                                                 if($model->episodes):
                                                 foreach ($model->episodes as $k => $v):
-                                                    if($k < 6): ?>
-                                                    <div class="cast-it">
+                                                    if($k < 5): ?>
+                                                    <div class="cast-it" style="margin-bottom: 20px">
                                                         <div class="cast-left">
 <!--                                                            <img src="images/uploads/cast1.jpg" alt="">-->
-                                                            <a href="#"><?= $v->name ?></a>
+                                                            <p><?= $v->name ?></p>
                                                         </div>
                                                         <p><?= $v->musicians ?></p>
                                                     </div>
@@ -118,29 +124,29 @@ use yii\helpers\Url;
                                                     endforeach;
                                                 endif;?>
                                             </div>
-                                            <div class="title-hd-sm">
+                                            <div class="title-hd-sm tab-links-3">
                                                 <h4>音乐作者</h4>
-                                                <a href="#" class="time">全部音乐人员<i class="ion-ios-arrow-right"></i></a>
+                                                <a href="#master" class="time">全部音乐人员<i class="ion-ios-arrow-right"></i></a>
                                             </div>
                                             <!-- movie cast -->
                                             <div class="mvcast-item">
                                                 <div class="cast-it">
                                                     <div class="cast-left">
-                                                        <a href="#"><?= $model->director ?></a>
+                                                        <p><?= $model->director ?></p>
                                                     </div>
                                                     <p>...  导演</p>
                                                 </div>
                                                 <div class="cast-it">
                                                     <div class="cast-left">
-                                                        <a href="#"><?= $model->master ?></a>
+                                                        <?= $model->master ?>
                                                     </div>
                                                     <p>...  作曲</p>
                                                 </div>
                                                 <?php
-                                                if($model->master):?>
+                                                if($model->supervisor):?>
                                                 <div class="cast-it">
                                                     <div class="cast-left">
-                                                        <a href="#"><?= $model->master ?></a>
+                                                        <?= $model->supervisor ?>
                                                     </div>
                                                     <p>...  音乐总监</p>
                                                 </div>
@@ -150,33 +156,33 @@ use yii\helpers\Url;
                                         </div>
                                         <div class="col-md-4 col-xs-12 col-sm-12">
                                             <div class="sb-it">
-                                                <h6>导演: </h6>
-                                                <p><a href="#"><?= $model->director ?></a></p>
+                                                <h6>作曲: </h6>
+                                                <p><?= $model->master ?></p>
                                             </div>
                                             <div class="sb-it">
-                                                <h6>作曲: </h6>
-                                                <p><a href="#"><?= $model->master ?></a></p>
+                                                <h6>导演: </h6>
+                                                <p><?= $model->director ?></p>
                                             </div>
                                             <?php
-                                            if($model->master):?>
+                                            if($model->supervisor):?>
                                                 <div class="sb-it">
                                                     <h6>音乐总监: </h6>
-                                                    <p><a href="#"><?= $model->master ?></a></p>
+                                                    <p><?= $model->supervisor ?></p>
                                                 </div>
                                             <?php
                                             endif;?>
 
                                             <div class="sb-it">
                                                 <h6>类型:</h6>
-                                                <p><a href="#"><?= $model->type ?></a></p>
+                                                <p><?= $model->type ?></p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>语言:</h6>
-                                                <p><a href="#"><?= $model->language ?></a></p>
+                                                <p><?= $model->language ?></p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>地区:</h6>
-                                                <p><a href="#"><?= $model->area ?></a></p>
+                                                <p><?= $model->area ?></p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>发行:</h6>
@@ -191,7 +197,7 @@ use yii\helpers\Url;
                                                 <p><?= $model->count ?> 次</p>
                                             </div>
                                             <div class="sb-it">
-                                                <h6>标签:</h6>
+                                                <h6>音乐标签:</h6>
                                                 <p class="tags">
                                                     <span class="time"><a href="#">电子</a></span>
                                                     <span class="time"><a href="#">摇滚</a></span>
@@ -246,7 +252,7 @@ use yii\helpers\Url;
                                             <div class="cast-it">
                                                 <div class="cast-left">
                                                     <h4>JW</h4>
-                                                    <a href="#"><?= $model->director ?></a>
+                                                    <p><?= $model->director ?></p>
                                                 </div>
                                                 <p>...  导演</p>
                                             </div>
@@ -259,14 +265,14 @@ use yii\helpers\Url;
                                             <div class="cast-it">
                                                 <div class="cast-left">
                                                     <h4>JW</h4>
-                                                    <a href="#"><?= $model->master ?></a>
+                                                   <?= $model->master ?>
                                                 </div>
                                                 <p>...  作曲</p>
                                             </div>
                                         </div>
 
                                         <?php
-                                        if($model->master):?>
+                                        if($model->supervisor):?>
                                         <div class="title-hd-sm">
                                             <h4>音乐总监</h4>
                                         </div>
@@ -274,7 +280,7 @@ use yii\helpers\Url;
                                             <div class="cast-it">
                                                 <div class="cast-left">
                                                     <h4>JW</h4>
-                                                    <a href="#"><?= $model->master ?></a>
+                                                    <?= $model->supervisor ?>
                                                 </div>
                                                 <p>...  音乐总监</p>
                                             </div>
