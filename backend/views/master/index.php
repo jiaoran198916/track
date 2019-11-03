@@ -20,13 +20,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="box-header">
                     <?= Html::a('<i class="fa fa-plus"></i> 新建艺术家', ['create'], ['class' => 'btn btn-success']) ?>
                 </div>
+
+                <div class="box-header">
+                    <?=
+                    $this->render('_search',['model' => $searchModel]);
+                    ?>
+                </div>
                 <!-- /.box-header -->
                 <div class="box-body">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
-        'layout' => '{items}',
+//        'layout' => '{items}',
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
             'id',
@@ -36,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'attribute' =>'type',
               'value' =>'typeText'
             ],
-            'birthday',
+//            'birthday',
             ['attribute' =>'city_id',
                 'value' =>'city'
             ],
@@ -88,10 +94,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     window.onload = function(){
         $(function () {
-            $('#example').DataTable({
-                "iDisplayLength" : 20,
-                "order": [[ 0, "desc" ]]
-            })
+            // $('#example1').DataTable({
+            //     "iDisplayLength" : 20,
+            //     "order": [[ 0, "desc" ]]
+            // })
+
+            $('.select2').select2();
+
         })
     }
 </script>

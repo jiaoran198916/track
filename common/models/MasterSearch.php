@@ -48,7 +48,7 @@ class MasterSearch extends Master
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 0,
+                'pageSize' => 20,
             ]
         ]);
 
@@ -78,6 +78,7 @@ class MasterSearch extends Master
             ->andFilterWhere(['like', 'desc', $this->desc]);
 //        echo $query->createCommand()->getRawSql();die;
 
+        $query->orderBy('id desc');
         return $dataProvider;
     }
 }

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "master".
  *
  */
-class Master extends \yii\db\ActiveRecord
+class Master extends Common
 {
     /**
      * @inheritdoc
@@ -64,13 +64,16 @@ class Master extends \yii\db\ActiveRecord
     {
         switch ($this->type){
             case 0:
-                $str = '音乐家';
+                $str = '作曲家';
                 break;
             case 1:
                 $str = '导演';
                 break;
             case 2:
                 $str = '歌手';
+                break;
+            case 3:
+                $str = '音乐总监';
                 break;
             default:
                 $str = '';
@@ -118,23 +121,6 @@ class Master extends \yii\db\ActiveRecord
         return Yii::$app->urlManager->createUrl(
             ['master/detail','id' => $this->id ]);
     }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
-    }
-
 
     /**
      * @notes: 获取作曲家列表
