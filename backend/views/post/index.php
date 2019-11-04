@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'tableOptions' => ['class' => 'table table-bordered table-striped', 'id' => 'example'],
-        'layout' => '{items}',
+//        'layout' => '{items}',
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'count',
 //            'content:ntext',
-            'tags:ntext',
+//            'tags:ntext',
             ['attribute' =>'create_time',
             'format' =>['date', 'php:Y-m-d H:i:s']
             ],
@@ -90,10 +90,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     window.onload = function(){
         $(function () {
-            $('#example').DataTable({
-                "iDisplayLength" : 20,
-                "order": [[ 0, "desc" ]]
-            })
+            // $('#example').DataTable({
+            //     "iDisplayLength" : 20,
+            //     "order": [[ 0, "desc" ]]
+            // })
         })
     }
 </script>
