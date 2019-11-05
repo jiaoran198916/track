@@ -53,7 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', 'View'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
-
                         ];
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
                     },
