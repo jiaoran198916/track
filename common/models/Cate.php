@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "cate".
  *
  */
-class Cate extends \yii\db\ActiveRecord
+class Cate extends Common
 {
     /**
      * @inheritdoc
@@ -45,19 +45,4 @@ class Cate extends \yii\db\ActiveRecord
         ];
     }
 
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
-    }
 }

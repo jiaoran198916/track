@@ -11,7 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $frequency
  */
-class Tag extends \yii\db\ActiveRecord
+class Tag extends Common
 {
     /**
      * @inheritdoc

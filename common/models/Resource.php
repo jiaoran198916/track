@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "resource".
  */
-class Resource extends \yii\db\ActiveRecord
+class Resource extends Common
 {
     /**
      * @inheritdoc
@@ -73,22 +73,6 @@ class Resource extends \yii\db\ActiveRecord
             $str = '在线';
         }
         return $str;
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
     }
 
     /**
