@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "language".
  */
-class Language extends \yii\db\ActiveRecord
+class Language extends Common
 {
     /**
      * @inheritdoc
@@ -43,21 +43,5 @@ class Language extends \yii\db\ActiveRecord
             'update_time' => 'Update Time',
             'valid' => 'Valid',
         ];
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
     }
 }
