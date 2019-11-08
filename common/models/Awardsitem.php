@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "awardsitem".
  */
-class Awardsitem extends \yii\db\ActiveRecord
+class Awardsitem extends Common
 {
     /**
      * @inheritdoc
@@ -108,19 +108,4 @@ class Awardsitem extends \yii\db\ActiveRecord
         return $res;
     }
 
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if($insert){
-                $this->create_time=time();
-                $this->update_time=time();
-            }else{
-                $this->update_time=time();
-            }
-            return true;
-
-        }else{
-            return false;
-        }
-    }
 }
