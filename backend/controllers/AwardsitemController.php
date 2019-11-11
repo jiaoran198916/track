@@ -6,9 +6,7 @@ use common\models\ItemMovieRelation;
 use Yii;
 use common\models\Awardsitem;
 use common\models\AwardsitemSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AwardsitemController implements the CRUD actions for Awardsitem model.
@@ -130,7 +128,6 @@ class AwardsitemController extends CommonController
         if($model->save()){
             return $this->renderJson('删除成功');
         }
-
         return $this->renderJson('删除失败');
     }
 
