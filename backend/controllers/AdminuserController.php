@@ -9,9 +9,7 @@ use common\models\Adminuser;
 use common\models\AdminuserSearch;
 use common\models\AuthAssignment;
 use common\models\AuthItem;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AdminuserController implements the CRUD actions for Adminuser model.
@@ -59,7 +57,6 @@ class AdminuserController extends CommonController
             if($user = $model->signup()){
                 return $this->redirect(['view', 'id' => $user->id]);
             }
-
         }
         return $this->render('create', [
             'model' => $model,
