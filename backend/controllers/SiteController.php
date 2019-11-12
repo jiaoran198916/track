@@ -6,7 +6,6 @@ use common\models\Master;
 use common\models\Movie;
 use common\models\User;
 use Yii;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\AdminLoginForm;
