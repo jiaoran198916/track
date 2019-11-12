@@ -6,9 +6,7 @@ use common\models\Episode;
 use Yii;
 use common\models\Movie;
 use common\models\MovieSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * MovieController implements the CRUD actions for Movie model.
