@@ -5,10 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Resource;
 use common\models\ResourceSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
 
 
 /**
@@ -27,7 +24,6 @@ class ResourceController extends CommonController
         $searchModel->valid = 1;
         $searchModel->item_id = 98;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -105,17 +101,6 @@ class ResourceController extends CommonController
             return $this->renderJson('保存失败'.json_encode($model->getErrors()), 500);
 
         }
-    }
-
-
-    public function renderJson($msg = '成功', $code = 200, $data = [])
-    {
-        $rsp = [
-            'msg' => $msg,
-            'code' => $code,
-            'data' => $data,
-        ];
-        return json_encode($rsp);
     }
 
     public function actionDel()
