@@ -5,9 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Source;
 use common\models\SourceSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SourceController implements the CRUD actions for Source model.
