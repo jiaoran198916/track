@@ -5,10 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Episode;
 use common\models\EpisodeSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
 
 
 /**
@@ -129,7 +126,7 @@ class EpisodeController extends CommonController
 //            return json_encode(['code' => 200, 'data' => $model->id]);
             return $this->redirect(['movie/view', 'id' => $model->movie_id]);
         } else {
-            print_r($model->getErrors());die;
+//            print_r($model->getErrors());die;
             return $this->render('create', [
                 'model' => $model,
             ]);
