@@ -5,9 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Master;
 use common\models\MasterSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * MasterController implements the CRUD actions for Master model.
