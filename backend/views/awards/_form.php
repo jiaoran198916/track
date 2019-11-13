@@ -35,8 +35,6 @@ use common\models\City;
 <script>
     window.onload = function() {
         $(function () {
-            //bootstrap WYSIHTML5 - text editor
-            // $('#master-desc').wysihtml5()
             $('.select2').select2()
         })
     }
