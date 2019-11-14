@@ -26,6 +26,7 @@ use common\models\City;
 <script>
     window.onload = function() {
         $(function () {
+
         })
     }
 </script>
