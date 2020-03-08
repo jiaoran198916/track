@@ -78,7 +78,7 @@ class MasterController extends CommonController
         $model = new Master();
 
         if ($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
-             Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
              return \yii\bootstrap\ActiveForm::validate($model);
          }
 
