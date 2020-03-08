@@ -85,7 +85,7 @@ class MovieController extends CommonController
 //            $model->loadDefaultValues();
         }
         if ($model->load($params) && Yii::$app->request->isAjax) {
-            Yii::$app->response->format = yii\web\Response::FORMAT_JSON;
+            Yii::$app->response->format = 'json';
             return \yii\bootstrap\ActiveForm::validate($model);
         }
         if($params){
