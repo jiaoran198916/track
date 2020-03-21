@@ -16,14 +16,17 @@ use yii\helpers\Url;
             <div class="title"><h2>第<?= $model->idx?>届<?= $model->awards->name?> <small>(<?= $model->year?>)</small></h2></div>
             <div class="col-xs-12 col-sm-4 col-md-4 poster">
                 <img class="img-responsive img-rounded animated bounceIn" src="<?= Yii::$app->params['adminhost'].$model->pic ?>" style="width: 150px;height: 222px;" alt="<?= $model->awards->name?>图片"></div>
-            <div class="col-xs-12 col-sm-8 col-md-8 m-t-15"><table border="0" class="file-intro"><tbody>
+            <div class="col-xs-12 col-sm-8 col-md-8 m-t-15">
+                <table border="0" class="file-intro">
+                    <tbody>
                     <tr><td>届次</td><td><?= $model->idx?> 届</td></tr>
                     <tr><td>奖项</td><td><?= $model->awards->name?> </td></tr>
                     <tr><td>年份</td><td><?= $model->year?> 年</td></tr>
                     <tr><td>地区</td><td><?= $model->city?> </td></tr>
                     <tr><td> </td><td> </td></tr>
                     <tr><td>发布</td><td><?= date('Y-m-d',$model->create_time)?></td></tr>
-                    </tbody></table>
+                    </tbody>
+                </table>
 
             </div>
         </div>
